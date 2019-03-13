@@ -4,14 +4,15 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/main.cpp" "/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/main.cpp.o"
-  "/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/network.cpp" "/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/network.cpp.o"
-  "/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/tensor.cpp" "/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/tensor.cpp.o"
+  "/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp" "/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/main.cpp.o"
+  "/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp" "/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/network.cpp.o"
+  "/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp" "/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/tensor.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
+  "/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/../../../include"
   )
 
 # Targets to which this target links.

@@ -1,2 +1,0 @@
-#include "head/learning.hpp"
-

@@ -1,5 +1,5 @@
-#include "head/tensor.h"
-#include "head/network.h"
+#include "tensor.h"
+#include "network.h"
 #include <iostream>
 
 

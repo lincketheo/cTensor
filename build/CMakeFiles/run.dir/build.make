@@ -43,7 +43,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU
+CMAKE_SOURCE_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/build
@@ -58,17 +58,17 @@ include CMakeFiles/run.dir/progress.make
 include CMakeFiles/run.dir/flags.make
 
 CMakeFiles/run.dir/network.cpp.o: CMakeFiles/run.dir/flags.make
-CMakeFiles/run.dir/network.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/network.cpp
+CMakeFiles/run.dir/network.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/network.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/network.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/network.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/network.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp
 
 CMakeFiles/run.dir/network.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/network.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/network.cpp > CMakeFiles/run.dir/network.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp > CMakeFiles/run.dir/network.cpp.i
 
 CMakeFiles/run.dir/network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/network.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/network.cpp -o CMakeFiles/run.dir/network.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp -o CMakeFiles/run.dir/network.cpp.s
 
 CMakeFiles/run.dir/network.cpp.o.requires:
 
@@ -82,17 +82,17 @@ CMakeFiles/run.dir/network.cpp.o.provides.build: CMakeFiles/run.dir/network.cpp.
 
 
 CMakeFiles/run.dir/main.cpp.o: CMakeFiles/run.dir/flags.make
-CMakeFiles/run.dir/main.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/main.cpp
+CMakeFiles/run.dir/main.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/run.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/main.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/main.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/main.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp
 
 CMakeFiles/run.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/main.cpp > CMakeFiles/run.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp > CMakeFiles/run.dir/main.cpp.i
 
 CMakeFiles/run.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/main.cpp -o CMakeFiles/run.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp -o CMakeFiles/run.dir/main.cpp.s
 
 CMakeFiles/run.dir/main.cpp.o.requires:
 
@@ -106,17 +106,17 @@ CMakeFiles/run.dir/main.cpp.o.provides.build: CMakeFiles/run.dir/main.cpp.o
 
 
 CMakeFiles/run.dir/tensor.cpp.o: CMakeFiles/run.dir/flags.make
-CMakeFiles/run.dir/tensor.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/tensor.cpp
+CMakeFiles/run.dir/tensor.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/tensor.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/tensor.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/tensor.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/tensor.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp
 
 CMakeFiles/run.dir/tensor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/tensor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/tensor.cpp > CMakeFiles/run.dir/tensor.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp > CMakeFiles/run.dir/tensor.cpp.i
 
 CMakeFiles/run.dir/tensor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/tensor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/tensor.cpp -o CMakeFiles/run.dir/tensor.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp -o CMakeFiles/run.dir/tensor.cpp.s
 
 CMakeFiles/run.dir/tensor.cpp.o.requires:
 
@@ -162,6 +162,6 @@ CMakeFiles/run.dir/clean:
 .PHONY : CMakeFiles/run.dir/clean
 
 CMakeFiles/run.dir/depend:
-	cd /home/theo/Documents/projects/tensorFlow/cTensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU /home/theo/Documents/projects/tensorFlow/cTensor/build /home/theo/Documents/projects/tensorFlow/cTensor/build /home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/theo/Documents/projects/tensorFlow/cTensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src /home/theo/Documents/projects/tensorFlow/cTensor/build /home/theo/Documents/projects/tensorFlow/cTensor/build /home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/run.dir/depend
 

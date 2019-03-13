@@ -1,4 +1,4 @@
-# Install script for directory: /home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU
+# Install script for directory: /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
