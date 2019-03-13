@@ -101,15 +101,16 @@ void Network::printNetwork(){
 
 
 Tensor propogateNetRecurs(layer * node, Tensor inputs){
+	//inputs is already transformed
 	if(node->next == nullptr) return inputs;
+	//could make this a nice two liner but nah
 	Tensor newTens = node->weights.stdMult(inputs).add(node->next->biases).sigmoid();
-	std::cout<<"node time"<<std::endl;
-	newTens.print();
-        return propogateNetRecurs(node->next, newTens);
+	return propogateNetRecurs(node->next, newTens);
 }
 
-
 Tensor Network::propogateNetwork(Tensor inputs){
+	//not going to handle the case that inputs is greater or less in size to numin cause this is and
+	//internal method
 	return propogateNetRecurs(input, inputs);
 }
 
@@ -119,6 +120,7 @@ void Network::printNetworkSummary(){
 	std::cout<<"Number of Outputs: "<<numberOut<<std::endl;
 	std::cout<<"Number of hidden layers: "<<layers<<std::endl;
 	std::cout<<"Size of hidden layers: "<<layersSize<<std::endl;
+	std::cout<<"==============================================="<<std::endl;
 }
 
 
