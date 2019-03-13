@@ -4,70 +4,50 @@
 
 
 Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayers){
-	//initialize global variables
+
+
+	//Initialize input
+	input = new layer;
+	input -> size = numIn;
+	input -> previous = nullptr;
+
+	//variable layer
+	layer * temp = new layer;
+	input -> next = temp;
+	temp -> previous = input;	
+	
+	//go forward to assign sizes and go backwards to assign weights biases
+	for(int i = 0; i < numHiddenLayers; i++)
+	{
+		temp->size = sizeHiddenLayers;
+		layer * next = new layer;
+		temp -> next = next;
+		next -> previous = temp;
+		temp = temp -> next;
+	}
+	//output layer
+	temp -> size = numOut;
+	temp -> biases = Tensor(numOut, 1, 1);
+	temp -> next = nullptr;
+
+	//variable layer
+	temp = temp -> previous;
+	while(temp->previous != nullptr)
+	{
+		temp->weights = Tensor(temp->next->size, temp->size, 1);
+		temp->biases = Tensor(temp->size, 1, 1);
+		temp = temp->previous;
+	}
+	
+	//temp is now input
+	temp -> weights = Tensor(temp->next->size, temp->size, 1);
+
+
 	numberIn = numIn;
 	numberOut = numOut;
 	layers = numHiddenLayers;
 	layersSize = sizeHiddenLayers;
-	
-	//initialize layer
-	input = new layer;
-	input -> size = numIn;
-
-	Tensor inweight = Tensor(sizeHiddenLayers, numIn, 1);
-	input -> weights = inweight;
-	//nothing to point to
-	input -> previous = nullptr;
-
-	layer * temp = input;
-	layer * next = new layer;
-	temp->next = next;
-
-
-	for(int i = 0; i < numHiddenLayers - 1; i++){
-		layer * next = new layer;
-
-		temp->next = next;
-		next->previous = temp;
-
-		next -> size = sizeHiddenLayers;
-
-		
-
-
-
-		//Tensor bias = Tensor(sizeHiddenLayers, 1, 1);
-		//Tensor weight = Tensor(sizeHiddenLayers, sizeHiddenLayers, 1);
-
-		next -> size = sizeHiddenLayers;
-		//next -> biases = bias;
-		//next -> weights = weight;
-
-	
-		temp -> next = next;
-
-		temp = temp->next;
-	}
-
-	temp = input->next;
-	for(int i = 0; i < numHiddenLayers; i++){
-		Tensor bias = Tensor(temp->next->size, 1, 1);
-		Tensor weight = Tensor(temp->next->size, sizeHiddenLayer, 1);
-		next->biases = bias;
-		next->weights = weight;
-	}
-
-	Tensor outbias = Tensor(numOut, 1, 1);
-	layer * next = new layer;
-	next->size = numOut;
-	next->biases = outbias;
-	temp -> next = next;
-	temp = temp->next;	
-
 }
-
-
-
 
 Network::~Network(){
 	while(input != NULL){
@@ -75,7 +55,6 @@ Network::~Network(){
 		input = input -> next;
 		delete old;
 	}
-
 }
 
 void Network::printNetwork(){
@@ -117,9 +96,6 @@ void Network::printNetwork(){
         std::cout<<std::endl;
         std::cout<<"------------------"<<std::endl;
         std::cout<<std::endl;
-
-
-
 
 }
 
