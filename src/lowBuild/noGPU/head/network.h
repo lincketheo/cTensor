@@ -1,5 +1,7 @@
-#include <iostream>
-#include "tensor.hpp"
+#ifndef NETWORK_H
+#define NETWORK_H
+#include "tensor.h"
+#include <string>
 
 
 struct layer{
@@ -39,3 +41,4 @@ class Network{
 		int layers;
 		int layersSize;
 };
+#endif

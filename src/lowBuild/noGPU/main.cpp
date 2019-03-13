@@ -1,14 +1,12 @@
 #include <iostream>
-#include "head/tensor.hpp"
-#include "head/network.hpp"
-#include <time.h>
-#include <random>
+#include "head/tensor.h"
+#include "head/network.h"
 
 
 
 int main(int argc, char const *argv[])
 {
-	/*
+	
 	//RUN THIS CODE TO SEE HOW NETWORK WORKS
 	//network(number inputs, number outputs, number hidden layers, size hidden layers)
 	Network mynet = Network(4, 5, 3, 6);
@@ -25,7 +23,6 @@ int main(int argc, char const *argv[])
         std::cout<<"Output tensor"<<std::endl<<"========================================"<<std::endl;
 	propTens.print();
 	std::cout<<"========================================"<<std::endl;
-	*/	
 	
 	/*
 	//PUSH THAT BABY TO ITS LIMITS HONEY!!

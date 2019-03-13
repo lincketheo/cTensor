@@ -1,6 +1,6 @@
+#include "head/tensor.h"
+#include "head/network.h"
 #include <iostream>
-#include "head/tensor.hpp"
-#include "head/network.hpp"
 
 
 Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayers){

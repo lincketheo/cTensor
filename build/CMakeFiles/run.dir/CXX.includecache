@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/head/network.h
+tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/head/tensor.h
+string
+-
+
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/head/tensor.h
+
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/main.cpp
+iostream
+-
+head/tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/head/tensor.h
+head/network.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/head/network.h
+
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/network.cpp
+head/tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/head/tensor.h
+head/network.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/head/network.h
+iostream
+-
+
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/tensor.cpp
+math.h
+-
+random
+-
+iostream
+-
+head/tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/lowBuild/noGPU/head/tensor.h
+

@@ -1,8 +1,7 @@
-#include <iostream>
 #include <math.h>
 #include <random>
-#include <vector>
-#include "head/tensor.hpp"
+#include <iostream>
+#include "head/tensor.h"
 
 //initializes tensor to a 2 x 2 zero matrix
 Tensor::Tensor(){

@@ -1,0 +1,3 @@
+/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/rebuild_cache.dir
+/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir
+/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/edit_cache.dir

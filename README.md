@@ -1,4 +1,11 @@
-# Neural Flow
+# cTensor
+## build instructions
+Go to build directory
+Run the command ```$ make ```
+Voila, now you can execute run
+
+## Description
+
 <h4 style="font-style:italic;text-align: center;">A C++ library for Machine Learning</h4>
 <h3>Summary</h3>
 <p>This is not a production level library and should not be treated like one. <br> A machine learning library in c++. 
