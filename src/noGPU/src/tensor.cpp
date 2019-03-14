@@ -201,17 +201,20 @@ Tensor Tensor::sigmoidPrime(){
         return newTens;
 }
 
-/*
-Tensor Tensor::delCdelZ(Tensor weights, Tensor biases, Tensor inputs, Tensor desired)
-{
-	int n = desired.getShape()[0];
-	Tensor newTens = Tensor(n, 1);
-	for(int i = 0; i < n; i ++){
-		float p = weights.stdMult(inputs)
-		newTens.arr[i] = 2 *
-	}
+Tensor Tensor::inverse(){
+	Tensor invTense = *this;
+
+	return invTense;
 }
-*/
+
+float Tensor::trace(){
+	float n = 0;
+	for(int i = 0; i < dim1 && i < dim2; i++){
+		n += get(i, i);
+	}
+	return n;
+
+}
 
 Tensor Tensor::operator -(){
         Tensor result = Tensor(dim1, dim2);
@@ -220,15 +223,6 @@ Tensor Tensor::operator -(){
         }
         return result;
 }
-/*
-Tensor Tensor::operator =(){
-        Tensor result = Tensor(dim1, dim2);
-        for(int i = 0; i < dim1*dim2; i++){
-                result.arr[i] = -arr[i];
-        }
-        return result;
-}
-*/
 Tensor Tensor::operator +(const Tensor &tensor){
         return this->add(tensor);
 }
@@ -254,5 +248,23 @@ bool Tensor::operator ==(const Tensor &tensor){
 	Tensor newTens = tensor;
         return (this->normEuclid()) == (newTens.normEuclid());
 }
-
-
+bool Tensor::operator <=(const Tensor &tensor){
+        Tensor newTens = tensor;
+        return (this->normEuclid()) <= (newTens.normEuclid());
+}
+bool Tensor::operator >=(const Tensor &tensor){
+        Tensor newTens = tensor;
+        return (this->normEuclid()) >= (newTens.normEuclid());
+}
+Tensor::operator float(){
+	return this->normEuclid();
+}
+Tensor Tensor::operator !(){
+	return this->inverse();
+}
+Tensor Tensor::operator *(){
+	return this->transpose();
+}
+float Tensor::operator ~(){
+	return this->trace();
+}
