@@ -109,8 +109,6 @@ Tensor propogateNetRecurs(layer * node, Tensor inputs){
 }
 
 Tensor Network::propogateNetwork(Tensor inputs){
-	//not going to handle the case that inputs is greater or less in size to numin cause this is and
-	//internal method
 	return propogateNetRecurs(input, inputs);
 }
 
@@ -122,52 +120,6 @@ void Network::printNetworkSummary(){
 	std::cout<<"Size of hidden layers: "<<layersSize<<std::endl;
 	std::cout<<"==============================================="<<std::endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

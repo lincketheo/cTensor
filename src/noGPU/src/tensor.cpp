@@ -31,15 +31,9 @@ Tensor::Tensor(int _dim1, int _dim2, int desiredMax){
 	float ratio = ((float)desiredMax) / rd.max();
 	for(int i = 0; i < dim1 * dim2; i++){
 		arr[i] = ratio * rd();
-	}	
+	}
 
 }
-
-
-//deletes Tensor memory
-Tensor::~Tensor(){
-}
-
 //prints tensor
 void Tensor::print(){
 	std::cout<<std::endl;
@@ -72,6 +66,41 @@ Tensor Tensor::add(Tensor tensor){
 	}
 	return newTensor;
 }
+
+
+Tensor Tensor::minus(Tensor tensor){
+        Tensor newTensor = Tensor(dim1, dim2);
+        if(dim1 != tensor.getShape()[0] || dim2 != tensor.getShape()[1]){
+                //throw error message
+                return newTensor;
+        }
+        for(int i = 0; i < dim1 * dim2; i++){
+                newTensor.arr[i] = arr[i] - tensor.arr[i];
+        }
+        return newTensor;
+}
+
+
+Tensor Tensor::scalarMult(float val){
+        Tensor newTensor = Tensor(dim1, dim2);
+        for(int i = 0; i < dim1 * dim2; i++){
+                newTensor.arr[i] = arr[i] * val;
+        }
+        return newTensor;
+}
+
+Tensor Tensor::innerProd(Tensor tensor){
+        Tensor newTensor = Tensor(dim1, dim2);
+        if(dim1 != tensor.getShape()[0] || dim2 != tensor.getShape()[1]){
+                //throw error message
+                return newTensor;
+        }
+        for(int i = 0; i < dim1 * dim2; i++){
+                newTensor.arr[i] = arr[i] * tensor.arr[i];
+        }
+        return newTensor;
+}
+
 
 //standard matrix multiplication
 Tensor Tensor::stdMult(Tensor tensor){
@@ -112,7 +141,7 @@ Tensor Tensor::sigmoid(){
 		//because this will always void be a dim1 x 1 array;
 		newTens.insert(i, 0, 1 / (1 + exp(-arr[i])));
 
-	}	
+	}
 	return newTens;
 }
 
@@ -132,7 +161,6 @@ float Tensor::normEuclid(){
 	float n = 0;
 	for(int i = 0; i < dim1 * dim2; i++){
 		n+=arr[i]*arr[i];
-		
 	}
 
 	return sqrt(n);
@@ -146,48 +174,85 @@ float Tensor::getMax(){
 	}
 	float max = arr[0];
 	for(int i = 0; i < dim1*dim2; i++){
-		max = std::max(arr[i], max); 
+		max = std::max(arr[i], max);
 	}
 	return max;
 }
 
-/*
+
 float Tensor::costFunc(Tensor expected){
 	float n = 0;
-
-	for(int i = 0; i < dim1 * dim2; i++){
-		n += (arr[i] - expected.arr[i])*(arr[i] - expected.arr[i])
+	int i;
+	for(i = 0; i < dim1 * dim2; i++){
+		n += (arr[i] - expected.arr[i])*(arr[i] - expected.arr[i]);
 	}
 
 	return n / (float)(2*i);
+}
 
+Tensor Tensor::sigmoidPrime(){
+        Tensor newTens = Tensor(dim1, 1);
+        for(int i = 0; i < dim1 * dim2; i++){
+		//although i could do sigmoid * (1 - sigmoid)
+		//This doesn't have a ton of new Tensors being made, only one
+		//figured this is faster and I'm lazy
+                newTens.insert(i, 0, 1 / (1 + exp(-arr[i])) * (1 - (1 + exp(-arr[i]))));
+        }
+        return newTens;
+}
+
+/*
+Tensor Tensor::delCdelZ(Tensor weights, Tensor biases, Tensor inputs, Tensor desired)
+{
+	int n = desired.getShape()[0];
+	Tensor newTens = Tensor(n, 1);
+	for(int i = 0; i < n; i ++){
+		float p = weights.stdMult(inputs)
+		newTens.arr[i] = 2 *
+	}
 }
 */
 
+Tensor Tensor::operator -(){
+        Tensor result = Tensor(dim1, dim2);
+        for(int i = 0; i < dim1 * dim2; i++){
+                result.arr[i] = -arr[i];
+        }
+        return result;
+}
+/*
+Tensor Tensor::operator =(){
+        Tensor result = Tensor(dim1, dim2);
+        for(int i = 0; i < dim1*dim2; i++){
+                result.arr[i] = -arr[i];
+        }
+        return result;
+}
+*/
+Tensor Tensor::operator +(const Tensor &tensor){
+        return this->add(tensor);
+}
+Tensor Tensor::operator -(const Tensor &tensor){
+        return this->minus(tensor);
+}
+Tensor Tensor::operator *(const Tensor &tensor){
+        return this->stdMult(tensor);
+}
+Tensor Tensor::operator *(const float &val){
+        return this->scalarMult(val);
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+bool Tensor::operator <(const Tensor &tensor){
+	Tensor newTens = tensor;
+        return (this->normEuclid()) < (newTens.normEuclid());
+}
+bool Tensor::operator >(const Tensor &tensor){
+	Tensor newTens = tensor;
+        return (this->normEuclid()) > (newTens.normEuclid());
+}
+bool Tensor::operator ==(const Tensor &tensor){
+	Tensor newTens = tensor;
+        return (this->normEuclid()) == (newTens.normEuclid());
+}
 
 

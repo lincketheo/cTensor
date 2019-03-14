@@ -5,7 +5,32 @@
 
 int main(int argc, char const *argv[])
 {
-	
+
+	Tensor t1(3, 4, 1);
+	Tensor t2(4, 4, 1);
+	t1.print();
+	t2.print();
+	Tensor t3 = t1 * t2;
+	if(t1 > t2){
+		std::cout<<"t1 > t2"<<std::endl;
+	}else{
+		std::cout<<"t2 > t1"<<std::endl;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*	
 	//RUN THIS CODE TO SEE HOW NETWORK WORKS
 	//network(number inputs, number outputs, number hidden layers, size hidden layers)
 	Network mynet = Network(4, 5, 3, 6);
@@ -22,7 +47,7 @@ int main(int argc, char const *argv[])
         std::cout<<"Output tensor"<<std::endl<<"========================================"<<std::endl;
 	propTens.print();
 	std::cout<<"========================================"<<std::endl;
-	
+	*/
 	/*
 	//PUSH THAT BABY TO ITS LIMITS HONEY!!
 	//(we're talking 5000 * 1000 matrices as hidden weights, this'll absolutely return 1)

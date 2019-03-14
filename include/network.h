@@ -29,8 +29,7 @@ class Network{
 		void storeNetwork(std::string filename);
 		void extractNetwork(std::string filename);
 		void printNetworkSummary();
-
-		float costFunc(Tensor expected);
+		
 
 	private:
 		layer * input;
