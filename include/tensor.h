@@ -28,29 +28,29 @@ class Tensor
 		//Tensor delCdelZ(Tensor, Tensor, Tensor);
 		
 		//unary opperators
-		friend Tensor operator -();
+		Tensor operator -();
 		//INVERSE --- Tensor operator !();
 
 		//binary operrators
-		friend Tensor operator +(Tensor const &);
-		friend Tensor operator -(Tensor const &);
-		friend Tensor operator *(Tensor const &);
-		friend Tensor operator *(float const &);		
-		friend Tensor operator +=(Tensor const &);
-		friend Tensor operator -=(Tensor const &);
-		friend Tensor operator *=(Tensor const &);
+		Tensor operator +(Tensor const &);
+		Tensor operator -(Tensor const &);
+		Tensor operator *(Tensor const &);
+		Tensor operator *(float const &);		
+		Tensor operator +=(Tensor const &);
+		Tensor operator -=(Tensor const &);
+		Tensor operator *=(Tensor const &);
 
 
 		//Relational operators
 		
-		friend bool operator <(Tensor const &);
-		friend bool operator >(Tensor const &);
-		friend bool operator ==(Tensor const &);
+		bool operator <(Tensor const &);
+		bool operator >(Tensor const &);
+		bool operator ==(Tensor const &);
 		
 		//input output
 
 	//private: goota change some stuff before i make these private again
-		
+		int * getShape();	
 		Tensor add(Tensor);
 		Tensor minus(Tensor);
 		Tensor stdMult(Tensor);
