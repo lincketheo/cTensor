@@ -39,4 +39,6 @@ iostream
 -
 tensor.h
 /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.h
+stdexcept
+-
 

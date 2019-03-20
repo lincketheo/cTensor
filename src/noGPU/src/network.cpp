@@ -76,7 +76,7 @@ void Network::printNetwork(){
 		
 		Tensor weight = temp->weights;
 
-		Tensor transpBias = bias.transpose();
+		Tensor transpBias = *bias;
 		std::cout<<"Biases:"<<std::endl;
 		transpBias.print();
 		
@@ -91,7 +91,7 @@ void Network::printNetwork(){
 	std::cout<<"Outputs"<<std::endl;
 	Tensor bias = temp->biases;
 	std::cout<<"Biases:"<<std::endl;
-	Tensor transpBias = bias.transpose();
+	Tensor transpBias = *bias;
 	transpBias.print();
         std::cout<<std::endl;
         std::cout<<"------------------"<<std::endl;
@@ -104,7 +104,7 @@ Tensor propogateNetRecurs(layer * node, Tensor inputs){
 	//inputs is already transformed
 	if(node->next == nullptr) return inputs;
 	//could make this a nice two liner but nah
-	Tensor newTens = node->weights.stdMult(inputs).add(node->next->biases).sigmoid();
+	Tensor newTens = ((node->weights * inputs) + (node->next->biases)).sigmoid();
 	return propogateNetRecurs(node->next, newTens);
 }
 
@@ -120,6 +120,38 @@ void Network::printNetworkSummary(){
 	std::cout<<"Size of hidden layers: "<<layersSize<<std::endl;
 	std::cout<<"==============================================="<<std::endl;
 }
+
+/*
+Tensor Network::weightGradient(Network net, Tensor in, Tensor expc){
+	
+	Tensor propTens = net.propogateNetwork(in);
+	if(expc.dim1 != propTens.dim1){
+		printf("error in weightgradient\n");
+		return propTens;
+	}
+
+
+
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

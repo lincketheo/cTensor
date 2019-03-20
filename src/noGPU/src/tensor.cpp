@@ -2,6 +2,7 @@
 #include <random>
 #include <iostream>
 #include "tensor.h"
+#include <stdexcept>
 
 //initializes tensor to a 2 x 2 zero matrix
 Tensor::Tensor(){
@@ -19,8 +20,13 @@ Tensor::Tensor(int _dim1, int _dim2){
 	dim2 = _dim2;
 	arr = new float[dim1 * dim2];
 	for(int i = 0; i < dim1 * dim2; i++){
-		arr[i] = 0;
+		if(i % (dim2 + 1) == 0 && i < dim2 * dim2){
+			arr[i] = 1;
+		}else{
+			arr[i] = 0;
+		}
 	}
+	
 }
 
 Tensor::Tensor(int _dim1, int _dim2, int desiredMax){
@@ -32,14 +38,14 @@ Tensor::Tensor(int _dim1, int _dim2, int desiredMax){
 	for(int i = 0; i < dim1 * dim2; i++){
 		arr[i] = ratio * rd();
 	}
-
 }
+
 //prints tensor
 void Tensor::print(){
 	std::cout<<std::endl;
 	for(int i = 0; i < dim1; i ++){
 		for(int j = 0; j < dim2; j++){
-			std::cout<<arr[(i*dim2) + j] << " ";
+			printf("%.3f ", arr[(i*dim2)+j]);
 		}
 		std::cout<<std::endl;
 	}
@@ -57,7 +63,7 @@ void Tensor::insert(int c1, int c2, float val){
 //add two tensors
 Tensor Tensor::add(Tensor tensor){
 	Tensor newTensor = Tensor(dim1, dim2);
-	if(dim1 != tensor.getShape()[0] || dim2 != tensor.getShape()[1]){
+	if(dim1 != tensor.dim1 || dim2 != tensor.dim2){
 		//throw error message
 		return newTensor;
 	}
@@ -70,7 +76,7 @@ Tensor Tensor::add(Tensor tensor){
 
 Tensor Tensor::minus(Tensor tensor){
         Tensor newTensor = Tensor(dim1, dim2);
-        if(dim1 != tensor.getShape()[0] || dim2 != tensor.getShape()[1]){
+        if(dim1 != tensor.dim1 || dim2 != tensor.dim2){
                 //throw error message
                 return newTensor;
         }
@@ -91,7 +97,7 @@ Tensor Tensor::scalarMult(float val){
 
 Tensor Tensor::innerProd(Tensor tensor){
         Tensor newTensor = Tensor(dim1, dim2);
-        if(dim1 != tensor.getShape()[0] || dim2 != tensor.getShape()[1]){
+        if(dim1 != tensor.dim1 || dim2 != tensor.dim2){
                 //throw error message
                 return newTensor;
         }
@@ -104,12 +110,12 @@ Tensor Tensor::innerProd(Tensor tensor){
 
 //standard matrix multiplication
 Tensor Tensor::stdMult(Tensor tensor){
-	Tensor newTensor = Tensor(dim1, tensor.getShape()[1]);
-	if(dim2 != tensor.getShape()[0]){
-		return newTensor;
+	Tensor newTensor = Tensor(dim1, tensor.dim2);
+	if(dim2 != tensor.dim1){
+		throw std::invalid_argument("dim missmatch");
 	}
 	for(int i = 0; i < dim1; i++){
-		for(int j = 0; j < tensor.getShape()[1]; j++){
+		for(int j = 0; j < tensor.dim2; j++){
 			float temp = 0;
 			for(int x = 0; x < dim2; x++){
 				temp += tensor.get(x, j) * get(i, x);
@@ -125,13 +131,6 @@ float Tensor::get(int c1, int c2){
 	return arr[(dim2 * c1) + c2];
 }
 
-//returns a array[2] array[0] is dim1 array[1] is dim2
-int * Tensor::getShape(){
-	int * a = new int[2];
-	a[0] = dim1;
-	a[1] = dim2;
-	return a;
-}
 
 
 
@@ -151,7 +150,6 @@ Tensor Tensor::transpose(){
 		for(int j = 0; j < dim2; j++){
 			transpose.insert(j, i, get(i, j));
 		}
-
 	}
 	return transpose;
 }
@@ -164,7 +162,6 @@ float Tensor::normEuclid(){
 	}
 
 	return sqrt(n);
-
 }
 
 
@@ -186,7 +183,6 @@ float Tensor::costFunc(Tensor expected){
 	for(i = 0; i < dim1 * dim2; i++){
 		n += (arr[i] - expected.arr[i])*(arr[i] - expected.arr[i]);
 	}
-
 	return n / (float)(2*i);
 }
 
@@ -203,6 +199,8 @@ Tensor Tensor::sigmoidPrime(){
 
 Tensor Tensor::inverse(){
 	Tensor invTense = *this;
+	
+
 
 	return invTense;
 }
@@ -215,6 +213,75 @@ float Tensor::trace(){
 	return n;
 
 }
+Tensor rotate(Tensor t1, float theta, int x, int y)
+{
+        Tensor newTens(t1.dim1, t1.dim1);
+        newTens.insert(x, x, cos(theta));
+        newTens.insert(y, x, sin(theta));
+        newTens.insert(y, y, cos(theta));
+        newTens.insert(x, y, -sin(theta));
+        return newTens * t1;
+
+}
+
+Tensor parMult(Tensor t, Tensor t2){
+	printf("here\n");
+	t.print();
+	Tensor t1(t.dim1, t.dim2);
+        if(t1.dim1 != t2.dim1 || t1.dim2 != t2.dim2){
+                throw std::invalid_argument("dim missmatch");
+        }
+        for(int i = 0; i < t1.dim1 * t1.dim2; i++){
+                t1.arr[i] = t1.arr[i] * t2.arr[i];
+        }
+	t.print();
+	printf("done\n");
+        return t1;
+}
+
+Tensor parAdd(Tensor t, Tensor t2){
+	Tensor t1 = t;
+	if(t1.dim1 != t2.dim1){
+		t1.print();
+		t2.print();
+		throw std::invalid_argument("dim missmatch");
+	}
+	for(int i = 0; i < t2.dim1; i ++){
+		for(int j = 0; j < t1.dim2; j++){
+			t1.insert(i, j, t1.get(i, j) + t2.get(i, 1));
+		}
+	}
+	return t1;
+
+}
+
+Tensor parSqr(Tensor t){
+	Tensor t1 = t;
+        for(int i = 0; i < t1.dim1 * t1.dim2; i++){
+                t1.arr[i] = t1.arr[i] * t1.arr[i];
+        }
+        return t1;
+}
+
+Tensor weightGrad(Tensor weight, Tensor expc, Tensor in, Tensor bias){
+	Tensor t1 = (parAdd(weight * in, bias)).sigmoid() - expc;
+	Tensor t2 = (weight * in + bias).sigmoidPrime() * 2.0;
+	Tensor t3 = parMult(t1, t2);
+	Tensor t4 = parMult(in, t3);
+	weight = weight - (t4 * (*in));
+	
+	printf("round 2\n");
+        parSqr((weight * in + bias).sigmoid() - expc).print();
+
+	return weight;
+}
+
+/*
+Tensor biasGrad(Tensor t1, Tensor expc){
+        return 2 * parMult(((weight * in).sigmoid() + bias), (weight * in + bias).sigmoidPrime());
+
+}
+*/
 
 Tensor Tensor::operator -(){
         Tensor result = Tensor(dim1, dim2);
@@ -268,3 +335,4 @@ Tensor Tensor::operator *(){
 float Tensor::operator ~(){
 	return this->trace();
 }
+

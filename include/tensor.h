@@ -2,6 +2,8 @@
 #define TENSOR_H
 
 
+
+
 class Tensor
 {
 	public:
@@ -20,16 +22,17 @@ class Tensor
 
 		void insert(int, int, float);
 		float get(int, int);
-
-
+		
+		//common matrix functions
 		float normEuclid();
 		float getMax();
 		float costFunc(Tensor);	
-		//Tensor delCdelZ(Tensor, Tensor, Tensor);
 		
+
+		//================================Operators==================================	
 		//unary opperators
 		Tensor operator -();
-		//INVERSE --- Tensor operator !();
+		Tensor operator =(const float *);
 
 		//binary operrators
 		Tensor operator +(Tensor const &);
@@ -46,19 +49,56 @@ class Tensor
 		bool operator <(Tensor const &);
 		bool operator >(Tensor const &);
 		bool operator ==(Tensor const &);
-		
-		//input output
+		bool operator <=(Tensor const &);
+		bool operator >=(Tensor const &);	
+			
+		//type casting
+		operator float(); 
 
-	//private: goota change some stuff before i make these private again
-		int * getShape();	
+		Tensor operator !(); //inverse (!tensor)
+		Tensor operator *(); //transpose (*tensor)
+		float operator ~(); //trace (~tensor)
+
+
+		//indexing
+
+		//global operations
+		Tensor sigmoid();
+		Tensor sigmoidPrime();
+		Tensor innerProd(Tensor);
+		
+
+	private:
 		Tensor add(Tensor);
 		Tensor minus(Tensor);
 		Tensor stdMult(Tensor);
 		Tensor scalarMult(float);
-		Tensor innerProd(Tensor);
 		Tensor transpose();
-		Tensor sigmoid();
-		Tensor sigmoidPrime();
+		Tensor inverse();
+		float trace();
+		
 
 };
+
+//Tensor library
+
+Tensor parAdd(Tensor, Tensor);
+Tensor parMult(Tensor, Tensor);
+Tensor parSqr(Tensor);
+Tensor weightGrad(Tensor, Tensor, Tensor, Tensor);
+
+
+//TODO
+float pNorm();
+Tensor mat_maul(Tensor, Tensor);
+Tensor rotate(Tensor, float, int, int);
+Tensor rref(Tensor);
+Tensor normalize(Tensor);
+Tensor solveFor(Tensor, Tensor); //Ax = b
+bool linInd(Tensor);
+Tensor grahmSchmitt(Tensor, Tensor);
+float * fourier(Tensor);
+bool orthogonal(Tensor, Tensor);
+
+
 #endif

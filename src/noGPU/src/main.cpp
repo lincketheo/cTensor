@@ -2,12 +2,45 @@
 #include "tensor.h"
 #include "network.h"
 
+#define PI 3.14169265358979323846264
 
 int main(int argc, char const *argv[])
 {
+	
 
 	Tensor t1(4, 4, 1);
-	Tensor t2(4, 4, 1);
+	Tensor t2(4, 1);
+	Tensor t3(4, 1, 1);
+	Tensor t4(4, 1, 1);
+
+	((t1 * t3).sigmoid() + t3).print();
+	Tensor t = t3;
+	t2.print();
+	t3.print();
+	t4.print();
+	t1 = weightGrad(t1, t2, t, t4);
+	t = t3;
+	t2.print();
+	t3.print();
+	t4.print();
+        t1 = weightGrad(t1, t2, t3, t4);
+
+
+
+
+	/*		
+	Tensor t9(4, 1, 1);
+	Tensor t10(4, 1, 1);
+	Tensor t11(10, 4);
+
+	t9.print();
+	t10.print();
+	
+	parMult(t9, t10).print();	
+
+
+	Tensor t1(2, 2, 1);
+	Tensor t2(2, 2, 1);
 	std::cout<<"t1"<<std::endl;
 	t1.print();
 	std::cout<<"t2"<<std::endl;
@@ -25,6 +58,7 @@ int main(int argc, char const *argv[])
 	}else{
 		std::cout<<"t2 > t1"<<std::endl;
 	}
+
 	std::cout<<std::endl;
 	std::cout<<"Computed with the euclidean / frobenius norm"<<std::endl;
 	std::cout<<"Pretty cool, I can type cast tensors"<<std::endl;
@@ -44,25 +78,21 @@ int main(int argc, char const *argv[])
 	(*t4).print();
 	std::cout<<"and finally, the trace, tr(t1) = ~t1 = "<<~t1<<std::endl;
 
+	*/
 
 
-
-
-
-
-
-
-
+	
+	
 	/*	
 	//RUN THIS CODE TO SEE HOW NETWORK WORKS
 	//network(number inputs, number outputs, number hidden layers, size hidden layers)
-	Network mynet = Network(4, 5, 3, 6);
+	Network mynet = Network(5, 10, 2, 10);
 	mynet.printNetworkSummary();
 	mynet.printNetwork();
 
 	//Tensor(cols, rows, maximum random val)
 	//NOTE: network doesn't check for matching rows / cols	
-	Tensor inputTens = Tensor(4, 1 , 1);
+	Tensor inputTens = Tensor(5, 1 , 1);
 	Tensor propTens = mynet.propogateNetwork(inputTens);
 	std::cout<<"Input tensor"<<std::endl<<"========================================"<<std::endl;
 	inputTens.print();

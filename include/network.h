@@ -40,4 +40,14 @@ class Network{
 		int layers;
 		int layersSize;
 };
+
+Tensor costGradient(Network, Tensor, Tensor);
+
+
+
+
+
+
+
+
 #endif
