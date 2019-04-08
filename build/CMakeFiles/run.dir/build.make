@@ -43,7 +43,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src
+CMAKE_SOURCE_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/src
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/build
@@ -57,42 +57,42 @@ include CMakeFiles/run.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/run.dir/flags.make
 
-CMakeFiles/run.dir/network.cpp.o: CMakeFiles/run.dir/flags.make
-CMakeFiles/run.dir/network.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/network.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/network.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp
+CMakeFiles/run.dir/NeuralNetwork/network.cpp.o: CMakeFiles/run.dir/flags.make
+CMakeFiles/run.dir/NeuralNetwork/network.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/network.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/NeuralNetwork/network.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/NeuralNetwork/network.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/network.cpp
 
-CMakeFiles/run.dir/network.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/network.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp > CMakeFiles/run.dir/network.cpp.i
+CMakeFiles/run.dir/NeuralNetwork/network.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/NeuralNetwork/network.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/network.cpp > CMakeFiles/run.dir/NeuralNetwork/network.cpp.i
 
-CMakeFiles/run.dir/network.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/network.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp -o CMakeFiles/run.dir/network.cpp.s
+CMakeFiles/run.dir/NeuralNetwork/network.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/NeuralNetwork/network.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/network.cpp -o CMakeFiles/run.dir/NeuralNetwork/network.cpp.s
 
-CMakeFiles/run.dir/network.cpp.o.requires:
+CMakeFiles/run.dir/NeuralNetwork/network.cpp.o.requires:
 
-.PHONY : CMakeFiles/run.dir/network.cpp.o.requires
+.PHONY : CMakeFiles/run.dir/NeuralNetwork/network.cpp.o.requires
 
-CMakeFiles/run.dir/network.cpp.o.provides: CMakeFiles/run.dir/network.cpp.o.requires
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/network.cpp.o.provides.build
-.PHONY : CMakeFiles/run.dir/network.cpp.o.provides
+CMakeFiles/run.dir/NeuralNetwork/network.cpp.o.provides: CMakeFiles/run.dir/NeuralNetwork/network.cpp.o.requires
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/NeuralNetwork/network.cpp.o.provides.build
+.PHONY : CMakeFiles/run.dir/NeuralNetwork/network.cpp.o.provides
 
-CMakeFiles/run.dir/network.cpp.o.provides.build: CMakeFiles/run.dir/network.cpp.o
+CMakeFiles/run.dir/NeuralNetwork/network.cpp.o.provides.build: CMakeFiles/run.dir/NeuralNetwork/network.cpp.o
 
 
 CMakeFiles/run.dir/main.cpp.o: CMakeFiles/run.dir/flags.make
-CMakeFiles/run.dir/main.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp
+CMakeFiles/run.dir/main.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/main.cpp
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/run.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/main.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/main.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/main.cpp
 
 CMakeFiles/run.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp > CMakeFiles/run.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/main.cpp > CMakeFiles/run.dir/main.cpp.i
 
 CMakeFiles/run.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp -o CMakeFiles/run.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/main.cpp -o CMakeFiles/run.dir/main.cpp.s
 
 CMakeFiles/run.dir/main.cpp.o.requires:
 
@@ -105,42 +105,42 @@ CMakeFiles/run.dir/main.cpp.o.provides: CMakeFiles/run.dir/main.cpp.o.requires
 CMakeFiles/run.dir/main.cpp.o.provides.build: CMakeFiles/run.dir/main.cpp.o
 
 
-CMakeFiles/run.dir/tensor.cpp.o: CMakeFiles/run.dir/flags.make
-CMakeFiles/run.dir/tensor.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/tensor.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/tensor.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp
+CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o: CMakeFiles/run.dir/flags.make
+CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o: /home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o -c /home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.cpp
 
-CMakeFiles/run.dir/tensor.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/tensor.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp > CMakeFiles/run.dir/tensor.cpp.i
+CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.cpp > CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.i
 
-CMakeFiles/run.dir/tensor.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/tensor.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp -o CMakeFiles/run.dir/tensor.cpp.s
+CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.cpp -o CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.s
 
-CMakeFiles/run.dir/tensor.cpp.o.requires:
+CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o.requires:
 
-.PHONY : CMakeFiles/run.dir/tensor.cpp.o.requires
+.PHONY : CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o.requires
 
-CMakeFiles/run.dir/tensor.cpp.o.provides: CMakeFiles/run.dir/tensor.cpp.o.requires
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/tensor.cpp.o.provides.build
-.PHONY : CMakeFiles/run.dir/tensor.cpp.o.provides
+CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o.provides: CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o.requires
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o.provides.build
+.PHONY : CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o.provides
 
-CMakeFiles/run.dir/tensor.cpp.o.provides.build: CMakeFiles/run.dir/tensor.cpp.o
+CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o.provides.build: CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o
 
 
 # Object files for target run
 run_OBJECTS = \
-"CMakeFiles/run.dir/network.cpp.o" \
+"CMakeFiles/run.dir/NeuralNetwork/network.cpp.o" \
 "CMakeFiles/run.dir/main.cpp.o" \
-"CMakeFiles/run.dir/tensor.cpp.o"
+"CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o"
 
 # External object files for target run
 run_EXTERNAL_OBJECTS =
 
-run: CMakeFiles/run.dir/network.cpp.o
+run: CMakeFiles/run.dir/NeuralNetwork/network.cpp.o
 run: CMakeFiles/run.dir/main.cpp.o
-run: CMakeFiles/run.dir/tensor.cpp.o
+run: CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o
 run: CMakeFiles/run.dir/build.make
 run: CMakeFiles/run.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable run"
@@ -151,9 +151,9 @@ CMakeFiles/run.dir/build: run
 
 .PHONY : CMakeFiles/run.dir/build
 
-CMakeFiles/run.dir/requires: CMakeFiles/run.dir/network.cpp.o.requires
+CMakeFiles/run.dir/requires: CMakeFiles/run.dir/NeuralNetwork/network.cpp.o.requires
 CMakeFiles/run.dir/requires: CMakeFiles/run.dir/main.cpp.o.requires
-CMakeFiles/run.dir/requires: CMakeFiles/run.dir/tensor.cpp.o.requires
+CMakeFiles/run.dir/requires: CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o.requires
 
 .PHONY : CMakeFiles/run.dir/requires
 
@@ -162,6 +162,6 @@ CMakeFiles/run.dir/clean:
 .PHONY : CMakeFiles/run.dir/clean
 
 CMakeFiles/run.dir/depend:
-	cd /home/theo/Documents/projects/tensorFlow/cTensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src /home/theo/Documents/projects/tensorFlow/cTensor/build /home/theo/Documents/projects/tensorFlow/cTensor/build /home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/theo/Documents/projects/tensorFlow/cTensor/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/theo/Documents/projects/tensorFlow/cTensor/src /home/theo/Documents/projects/tensorFlow/cTensor/src /home/theo/Documents/projects/tensorFlow/cTensor/build /home/theo/Documents/projects/tensorFlow/cTensor/build /home/theo/Documents/projects/tensorFlow/cTensor/build/CMakeFiles/run.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/run.dir/depend
 

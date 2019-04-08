@@ -1,4 +1,4 @@
-#include <math.h>
+#include <cmath>
 #include <random>
 #include <iostream>
 #include "tensor.h"
@@ -192,7 +192,8 @@ Tensor Tensor::sigmoidPrime(){
 		//although i could do sigmoid * (1 - sigmoid)
 		//This doesn't have a ton of new Tensors being made, only one
 		//figured this is faster and I'm lazy
-                newTens.insert(i, 0, 1 / (1 + exp(-arr[i])) * (1 - (1 + exp(-arr[i]))));
+
+                newTens.insert(i, 0, (1 / (1 + exp(-arr[i]))) * (1 - (1 / (1 + exp(-arr[i])))));
         }
         return newTens;
 }
@@ -225,25 +226,20 @@ Tensor rotate(Tensor t1, float theta, int x, int y)
 }
 
 Tensor parMult(Tensor t, Tensor t2){
-	printf("here\n");
-	t.print();
 	Tensor t1(t.dim1, t.dim2);
         if(t1.dim1 != t2.dim1 || t1.dim2 != t2.dim2){
                 throw std::invalid_argument("dim missmatch");
         }
         for(int i = 0; i < t1.dim1 * t1.dim2; i++){
-                t1.arr[i] = t1.arr[i] * t2.arr[i];
+                t1.arr[i] = t.arr[i] * t2.arr[i];
         }
-	t.print();
-	printf("done\n");
+
         return t1;
 }
 
 Tensor parAdd(Tensor t, Tensor t2){
 	Tensor t1 = t;
 	if(t1.dim1 != t2.dim1){
-		t1.print();
-		t2.print();
 		throw std::invalid_argument("dim missmatch");
 	}
 	for(int i = 0; i < t2.dim1; i ++){
@@ -265,7 +261,7 @@ Tensor parSqr(Tensor t){
 
 Tensor weightGrad(Tensor weight, Tensor expc, Tensor in, Tensor bias){
 	Tensor t1 = (parAdd(weight * in, bias)).sigmoid() - expc;
-	Tensor t2 = (weight * in + bias).sigmoidPrime() * 2.0;
+	Tensor t2 = (weight * in + bias).sigmoidPrime();
 	Tensor t3 = parMult(t1, t2);
 	Tensor t4 = parMult(in, t3);
 	weight = weight - (t4 * (*in));
@@ -275,6 +271,74 @@ Tensor weightGrad(Tensor weight, Tensor expc, Tensor in, Tensor bias){
 
 	return weight;
 }
+
+
+Tensor Tensor::getCol(int col){
+    Tensor newTens(dim1, 1);
+    for(int i = 0; i < dim1; i++){
+        newTens.insert(i, 0, get(col, i));
+    }
+    return newTens;
+}
+
+Tensor Tensor::getRow(int row){
+    Tensor newTens(1, dim2);
+    for(int i = 0; i < dim2; i++){
+        newTens.insert(0, i, get(i, row));
+    }
+    return newTens;
+}
+
+void Tensor::replaceRow(int row, Tensor t){
+    for(int i = 0; i < dim2; i++){
+        insert(row, i, t.get(0, i));        
+    }
+}
+void Tensor::replaceCol(int col, Tensor t){
+    for(int i = 0; i < dim1; i++){
+        insert(i, col, t.get(i, 0));
+    }
+}
+
+void Tensor::swapRow(int r1, int r2){
+    Tensor temp = getRow(r1);
+    replaceRow(r1, getRow(r2));
+    replaceRow(r2, temp);
+}
+
+void Tensor::swapCol(int c1, int c2){
+    Tensor temp = getCol(c1);
+    replaceCol(c1, getCol(c2));
+    replaceCol(c2, temp);
+}
+
+/*
+void Tensor::rref(){
+    for(int i = 0; i < dim1; i++){
+        for(int j = 0; j < dim2; j++){
+            if(get(0, 0) == 0 && dim1 > 1)swapRow(0, 1);
+            
+        }
+    }
+
+
+    if(get(0, 0) == 0 && dim1 > 1){
+        swapRow(0, 1);
+    }
+    for(int i = 0; i < 
+
+
+}
+
+*/
+
+
+
+
+
+
+
+
 
 /*
 Tensor biasGrad(Tensor t1, Tensor expc){
@@ -335,4 +399,3 @@ Tensor Tensor::operator *(){
 float Tensor::operator ~(){
 	return this->trace();
 }
-

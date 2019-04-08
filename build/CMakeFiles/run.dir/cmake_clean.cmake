@@ -1,7 +1,7 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/run.dir/network.cpp.o"
+  "CMakeFiles/run.dir/NeuralNetwork/network.cpp.o"
   "CMakeFiles/run.dir/main.cpp.o"
-  "CMakeFiles/run.dir/tensor.cpp.o"
+  "CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o"
   "run.pdb"
   "run"
 )

@@ -6,39 +6,41 @@
 
 #IncludeRegexTransform: 
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/../../../include/network.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/../include/network.h
 tensor.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/../../../include/tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/../include/tensor.h
 string
 -
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/../../../include/tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/../include/tensor.h
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/main.cpp
-iostream
--
+/home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/network.cpp
 tensor.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/tensor.h
 network.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.h
-
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.cpp
-tensor.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.h
-network.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/network.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/network.h
 iostream
 -
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.cpp
-math.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.cpp
+cmath
 -
 random
 -
 iostream
 -
 tensor.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src/tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.h
 stdexcept
 -
+
+/home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.h
+
+/home/theo/Documents/projects/tensorFlow/cTensor/src/main.cpp
+iostream
+-
+tensor.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/tensor.h
+network.h
+/home/theo/Documents/projects/tensorFlow/cTensor/src/network.h
 

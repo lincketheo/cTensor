@@ -28,7 +28,10 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 	//output layer
 	temp -> size = numOut;
 	temp -> biases = Tensor(numOut, 1, 1);
+	temp -> inputs = Tensor(temp->size, 1);
 	temp -> next = nullptr;
+	output = new layer;
+	output = temp;
 
 	//variable layer
 	temp = temp -> previous;
@@ -36,11 +39,13 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 	{
 		temp->weights = Tensor(temp->next->size, temp->size, 1);
 		temp->biases = Tensor(temp->size, 1, 1);
+		temp->inputs = Tensor(temp->size, 1);
 		temp = temp->previous;
 	}
 	
 	//temp is now input
 	temp -> weights = Tensor(temp->next->size, temp->size, 1);
+	temp -> inputs = Tensor(temp->size, 1);
 
 
 	numberIn = numIn;
@@ -100,11 +105,12 @@ void Network::printNetwork(){
 }
 
 
-Tensor propogateNetRecurs(layer * node, Tensor inputs){
+Tensor propogateNetRecurs(layer * node, Tensor _inputs){
+	node->inputs = _inputs;
 	//inputs is already transformed
-	if(node->next == nullptr) return inputs;
+	if(node->next == nullptr) return _inputs;
 	//could make this a nice two liner but nah
-	Tensor newTens = ((node->weights * inputs) + (node->next->biases)).sigmoid();
+	Tensor newTens = ((node->weights * _inputs) + (node->next->biases)).sigmoid();
 	return propogateNetRecurs(node->next, newTens);
 }
 
@@ -120,6 +126,46 @@ void Network::printNetworkSummary(){
 	std::cout<<"Size of hidden layers: "<<layersSize<<std::endl;
 	std::cout<<"==============================================="<<std::endl;
 }
+
+Tensor gradient(Tensor previous, layer * layer){
+	Tensor t1 = parMult(previous, (layer->weights * layer->inputs + layer->next->biases).sigmoidPrime());
+	std::cout<<"this equatoianfkjsdnfkjndsf"<<std::endl;
+	previous.print();
+	(layer->weights * layer->inputs + layer->next->biases).print();
+	(layer->weights * layer->inputs + layer->next->biases).sigmoidPrime().print();
+	t1.print();
+
+	return t1;
+}
+
+void Network::backPropogateRecurs(Tensor outputs, Tensor expected, float scalar){
+	Tensor d_C = (outputs - expected);
+	std::cout<<"here"<<std::endl;
+	d_C.print();
+	layer * last = output;
+	last = last->previous;
+	while(last != nullptr){
+		std::cout<<1<<std::endl;
+		d_C.print();
+		d_C = gradient(d_C, last);
+		std::cout<<2<<std::endl;
+		d_C.print();
+		last->next->biases = last->next->biases - d_C;
+		last->weights = last->weights - (parMult(last->weights, d_C * (*last->inputs))) * scalar;
+		last = last->previous;
+		std::cout<<"askld"<<std::endl;
+		d_C.print();
+	}
+}
+
+void Network::backPropogate(Tensor inputs, Tensor expected, float scalar){
+	Tensor outputs = propogateNetwork(inputs);
+	backPropogateRecurs(outputs, expected, scalar);	
+}
+
+
+
+
 
 /*
 Tensor Network::weightGradient(Network net, Tensor in, Tensor expc){

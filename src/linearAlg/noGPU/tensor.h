@@ -69,6 +69,8 @@ class Tensor
 	    Tensor augment(Tensor);
         Tensor getRow(int);
         Tensor getCol(int);
+        void replaceRow(int, Tensor);
+        void replaceCol(int, Tensor);
         void swapRow(int, int);
         void swapCol(int, int);
         void rref();	

@@ -48,7 +48,7 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/src/noGPU/src
+CMAKE_SOURCE_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/src
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /home/theo/Documents/projects/tensorFlow/cTensor/build
@@ -69,8 +69,8 @@ rebuild_cache/fast: rebuild_cache
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	/usr/bin/cmake -E echo No\ interactive\ CMake\ dialog\ available.
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/cmake-gui -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -123,6 +123,60 @@ run/fast:
 	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/build
 .PHONY : run/fast
 
+NeuralNetwork/network.o: NeuralNetwork/network.cpp.o
+
+.PHONY : NeuralNetwork/network.o
+
+# target to build an object file
+NeuralNetwork/network.cpp.o:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/NeuralNetwork/network.cpp.o
+.PHONY : NeuralNetwork/network.cpp.o
+
+NeuralNetwork/network.i: NeuralNetwork/network.cpp.i
+
+.PHONY : NeuralNetwork/network.i
+
+# target to preprocess a source file
+NeuralNetwork/network.cpp.i:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/NeuralNetwork/network.cpp.i
+.PHONY : NeuralNetwork/network.cpp.i
+
+NeuralNetwork/network.s: NeuralNetwork/network.cpp.s
+
+.PHONY : NeuralNetwork/network.s
+
+# target to generate assembly for a file
+NeuralNetwork/network.cpp.s:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/NeuralNetwork/network.cpp.s
+.PHONY : NeuralNetwork/network.cpp.s
+
+linearAlg/noGPU/tensor.o: linearAlg/noGPU/tensor.cpp.o
+
+.PHONY : linearAlg/noGPU/tensor.o
+
+# target to build an object file
+linearAlg/noGPU/tensor.cpp.o:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.o
+.PHONY : linearAlg/noGPU/tensor.cpp.o
+
+linearAlg/noGPU/tensor.i: linearAlg/noGPU/tensor.cpp.i
+
+.PHONY : linearAlg/noGPU/tensor.i
+
+# target to preprocess a source file
+linearAlg/noGPU/tensor.cpp.i:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.i
+.PHONY : linearAlg/noGPU/tensor.cpp.i
+
+linearAlg/noGPU/tensor.s: linearAlg/noGPU/tensor.cpp.s
+
+.PHONY : linearAlg/noGPU/tensor.s
+
+# target to generate assembly for a file
+linearAlg/noGPU/tensor.cpp.s:
+	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/linearAlg/noGPU/tensor.cpp.s
+.PHONY : linearAlg/noGPU/tensor.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -150,60 +204,6 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/main.cpp.s
 .PHONY : main.cpp.s
 
-network.o: network.cpp.o
-
-.PHONY : network.o
-
-# target to build an object file
-network.cpp.o:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/network.cpp.o
-.PHONY : network.cpp.o
-
-network.i: network.cpp.i
-
-.PHONY : network.i
-
-# target to preprocess a source file
-network.cpp.i:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/network.cpp.i
-.PHONY : network.cpp.i
-
-network.s: network.cpp.s
-
-.PHONY : network.s
-
-# target to generate assembly for a file
-network.cpp.s:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/network.cpp.s
-.PHONY : network.cpp.s
-
-tensor.o: tensor.cpp.o
-
-.PHONY : tensor.o
-
-# target to build an object file
-tensor.cpp.o:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/tensor.cpp.o
-.PHONY : tensor.cpp.o
-
-tensor.i: tensor.cpp.i
-
-.PHONY : tensor.i
-
-# target to preprocess a source file
-tensor.cpp.i:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/tensor.cpp.i
-.PHONY : tensor.cpp.i
-
-tensor.s: tensor.cpp.s
-
-.PHONY : tensor.s
-
-# target to generate assembly for a file
-tensor.cpp.s:
-	$(MAKE) -f CMakeFiles/run.dir/build.make CMakeFiles/run.dir/tensor.cpp.s
-.PHONY : tensor.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -213,15 +213,15 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... run"
 	@echo "... edit_cache"
+	@echo "... NeuralNetwork/network.o"
+	@echo "... NeuralNetwork/network.i"
+	@echo "... NeuralNetwork/network.s"
+	@echo "... linearAlg/noGPU/tensor.o"
+	@echo "... linearAlg/noGPU/tensor.i"
+	@echo "... linearAlg/noGPU/tensor.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
-	@echo "... network.o"
-	@echo "... network.i"
-	@echo "... network.s"
-	@echo "... tensor.o"
-	@echo "... tensor.i"
-	@echo "... tensor.s"
 .PHONY : help
 
 
