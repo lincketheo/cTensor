@@ -17,7 +17,7 @@ matlib::Matrix::Matrix(std::string str){
 		matlib::element* prev;
 
 		while(getline(ssrow, element, ' ')){
-
+			
 		}
 
 		
