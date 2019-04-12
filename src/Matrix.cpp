@@ -30,5 +30,6 @@ matlib::Matrix::~Matrix(){
 
 matlib::Matrix matlib::transpose(Matrix m){
 	Matrix x;
+    //noice
 	return x;
 }
