@@ -3,25 +3,24 @@
 
 #include <string>
 
+template <class T>
 namespace matlib{
 	struct element{
-		element *left = NULL;
-		element *right = NULL;
-		element *up = NULL;
-		element *down = NULL;
-
-		bool visited;
-
-		int val;
+        int row;
+        int col;
+        T val;
 	};
     
 	class Matrix{
 		public:
-			Matrix();
-			Matrix(std::string str);
+			Matrix(int, int);
+			Matrix(std::string);
+            Matrix(int, int, int);
 			~Matrix();
 			
-			void augment(Matrix m);
+			void augment(Matrix);
+            int rows;
+            int cols;
             
 
             //TODO - fix operators to work with matrices
@@ -55,7 +54,8 @@ namespace matlib{
 		    float operator ~(); //trace (~tensor)         
 			
 		private:
-            //never used - only used in the opperators
+            //never used - only used in the opperator
+            vector<element> elements;
             float normEuclid();
             Matrix mat_add(Matrix);
 		    Matrix mat_mul(Matrix);
@@ -71,13 +71,6 @@ namespace matlib{
     Matrix solveSystem(Matrix, Matrix);
    
 }
-
-
-template <typename T>
-//only fill if != 0
-vector<T> rowIndices;
-vector<T> colIndices;
-vector<T> val;
 
 
 
