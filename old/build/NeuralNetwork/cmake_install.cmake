@@ -1,4 +1,4 @@
-# Install script for directory: /home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU
+# Install script for directory: /home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/linearAlg/noGPU
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

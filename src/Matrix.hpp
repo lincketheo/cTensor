@@ -3,73 +3,67 @@
 
 #include <string>
 
-template <class T>
 namespace matlib{
-	struct element{
-        int row;
-        int col;
-        T val;
-	};
-    
-	class Matrix{
-		public:
-			Matrix(int, int);
-			Matrix(std::string);
-            Matrix(int, int, int);
-			~Matrix();
+    namespace kernel{   //maybe overkill, but in the future it'd
+                        // be cool to have differnt types of matrix datastructures
+                        //ex sparse matrix, matrix, diagonal etc.
+	    class Matrix{
+		    public:
+			    Matrix(int, int);
+			    Matrix(std::string);
+                Matrix(int, int, int);
+		    	~Matrix();
 			
-			void augment(Matrix);
-            int rows;
-            int cols;
+    			void augment(Matrix);
+                int dim1;
+                int dim2;
             
 
-            //TODO - fix operators to work with matrices
-            Matrix operator -();
-		    Matrix operator =(const float *);
+                //TODO - fix operators to work with matrices
+                Matrix operator -();
+		        Matrix operator =(const float *);
 
-		    //binary operrators
-    		Matrix operator +(Matrix const &);
+		        //binary operrators
+    		    Matrix operator +(Matrix const &);
 
-    		Matrix operator -(Matrix const &);
-	    	Matrix operator *(Matrix const &);
-	    	Matrix operator *(float const &);		
-	    	Matrix operator +=(Matrix const &);
-	    	Matrix operator -=(Matrix const &);
-	    	Matrix operator *=(Matrix const &);
+    		    Matrix operator -(Matrix const &);
+	    	    Matrix operator *(Matrix const &);
+	    	    Matrix operator *(float const &);		
+	    	    Matrix operator +=(Matrix const &);
+	    	    Matrix operator -=(Matrix const &);
+	    	    Matrix operator *=(Matrix const &);
 
 
-		    //Relational operators
+		        //Relational operators
 		
-	    	bool operator <(Matrix const &);
-	    	bool operator >(Matrix const &);
-	    	bool operator ==(Matrix const &);
-	    	bool operator <=(Matrix const &);
-	    	bool operator >=(Matrix const &);	
+	    	    bool operator <(Matrix const &);
+	    	    bool operator >(Matrix const &);
+	    	    bool operator ==(Matrix const &);
+	    	    bool operator <=(Matrix const &);
+	    	    bool operator >=(Matrix const &);	
 			
-		    //type casting
-		    operator float(); //typecasts  to normEuclid()
+		        //type casting
+		        operator float(); //typecasts  to normEuclid()
 
-		    Matrix operator !(); //inverse (!tensor)
-		    Matrix operator *(); //transpose (*tensor)
-		    float operator ~(); //trace (~tensor)         
+		        Matrix operator !(); //inverse (!tensor)
+		        Matrix operator *(); //transpose (*tensor)
+		        float operator ~(); //trace (~tensor)         
 			
-		private:
-            //never used - only used in the opperator
-            vector<element> elements;
-            float normEuclid();
-            Matrix mat_add(Matrix);
-		    Matrix mat_mul(Matrix);
-            Matrix scalarMult(float);
-            Matrix transpose();
-            Matrix inverse();
-	};
-    Matrix mat_add(Matrix, Matrix);
-    Matrix mat_mul(Matrix, Matrix);
-    Matrix inverse(Matrix);
-	Matrix transpose(Matrix);
-    Matrix rref(Matrix); //rref will just rref it, should be augmented already
-    Matrix solveSystem(Matrix, Matrix);
-   
+		    private:
+                vector<float> elements;
+                vector<int> rows;
+                vector<int> cols;
+                float normEuclid();
+                Matrix transpose(); //just switch rows and cols
+                Matrix inverse();
+	    };
+    }
+    kernel::Matrix mat_add(kernel::Matrix, Matrix);
+    kernel::Matrix mat_mul(kernel::Matrix, Matrix);
+    kernel::Matrix inverse(kernel::Matrix);
+	kernel::Matrix transpose(kernel::Matrix);
+    kernel::Matrix rref(kernel::Matrix); //rref will just rref it, should be augmented already
+    kernel::Matrix solveSystem(kernel::Matrix, kernel::Matrix); 
 }
 
 

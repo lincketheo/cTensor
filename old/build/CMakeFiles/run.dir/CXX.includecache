@@ -6,23 +6,23 @@
 
 #IncludeRegexTransform: 
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/../include/network.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/../include/network.h
 tensor.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/../include/tensor.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/../include/tensor.h
 string
 -
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/../include/tensor.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/../include/tensor.h
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/network.cpp
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/NeuralNetwork/network.cpp
 tensor.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/tensor.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/NeuralNetwork/tensor.h
 network.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/NeuralNetwork/network.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/NeuralNetwork/network.h
 iostream
 -
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.cpp
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/linearAlg/noGPU/tensor.cpp
 cmath
 -
 random
@@ -30,17 +30,17 @@ random
 iostream
 -
 tensor.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/linearAlg/noGPU/tensor.h
 stdexcept
 -
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/linearAlg/noGPU/tensor.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/linearAlg/noGPU/tensor.h
 
-/home/theo/Documents/projects/tensorFlow/cTensor/src/main.cpp
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/main.cpp
 iostream
 -
 tensor.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/tensor.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/tensor.h
 network.h
-/home/theo/Documents/projects/tensorFlow/cTensor/src/network.h
+/home/theo/Documents/projects/math/tensorFlow/cTensor/old/src/network.h
 
