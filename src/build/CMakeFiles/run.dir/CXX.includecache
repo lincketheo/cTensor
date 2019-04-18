@@ -16,11 +16,11 @@ matLib.hpp
 iostream
 -
 
-/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/kernel.cpp
+/home/kyle/Programming/datastructures/cTensor/src/Matrix/kernel.cpp
 iostream
 -
 matLib.hpp
-/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/matLib.hpp
+/home/kyle/Programming/datastructures/cTensor/src/Matrix/matLib.hpp
 cmath
 -
 random
@@ -30,13 +30,13 @@ stdexcept
 sstream
 -
 
-/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/operations.cpp
+/home/kyle/Programming/datastructures/cTensor/src/Matrix/operations.cpp
 iostream
 -
 matLib.hpp
-/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/matLib.hpp
+/home/kyle/Programming/datastructures/cTensor/src/Matrix/matLib.hpp
 
-/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Networks/Network.cpp
+/home/kyle/Programming/datastructures/cTensor/src/Networks/Network.cpp
 matLib.hpp
 -
 Network.hpp
@@ -44,7 +44,7 @@ Network.hpp
 iostream
 -
 
-/home/theo/Documents/projects/math/tensorFlow/cTensor/src/main.cpp
+/home/kyle/Programming/datastructures/cTensor/src/main.cpp
 matLib.hpp
 -
 Network.hpp

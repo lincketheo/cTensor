@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/theo/Documents/projects/math/tensorFlow/cTensor/src/include 
+CXX_INCLUDES = -I/home/kyle/Programming/datastructures/cTensor/src/include 
 
