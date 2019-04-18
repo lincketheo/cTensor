@@ -27,6 +27,8 @@ random
 -
 stdexcept
 -
+sstream
+-
 
 /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/operations.cpp
 iostream

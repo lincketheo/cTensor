@@ -26,6 +26,7 @@ using std::string;
     (i.e. [a b c; d e f; g h i])
 
 */
+/*
 Matrix::Matrix(string str) {
     stringstream ss;
     ss << str;
@@ -42,7 +43,7 @@ Matrix::Matrix(string str) {
         }
     }
 }
-
+*/
 Matrix::Matrix(){
     dim1 = 2;
     dim2 = 2;

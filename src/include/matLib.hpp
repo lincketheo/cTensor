@@ -10,6 +10,7 @@ namespace matlib{
 	    public:
 	    	//Matrix is an ordered matrix
 	     	Matrix();
+            Matrix(std::string);
     		Matrix(int, int);
     		Matrix(int, int, int);
     		//~Matrix();
