@@ -10,16 +10,42 @@
 #include <cmath>
 #include <random>
 #include <stdexcept>
+#include <sstream>
 
 #define DIM_MISMATCH "error dim mismatch"
 
 using namespace matlib;
-
+using std::string;
 //================== Constructors ==================
+
+/**
+    Builds matrix from string input
+
+    @param str string matrix input
+    @return self matrix build using standard matlab notation
+    (i.e. [a b c; d e f; g h i])
+
+*/
+Matrix::Matrix(string str) {
+    stringstream ss;
+    ss << str;
+    string row;
+    while(getline(ss, row, ';')) {
+        stringstream ssrow;
+        ssrow << row;
+        string element;
+        int curr;
+        matlib::element* prev;
+
+        while(getline(ssrow, element, ' ')) {
+
+        }
+    }
+}
 
 Matrix::Matrix(){
     dim1 = 2;
-    dim1 = 2;
+    dim2 = 2;
     arr = new float[dim1 * dim2];
     for(int i = 0; i < dim1 * dim2; i++)
         arr[i] = 0;

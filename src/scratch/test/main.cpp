@@ -1,32 +1,22 @@
-#include "main.hpp"
+#include <iostream>
+#include <vector>
+#include "Matrix.hpp"
 
-
-using namespace std;
-
-
-template <class T>
-void Matrix<T>::print(){
-    cout<<"hi there"<<endl;
-}
-
-template <class T>
-Matrix2<T>::Matrix2(int i, int j){
-    cout<<i<<" "<<j<<endl;
-}
-
-template <class T>
-void Matrix2<T>::print(){
-    cout<<"yo"<<endl;
-}
+using namespace matlib;
 
 int main(){
-    Matrix<int> * a;
+
+    Matrix<float> * mainPtr;
+
+    SparseMatrix<float> mainSps(5, 5);
+
+    mainPtr = &mainSps;
+
+    mainPtr->print();
+
+
     
-    Matrix2<int> a2(3, 3);
-    
-    a = &a2;
-    
-    a->print();
     return 0;
+
 
 }
