@@ -1,1 +1,0 @@
-/usr/bin/c++    -rdynamic CMakeFiles/run.dir/main.cpp.o CMakeFiles/run.dir/Matrix/kernel.cpp.o CMakeFiles/run.dir/Matrix/operations.cpp.o CMakeFiles/run.dir/Networks/Network.cpp.o  -o run 
