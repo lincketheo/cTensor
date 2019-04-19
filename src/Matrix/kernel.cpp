@@ -11,6 +11,8 @@
 #include <random>
 #include <stdexcept>
 #include <sstream>
+#include <vector>
+#include <iomanip>
 
 #define DIM_MISMATCH "error dim mismatch"
 #define MIN(a, b) ((a > b) ? b : a)
@@ -27,24 +29,33 @@ using std::string;
     (i.e. [a b c; d e f; g h i])
 
 */
-/*
+
 Matrix::Matrix(string str) {
-    stringstream ss;
+	std::vector<float> varr;
+
+	std::stringstream ss;
     ss << str;
-    string row;
+	std::string row;
+	dim1 = 0;
+	dim2 = 0;
+	bool firstPass = true;
     while(getline(ss, row, ';')) {
-        stringstream ssrow;
+		dim1++;
+		std::stringstream ssrow;
         ssrow << row;
         string element;
-        int curr;
-        matlib::element* prev;
 
         while(getline(ssrow, element, ' ')) {
-
+			dim2 = (firstPass) ? dim2+1 : dim2;
+			varr.push_back(stof(element));
         }
+		firstPass = false;
     }
+	arr = new float[dim1*dim2];
+	for(int i = 0; i < dim1*dim2; i++)
+		arr[i] = varr[i];
 }
-*/
+
 Matrix::Matrix(){
     dim1 = 2;
     dim2 = 2;
@@ -65,7 +76,7 @@ Matrix::Matrix(int d1, int d2){
     dim2 = d2;
     arr = new float[dim1 * dim2];
     for(int i = 0; i < dim1 * dim2; i++)
-        (i % (dim2 + 1) == 0 && i < dim2 * dim2) ? arr[i] = 1 : arr[i] = 0;
+		arr[i] = (i % (dim2 + 1) == 0 && i < dim2 * dim2) ? 1 : 0;
 }
 
 /**

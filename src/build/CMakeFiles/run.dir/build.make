@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/theo/Documents/projects/math/tensorFlow/cTensor/src
+CMAKE_SOURCE_DIR = /home/kyle/Programming/datastructures/cTensor/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build
+CMAKE_BINARY_DIR = /home/kyle/Programming/datastructures/cTensor/src/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/run.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/run.dir/flags.make
 
 CMakeFiles/run.dir/main.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/main.cpp.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kyle/Programming/datastructures/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/run.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/main.cpp.o -c /home/kyle/Programming/datastructures/cTensor/src/main.cpp
 
 CMakeFiles/run.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/math/tensorFlow/cTensor/src/main.cpp > CMakeFiles/run.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kyle/Programming/datastructures/cTensor/src/main.cpp > CMakeFiles/run.dir/main.cpp.i
 
 CMakeFiles/run.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/math/tensorFlow/cTensor/src/main.cpp -o CMakeFiles/run.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kyle/Programming/datastructures/cTensor/src/main.cpp -o CMakeFiles/run.dir/main.cpp.s
 
 CMakeFiles/run.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/run.dir/main.cpp.o.provides.build: CMakeFiles/run.dir/main.cpp.o
 
 CMakeFiles/run.dir/Matrix/kernel.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/Matrix/kernel.cpp.o: ../Matrix/kernel.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/run.dir/Matrix/kernel.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/Matrix/kernel.cpp.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/kernel.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kyle/Programming/datastructures/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/run.dir/Matrix/kernel.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/Matrix/kernel.cpp.o -c /home/kyle/Programming/datastructures/cTensor/src/Matrix/kernel.cpp
 
 CMakeFiles/run.dir/Matrix/kernel.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/Matrix/kernel.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/kernel.cpp > CMakeFiles/run.dir/Matrix/kernel.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kyle/Programming/datastructures/cTensor/src/Matrix/kernel.cpp > CMakeFiles/run.dir/Matrix/kernel.cpp.i
 
 CMakeFiles/run.dir/Matrix/kernel.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/Matrix/kernel.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/kernel.cpp -o CMakeFiles/run.dir/Matrix/kernel.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kyle/Programming/datastructures/cTensor/src/Matrix/kernel.cpp -o CMakeFiles/run.dir/Matrix/kernel.cpp.s
 
 CMakeFiles/run.dir/Matrix/kernel.cpp.o.requires:
 
@@ -107,16 +107,16 @@ CMakeFiles/run.dir/Matrix/kernel.cpp.o.provides.build: CMakeFiles/run.dir/Matrix
 
 CMakeFiles/run.dir/Matrix/operations.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/Matrix/operations.cpp.o: ../Matrix/operations.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/Matrix/operations.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/Matrix/operations.cpp.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/operations.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kyle/Programming/datastructures/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/run.dir/Matrix/operations.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/Matrix/operations.cpp.o -c /home/kyle/Programming/datastructures/cTensor/src/Matrix/operations.cpp
 
 CMakeFiles/run.dir/Matrix/operations.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/Matrix/operations.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/operations.cpp > CMakeFiles/run.dir/Matrix/operations.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kyle/Programming/datastructures/cTensor/src/Matrix/operations.cpp > CMakeFiles/run.dir/Matrix/operations.cpp.i
 
 CMakeFiles/run.dir/Matrix/operations.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/Matrix/operations.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix/operations.cpp -o CMakeFiles/run.dir/Matrix/operations.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kyle/Programming/datastructures/cTensor/src/Matrix/operations.cpp -o CMakeFiles/run.dir/Matrix/operations.cpp.s
 
 CMakeFiles/run.dir/Matrix/operations.cpp.o.requires:
 
@@ -131,16 +131,16 @@ CMakeFiles/run.dir/Matrix/operations.cpp.o.provides.build: CMakeFiles/run.dir/Ma
 
 CMakeFiles/run.dir/Networks/Network.cpp.o: CMakeFiles/run.dir/flags.make
 CMakeFiles/run.dir/Networks/Network.cpp.o: ../Networks/Network.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/run.dir/Networks/Network.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/Networks/Network.cpp.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Networks/Network.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kyle/Programming/datastructures/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/run.dir/Networks/Network.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/run.dir/Networks/Network.cpp.o -c /home/kyle/Programming/datastructures/cTensor/src/Networks/Network.cpp
 
 CMakeFiles/run.dir/Networks/Network.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/run.dir/Networks/Network.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Networks/Network.cpp > CMakeFiles/run.dir/Networks/Network.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kyle/Programming/datastructures/cTensor/src/Networks/Network.cpp > CMakeFiles/run.dir/Networks/Network.cpp.i
 
 CMakeFiles/run.dir/Networks/Network.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/run.dir/Networks/Network.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Networks/Network.cpp -o CMakeFiles/run.dir/Networks/Network.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kyle/Programming/datastructures/cTensor/src/Networks/Network.cpp -o CMakeFiles/run.dir/Networks/Network.cpp.s
 
 CMakeFiles/run.dir/Networks/Network.cpp.o.requires:
 
@@ -169,7 +169,7 @@ run: CMakeFiles/run.dir/Matrix/operations.cpp.o
 run: CMakeFiles/run.dir/Networks/Network.cpp.o
 run: CMakeFiles/run.dir/build.make
 run: CMakeFiles/run.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable run"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kyle/Programming/datastructures/cTensor/src/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable run"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/run.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -189,6 +189,6 @@ CMakeFiles/run.dir/clean:
 .PHONY : CMakeFiles/run.dir/clean
 
 CMakeFiles/run.dir/depend:
-	cd /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/theo/Documents/projects/math/tensorFlow/cTensor/src /home/theo/Documents/projects/math/tensorFlow/cTensor/src /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/run.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/kyle/Programming/datastructures/cTensor/src/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kyle/Programming/datastructures/cTensor/src /home/kyle/Programming/datastructures/cTensor/src /home/kyle/Programming/datastructures/cTensor/src/build /home/kyle/Programming/datastructures/cTensor/src/build /home/kyle/Programming/datastructures/cTensor/src/build/CMakeFiles/run.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/run.dir/depend
 
