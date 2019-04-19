@@ -1,4 +1,4 @@
-# Install script for directory: /home/kyle/Programming/datastructures/cTensor/src
+# Install script for directory: /home/theo/Documents/projects/math/tensorFlow/cTensor/src
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,7 +39,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/kyle/Programming/datastructures/cTensor/src/build/Networks/cmake_install.cmake")
+  include("/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/Networks/cmake_install.cmake")
 
 endif()
 
@@ -51,5 +51,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/kyle/Programming/datastructures/cTensor/src/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

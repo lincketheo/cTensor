@@ -1,4 +1,4 @@
-# Install script for directory: /home/kyle/Programming/datastructures/cTensor/src/Matrix
+# Install script for directory: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/Matrix
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
