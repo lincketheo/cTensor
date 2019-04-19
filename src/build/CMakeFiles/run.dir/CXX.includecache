@@ -29,6 +29,10 @@ stdexcept
 -
 sstream
 -
+vector
+-
+iomanip
+-
 
 /home/kyle/Programming/datastructures/cTensor/src/Matrix/operations.cpp
 iostream
