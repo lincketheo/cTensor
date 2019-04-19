@@ -32,7 +32,6 @@ using std::string;
 
 Matrix::Matrix(string str) {
 	std::vector<float> varr;
-
 	std::stringstream ss;
     ss << str;
 	std::string row;
@@ -44,7 +43,6 @@ Matrix::Matrix(string str) {
 		std::stringstream ssrow;
         ssrow << row;
         string element;
-
         while(getline(ssrow, element, ' ')) {
 			dim2 = (firstPass) ? dim2+1 : dim2;
 			varr.push_back(stof(element));
