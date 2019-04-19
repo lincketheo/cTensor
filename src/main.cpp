@@ -1,66 +1,15 @@
-#include <matLib.hpp>
-#include <Network.hpp>
+#include <userInterFace.hpp>
 #include <iostream>
+#include <matLib.hpp>
 
-using namespace matlib;
-using namespace NetworkLib;
-using std::stoi;
 
-int main(int argc, char ** argv){
-    int a, b, c, d;    
-
-    if(argc == 5){
-        a = stoi(argv[1]);
-        b = stoi(argv[2]);
-        c = stoi(argv[3]);
-        d = stoi(argv[4]);
-    }else{
-        a = 5;
-        b = 5;
-        c = 2;
-        d = 10;
-    }
-
-    Network myNet(a, b, c, d);
-    myNet.printNetworkSummary();
-    myNet.printNetwork();
-
-    Matrix inputMat(a, 1, 2);
-    printf("INPUT\n");
-    inputMat.print();
-
-    Matrix t1 = myNet.propogateNetwork(inputMat);
+int main(){
+    UI main;
     
-    Matrix expected(b, 1);
+    main.addMatrix("[1 2 3; 4 5 6; 7 8 9]", "A");
+    main.printCache();
+    main.addMatrix("[2 4 5; 9 0 1; 9 9 1]", "B");
+    main.printCache();
 
-    myNet.backPropogateRecurs(t1, expected, 1000);
-
-    Matrix t2 = myNet.propogateNetwork(inputMat);
-    
-    printf("EXPECTED\n");
-    expected.print();
-    printf("INPUT\n");
-    inputMat.print();
-    printf("OUTPUT1\n");
-    t1.print();
-    printf("OUTPUT2\n");
-    t2.print();
-
-    Matrix t3 = t2 - t1;
-    t3.print();
-
-/*
-    Matrix A(20, 20, 10);
-
-    Matrix M = !A;
-    A.print();
-    M.print();
-    (A * M).print();
-
- //   A.print();
- //   A.GaussJordanRREF();
- //   A.print();
-*/
     return 0;
 }
-
