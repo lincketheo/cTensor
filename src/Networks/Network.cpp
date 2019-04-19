@@ -146,8 +146,19 @@ Matrix gradient(Matrix previous, layer * layer){
 
 	return t1;
 }
+/*
+void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate){
+    Matrix del = parMult((outputs - expected), sigmoidPrime
+
+
+
+}
+
+
+*/
 
 void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float scalar){
+    
 	Matrix d_C = (outputs - expected);
 	std::cout<<"here"<<std::endl;
 	d_C.print();

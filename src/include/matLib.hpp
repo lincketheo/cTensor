@@ -74,6 +74,9 @@ namespace matlib{
             void rref();	
             void replaceRow(int, Matrix);
             void replaceCol(int, Matrix);
+            Matrix principalEig(int);
+            void GaussJordan();
+            void GaussJordanRREF();
 
 	    private:
 		    Matrix add(Matrix);

@@ -13,6 +13,7 @@
 #include <sstream>
 
 #define DIM_MISMATCH "error dim mismatch"
+#define MIN(a, b) ((a > b) ? b : a)
 
 using namespace matlib;
 using std::string;
@@ -136,7 +137,7 @@ float Matrix::get(int c1, int c2){
 Matrix Matrix::getCol(int col){
     Matrix newTens(dim1, 1);
     for(int i = 0; i < dim1; i++)
-        newTens.insert(i, 0, get(col, i));
+        newTens.insert(i, 0, get(i, col));
     return newTens;
 }
 
@@ -149,7 +150,7 @@ Matrix Matrix::getCol(int col){
 Matrix Matrix::getRow(int row){
     Matrix newTens(1, dim2);
     for(int i = 0; i < dim2; i++)
-        newTens.insert(0, i, get(i, row));
+        newTens.insert(0, i, get(row, i));
     return newTens;
 }
 
@@ -160,8 +161,9 @@ Matrix Matrix::getRow(int row){
     @param row, the row to replace with horizontal matrix t
 */
 void Matrix::replaceRow(int row, Matrix t){
-    for(int i = 0; i < dim2; i++)
+    for(int i = 0; i < dim2; i++){
         insert(row, i, t.get(0, i));
+    }
 }
 
 /**
@@ -297,11 +299,32 @@ float Matrix::getMax(){
 
 //TODO returns the inverse of self
 Matrix Matrix::inverse(){
+
+    Matrix inverse(dim1, dim2);
+    Matrix large(dim1, dim2 * 2);
+    for(int i = 0; i < dim1; i++){
+        for(int j = 0; j < dim2; j++)
+            large.insert(i, j, get(i, j));
+        for(int j = dim2; j < dim2 * 2; j++)
+            large.insert(i, j, inverse.get(i, j - dim2));
+    }
+    large.GaussJordanRREF();
+    for(int i = 0; i < dim2; i++){
+        for(int j = 0; j < dim1; j++)
+            inverse.insert(i, j, large.get(i, j + dim1));
+    }
+
+    return inverse;
+/*
+    if(dim1 != dim2)std::except<<"invalid dim\n";
+        
+
     Matrix invTense = *this;
 
 
 
     return invTense;
+*/
 }
 
 //returns the trace of self
@@ -357,4 +380,75 @@ Matrix matlib::parSqr(Matrix t){
           t1.arr[i] = t1.arr[i] * t1.arr[i];
     return t1;
 }
+
+Matrix Matrix::principalEig(int max_iter){
+    Matrix v = Matrix(dim1, 1);
+    v = (v * (1 / float(v)));
+
+    for(int i = 0; i < max_iter; i++){
+        v = stdMult(v);
+        v = (v * (1 / float(v)));
+    }
+    return v;
+}
+
+
+void Matrix::GaussJordan(){
+    int i = 0;
+    int j = 0;
+    while(i < dim1 && j < dim2){
+        int s = 1;
+        while(get(i, j) == 0 && i + s < dim1 - 1){
+            swapRow(i, s);
+        }
+        if(get(i, j) != 0){
+            Matrix _temp = getRow(i);
+            Matrix temp = _temp * (1 / get(i, j));
+            replaceRow(i, temp);
+            for(int x = 1; i + x < dim1; x++){
+                if(get(i+x, j) != 0){
+                    Matrix temp2 = getRow(x + i) - (temp * (get(i + x, j)));
+                    replaceRow(i + x, temp2);
+                }
+            }
+        }
+        j++;
+        i++;
+    } 
+}
+
+
+void Matrix::GaussJordanRREF(){
+    GaussJordan();
+    int startingRow = MIN(dim1, dim2);
+    int i = startingRow - 1;
+    int j = i; 
+    while(i >= 0){
+        if(get(i, j) != 0){
+            Matrix temp = getRow(i);
+            for(int x = 1; i - x >= 0; x ++){
+                Matrix temp2 = getRow(i - x) - (temp * (get(i - x, j)));
+                replaceRow(i - x, temp2);
+            }
+        }  
+        i--;
+        j--;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

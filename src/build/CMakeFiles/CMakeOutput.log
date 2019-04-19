@@ -28,28 +28,28 @@ The CXX compiler identification is GNU, found in "/home/theo/Documents/projects/
 Determining if the C compiler works passed with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_74b34/fast"
-/usr/bin/make -f CMakeFiles/cmTC_74b34.dir/build.make CMakeFiles/cmTC_74b34.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_93538/fast"
+/usr/bin/make -f CMakeFiles/cmTC_93538.dir/build.make CMakeFiles/cmTC_93538.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_74b34.dir/testCCompiler.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_74b34.dir/testCCompiler.c.o   -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_74b34
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_74b34.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_74b34.dir/testCCompiler.c.o  -o cmTC_74b34 
+Building C object CMakeFiles/cmTC_93538.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_93538.dir/testCCompiler.c.o   -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_93538
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_93538.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_93538.dir/testCCompiler.c.o  -o cmTC_93538 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_9aec7/fast"
-/usr/bin/make -f CMakeFiles/cmTC_9aec7.dir/build.make CMakeFiles/cmTC_9aec7.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_49581/fast"
+/usr/bin/make -f CMakeFiles/cmTC_49581.dir/build.make CMakeFiles/cmTC_49581.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc    -o CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_9aec7
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9aec7.dir/link.txt --verbose=1
-/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o  -o cmTC_9aec7 
+Building C object CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_49581
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_49581.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o  -o cmTC_49581 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -61,9 +61,9 @@ Thread model: posix
 gcc version 7.3.0 (Ubuntu 7.3.0-27ubuntu1~18.04) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9aec7' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccXRZmlc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_9aec7 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9aec7' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_49581' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGASVZ0.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_49581 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_49581' '-mtune=generic' '-march=x86-64'
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
@@ -71,14 +71,14 @@ Parsed C implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_9aec7/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_9aec7.dir/build.make CMakeFiles/cmTC_9aec7.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_49581/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_49581.dir/build.make CMakeFiles/cmTC_49581.dir/build]
   ignore line: [make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_9aec7]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_9aec7.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o  -o cmTC_9aec7 ]
+  ignore line: [Building C object CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o   -c /usr/share/cmake-3.10/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_49581]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_49581.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o  -o cmTC_49581 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -90,13 +90,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.3.0 (Ubuntu 7.3.0-27ubuntu1~18.04) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_9aec7' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccXRZmlc.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_9aec7 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_49581' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccGASVZ0.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_49581 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccXRZmlc.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccGASVZ0.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -116,7 +116,7 @@ Parsed C implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_9aec7] ==> ignore
+    arg [cmTC_49581] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -128,7 +128,7 @@ Parsed C implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_9aec7.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_49581.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--push-state] ==> ignore
     arg [--as-needed] ==> ignore
@@ -160,14 +160,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_09d3d/fast"
-/usr/bin/make -f CMakeFiles/cmTC_09d3d.dir/build.make CMakeFiles/cmTC_09d3d.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_34009/fast"
+/usr/bin/make -f CMakeFiles/cmTC_34009.dir/build.make CMakeFiles/cmTC_34009.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_09d3d.dir/feature_tests.c.o
-/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_09d3d.dir/feature_tests.c.o   -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_09d3d
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_09d3d.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_09d3d.dir/feature_tests.c.o  -o cmTC_09d3d 
+Building C object CMakeFiles/cmTC_34009.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_34009.dir/feature_tests.c.o   -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_34009
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_34009.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_34009.dir/feature_tests.c.o  -o cmTC_34009 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
@@ -180,14 +180,14 @@ make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTenso
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4c5ab/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4c5ab.dir/build.make CMakeFiles/cmTC_4c5ab.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_76268/fast"
+/usr/bin/make -f CMakeFiles/cmTC_76268.dir/build.make CMakeFiles/cmTC_76268.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4c5ab.dir/feature_tests.c.o
-/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_4c5ab.dir/feature_tests.c.o   -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_4c5ab
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4c5ab.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_4c5ab.dir/feature_tests.c.o  -o cmTC_4c5ab 
+Building C object CMakeFiles/cmTC_76268.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_76268.dir/feature_tests.c.o   -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_76268
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_76268.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_76268.dir/feature_tests.c.o  -o cmTC_76268 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
@@ -200,14 +200,14 @@ make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTenso
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4d75e/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4d75e.dir/build.make CMakeFiles/cmTC_4d75e.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_13388/fast"
+/usr/bin/make -f CMakeFiles/cmTC_13388.dir/build.make CMakeFiles/cmTC_13388.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_4d75e.dir/feature_tests.c.o
-/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_4d75e.dir/feature_tests.c.o   -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.c
-Linking C executable cmTC_4d75e
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4d75e.dir/link.txt --verbose=1
-/usr/bin/cc      -rdynamic CMakeFiles/cmTC_4d75e.dir/feature_tests.c.o  -o cmTC_4d75e 
+Building C object CMakeFiles/cmTC_13388.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_13388.dir/feature_tests.c.o   -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.c
+Linking C executable cmTC_13388
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_13388.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_13388.dir/feature_tests.c.o  -o cmTC_13388 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
@@ -218,28 +218,28 @@ make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTenso
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_61019/fast"
-/usr/bin/make -f CMakeFiles/cmTC_61019.dir/build.make CMakeFiles/cmTC_61019.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_bf028/fast"
+/usr/bin/make -f CMakeFiles/cmTC_bf028.dir/build.make CMakeFiles/cmTC_bf028.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_61019.dir/testCXXCompiler.cxx.o
-/usr/bin/c++     -o CMakeFiles/cmTC_61019.dir/testCXXCompiler.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_61019
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_61019.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_61019.dir/testCXXCompiler.cxx.o  -o cmTC_61019 
+Building CXX object CMakeFiles/cmTC_bf028.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_bf028.dir/testCXXCompiler.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_bf028
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bf028.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_bf028.dir/testCXXCompiler.cxx.o  -o cmTC_bf028 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_4b544/fast"
-/usr/bin/make -f CMakeFiles/cmTC_4b544.dir/build.make CMakeFiles/cmTC_4b544.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_91f3f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_91f3f.dir/build.make CMakeFiles/cmTC_91f3f.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++     -o CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_4b544
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4b544.dir/link.txt --verbose=1
-/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4b544 
+Building CXX object CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_91f3f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_91f3f.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_91f3f 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper
@@ -251,9 +251,9 @@ Thread model: posix
 gcc version 7.3.0 (Ubuntu 7.3.0-27ubuntu1~18.04) 
 COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4b544' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZxcjQv.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4b544 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4b544' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_91f3f' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccslRjaq.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_91f3f /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_91f3f' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
@@ -261,14 +261,14 @@ Parsed CXX implicit link information from above output:
   link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_4b544/fast"]
-  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_4b544.dir/build.make CMakeFiles/cmTC_4b544.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/make" "cmTC_91f3f/fast"]
+  ignore line: [/usr/bin/make -f CMakeFiles/cmTC_91f3f.dir/build.make CMakeFiles/cmTC_91f3f.dir/build]
   ignore line: [make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_4b544]
-  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_4b544.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_4b544 ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_91f3f]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_91f3f.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_91f3f ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper]
@@ -280,13 +280,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.3.0 (Ubuntu 7.3.0-27ubuntu1~18.04) ]
   ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/7/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_4b544' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZxcjQv.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_4b544 /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_91f3f' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/lib/gcc/x86_64-linux-gnu/7/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccslRjaq.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --sysroot=/ --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_91f3f /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/7 -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/7/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/7/../../.. CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/7/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crtn.o]
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccZxcjQv.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccslRjaq.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -306,7 +306,7 @@ Parsed CXX implicit link information from above output:
     arg [-znow] ==> ignore
     arg [-zrelro] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_4b544] ==> ignore
+    arg [cmTC_91f3f] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/Scrt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/../../../x86_64-linux-gnu/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-linux-gnu/7/crtbeginS.o] ==> ignore
@@ -318,7 +318,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
     arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
     arg [-L/usr/lib/gcc/x86_64-linux-gnu/7/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/7/../../..]
-    arg [CMakeFiles/cmTC_4b544.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_91f3f.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -346,14 +346,14 @@ Parsed CXX implicit link information from above output:
 Detecting CXX [-std=c++1z] compiler features compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3dcce/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3dcce.dir/build.make CMakeFiles/cmTC_3dcce.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_0cf04/fast"
+/usr/bin/make -f CMakeFiles/cmTC_0cf04.dir/build.make CMakeFiles/cmTC_0cf04.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_3dcce.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_3dcce.dir/feature_tests.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_3dcce
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3dcce.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_3dcce.dir/feature_tests.cxx.o  -o cmTC_3dcce 
+Building CXX object CMakeFiles/cmTC_0cf04.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_0cf04.dir/feature_tests.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_0cf04
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0cf04.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_0cf04.dir/feature_tests.cxx.o  -o cmTC_0cf04 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
@@ -419,14 +419,14 @@ make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTenso
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_3a55f/fast"
-/usr/bin/make -f CMakeFiles/cmTC_3a55f.dir/build.make CMakeFiles/cmTC_3a55f.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_200c0/fast"
+/usr/bin/make -f CMakeFiles/cmTC_200c0.dir/build.make CMakeFiles/cmTC_200c0.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_3a55f.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_3a55f.dir/feature_tests.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_3a55f
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_3a55f.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_3a55f.dir/feature_tests.cxx.o  -o cmTC_3a55f 
+Building CXX object CMakeFiles/cmTC_200c0.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_200c0.dir/feature_tests.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_200c0
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_200c0.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_200c0.dir/feature_tests.cxx.o  -o cmTC_200c0 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
@@ -492,14 +492,14 @@ make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTenso
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_f0626/fast"
-/usr/bin/make -f CMakeFiles/cmTC_f0626.dir/build.make CMakeFiles/cmTC_f0626.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_12c16/fast"
+/usr/bin/make -f CMakeFiles/cmTC_12c16.dir/build.make CMakeFiles/cmTC_12c16.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_f0626.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_f0626.dir/feature_tests.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_f0626
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f0626.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_f0626.dir/feature_tests.cxx.o  -o cmTC_f0626 
+Building CXX object CMakeFiles/cmTC_12c16.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_12c16.dir/feature_tests.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_12c16
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_12c16.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_12c16.dir/feature_tests.cxx.o  -o cmTC_12c16 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
@@ -565,14 +565,14 @@ make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTenso
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/make" "cmTC_81df5/fast"
-/usr/bin/make -f CMakeFiles/cmTC_81df5.dir/build.make CMakeFiles/cmTC_81df5.dir/build
+Run Build Command:"/usr/bin/make" "cmTC_dc843/fast"
+/usr/bin/make -f CMakeFiles/cmTC_dc843.dir/build.make CMakeFiles/cmTC_dc843.dir/build
 make[1]: Entering directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_81df5.dir/feature_tests.cxx.o
-/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_81df5.dir/feature_tests.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_81df5
-/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_81df5.dir/link.txt --verbose=1
-/usr/bin/c++       -rdynamic CMakeFiles/cmTC_81df5.dir/feature_tests.cxx.o  -o cmTC_81df5 
+Building CXX object CMakeFiles/cmTC_dc843.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_dc843.dir/feature_tests.cxx.o -c /home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_dc843
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_dc843.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_dc843.dir/feature_tests.cxx.o  -o cmTC_dc843 
 make[1]: Leaving directory '/home/theo/Documents/projects/math/tensorFlow/cTensor/src/build/CMakeFiles/CMakeTmp'
 
 
