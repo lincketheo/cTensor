@@ -12,6 +12,7 @@ add_subdirectory(   Matrix
 
 
 add_executable(run  main.cpp
+                    UI/driver.cpp
                     Matrix/kernel.cpp 
                     Matrix/operations.cpp
                     Networks/Network.cpp)
