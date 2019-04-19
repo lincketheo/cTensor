@@ -98,7 +98,7 @@ void Matrix::print(){
     printf("\n");
     for(int i = 0; i < dim1; i ++){
         for(int j = 0; j < dim2; j++)
-            printf("%.3f ", arr[(i*dim2)+j]);
+            printf("%f ", arr[(i*dim2)+j]);
         printf("\n");
     }
     printf("\n");

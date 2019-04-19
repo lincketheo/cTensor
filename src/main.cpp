@@ -7,7 +7,6 @@ using namespace NetworkLib;
 using std::stoi;
 
 int main(int argc, char ** argv){
-    /*
     int a, b, c, d;    
 
     if(argc == 5){
@@ -31,12 +30,27 @@ int main(int argc, char ** argv){
     inputMat.print();
 
     Matrix t1 = myNet.propogateNetwork(inputMat);
+    
+    Matrix expected(b, 1);
 
-    printf("OUTPUT\n");
+    myNet.backPropogateRecurs(t1, expected, 1000);
+
+    Matrix t2 = myNet.propogateNetwork(inputMat);
+    
+    printf("EXPECTED\n");
+    expected.print();
+    printf("INPUT\n");
+    inputMat.print();
+    printf("OUTPUT1\n");
     t1.print();
-    */
+    printf("OUTPUT2\n");
+    t2.print();
 
-    Matrix A(2, 2, 10);
+    Matrix t3 = t2 - t1;
+    t3.print();
+
+/*
+    Matrix A(20, 20, 10);
 
     Matrix M = !A;
     A.print();
@@ -46,7 +60,7 @@ int main(int argc, char ** argv){
  //   A.print();
  //   A.GaussJordanRREF();
  //   A.print();
-
+*/
     return 0;
 }
 

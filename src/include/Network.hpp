@@ -26,7 +26,7 @@ namespace NetworkLib{
             void extractNetwork(std::string filename);
             void printNetworkSummary();
             void backPropogateRecurs(Matrix, Matrix, float);
-            void backPropogate(Matrix, Matrix, float);
+//            void backPropogate(Matrix, Matrix, float);
 
         private:
             layer * input;

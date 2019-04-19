@@ -146,39 +146,26 @@ Matrix gradient(Matrix previous, layer * layer){
 
 	return t1;
 }
-/*
+
 void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate){
-    Matrix del = parMult((outputs - expected), sigmoidPrime
-
-
-
-}
-
-
-*/
-
-void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float scalar){
+    layer * temp = output->previous;
     
-	Matrix d_C = (outputs - expected);
-	std::cout<<"here"<<std::endl;
-	d_C.print();
-	layer * last = output;
-	last = last->previous;
-	while(last != nullptr){
-		std::cout<<1<<std::endl;
-		d_C.print();
-		d_C = gradient(d_C, last);
-		std::cout<<2<<std::endl;
-		d_C.print();
-		last->next->biases = last->next->biases - d_C;
-		last->weights = last->weights - (parMult(last->weights, d_C * (*last->inputs))) * scalar;
-		last = last->previous;
-		std::cout<<"askld"<<std::endl;
-		d_C.print();
-	}
-}
+    Matrix del = parMult((outputs - expected), 
+                (temp->weights * temp->inputs + temp->next->biases).sigmoidPrime());
 
-void Network::backPropogate(Matrix inputs, Matrix expected, float scalar){
-	Matrix outputs = propogateNetwork(inputs);
-	backPropogateRecurs(outputs, expected, scalar);	
+    Matrix delGrad = del * (*(temp->inputs));
+
+    temp->weights = temp->weights - ((parMult(temp->weights, delGrad)) * rate);
+    temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)) * rate);
+    temp = temp->previous;
+
+    while(temp != nullptr){
+        del = parMult((*(temp->next->weights) * del), 
+                    (temp->weights * temp->inputs + temp->next->biases).sigmoidPrime());
+
+        Matrix delGrad = del * (*(temp->inputs));
+        temp->weights = temp->weights - ((parMult(temp->weights, delGrad)) * rate);
+        temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)) * rate);
+        temp = temp->previous;
+    }
 }
