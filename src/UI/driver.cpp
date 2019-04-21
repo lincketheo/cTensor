@@ -2,8 +2,15 @@
 #include <iostream>
 #include <matLib.hpp>
 #include <string>
+#include <Network.hpp>
+#include <networkTrain.hpp>
+
 
 using std::string;
+using namespace NetworkLib;
+using namespace matlib;
+using namespace training;
+
 
 UI::UI(){
     head = nullptr;
@@ -178,12 +185,121 @@ bool UI::LinAlgMenu(){
     return false;
 }
 
-bool UI::controlFlow(){
-    bool status = true;
-    while(status){
-        status = LinAlgMenu();
+int UI::neuralNetworkMenu(){
+    int inputS;
+    printf("============ Neural Network Main Menu ============\n");
+    printf("1) Begin\n");
+    printf("2) Quit\n");
+    std::cin >> inputS;
+    switch(inputS){
+        case 1:
+        {
+            printf("Welcome! We'll get things set right up for you in a second, \n");
+            printf("Please note that if a file path is incorrect, unexpected results may occur (Done my best to conteract this, but stuff happens\n");
+            printf("First, Enter training directory (no need to end in a /): \n>> ");
+            std::cin.ignore();
+            getline(std::cin, trainingFileBase);
+            if(trainingFileBase.empty()){
+                trainingFileBase = "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train";
+            }
+            printf("Using Training Directory: \n>> %s\n\n", trainingFileBase.c_str());
+            printf("Please Enter testing directory (no need to end in a /): \n>> ");
+            getline(std::cin, testingFileBase);
+            if(testingFileBase.empty()){
+                testingFileBase = "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train";
+            }
+
+            printf("Using Testing Directory: \n>> %s\n\n", testingFileBase.c_str());
+            printf("Please enter the file ending (jpg, jpeg, png etc.)\n>> ");
+            getline(std::cin, fileEnding);
+            if(fileEnding.empty()){
+                fileEnding = "jpg"; 
+            }
+
+            printf("Using fileEnding: \n>> %s\n\n", fileEnding.c_str());
+    
+                    
+            
+            printf("Enter Desired Number of Hidden Layers (2 seems to work)\n");
+            scanf("%d", &nHL);
+            printf("Enter size of the hidden Layers (16 - 50 for speed 100 for accuracy)\n");
+            scanf("%d", &sHL);
+            printf("Enter the training rate (.1 seems to work) \n");
+            scanf("%f", &rate);
+            printf("Enter the number of repetitions per image to train with (100 - 1000 works)\n");
+            scanf("%d", &numReps);
+            printf("Using: \n%d Hidden Layers\n%d nodes per hidden layer\n%d images per label\n%f training rate\n", nHL, sHL, numReps, rate);
+            return 1;
+        }   
+        case 2:
+            return 0;
+        default:
+            printf("invalid");
+            return -1;
+            
     }
-    printf("oops you dun\n");
+    return 0;
+}
+
+
+void UI::propogateNeuralNetwork(const char ** fileNames, int * labels){
+    
+    trainingSet testing = uploadAllImages(trainingFileBase, fileNames, labels, numLabels, fileEnding, numReps);
+    printf("here3\n");
+    for(int i = 0; i < testing.files.size(); i++){
+            std::cout<<testing.files[i].file<<std::endl;
+    }
+    main = trainDataSet(testing, nHL, sHL, rate);
+}
+
+
+
+int UI::mainDisplay(){
+    int inputs;
+    printf("       ooooo                                  \n         8                                    \n.oPYo.   8   .oPYo. odYo. .oPYo. .oPYo. oPYo.\n8    '   8   8oooo8 8' `8 Yb..   8    8 8  `' \n8    .   8   8.     8   8   'Yb. 8    8 8     \n`YooP'   8   `Yooo' 8   8 `YooP' `YooP' 8     \n:.....:::..:::.....:..::..:.....::.....:..::::\n::::::::::::::::::::::::::::::::::::::::::::::\n:::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf("\n\nA pretty good nerual network and Linear Algebra Library in C++\n");
+    std::system("read -p 'Press Enter to continue...' var"); //for linux
+    //std::system("pause"); //for windows
+    printf("\n");
+    return -1;
+}
+
+
+bool UI::controlFlow(const char ** fileNames, int* labels){
+    mainDisplay();
+    int i = 0;
+    i = Menu();
+    while(i == -1){
+        i = Menu();
+    }
+    std::cout<<std::endl;
+    if(i == 1){
+        while(LinAlgMenu()){};
+        return false;
+    }
+    else if(i == 2){
+        i = neuralNetworkMenu();
+        while(i == -1){
+            i = neuralNetworkMenu();
+        }
+        if(i == 0){
+            printf("Goodbye!\n");
+            return true;
+        }
+        
+        propogateNeuralNetwork(fileNames, labels);
+        trainingSet testing2 = uploadAllImages(testingFileBase, fileNames, labels, numLabels, "jpg", 100);
+
+        float result = testOnTestSet(testing2, main);   
+        std::cout<<result<<std::endl;
+ 
+        return true;
+    }
+    else if(i == 3){
+        printf("Goodbye!\n");
+        return true;
+    }
+    printf("oops something went wrong\n");
     return false;
 }
 

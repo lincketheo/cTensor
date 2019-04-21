@@ -1,12 +1,24 @@
 #include <matLib.hpp>
 #include <Network.hpp>
 #include <iostream>
+#include <vector>
+#include <math.h>
 
 using namespace matlib;
 using namespace NetworkLib;
+using std::vector;
 
 
 //================== Constructors ==================
+Network::Network(){
+    input = nullptr;
+    output = nullptr;
+    layersSize = 0;
+    layers = 0;
+    numberOut = 0;
+    numberIn = 0;
+}   
+
 /**
     Encodes a Neural Network
     
@@ -17,7 +29,9 @@ using namespace NetworkLib;
 
     @return a convolutional neural network with layer structs
 */
+    
 Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayers){
+
 	//Initialize input
 	input = new layer;
 	input -> size = numIn;
@@ -40,7 +54,7 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 
 	//output layer
 	temp -> size = numOut;
-	temp -> biases = Matrix(numOut, 1, 1);
+	temp -> biases = Matrix(numOut, 1, 1 / sqrt(float(numIn)));
 	temp -> inputs = Matrix(temp->size, 1);
 	temp -> next = nullptr;
 	output = new layer;
@@ -50,14 +64,14 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 	temp = temp -> previous;
 	while(temp->previous != nullptr)
 	{
-		temp->weights = Matrix(temp->next->size, temp->size, 1);
-		temp->biases = Matrix(temp->size, 1, 1);
+		temp->weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
+		temp->biases = Matrix(temp->size, 1, 1 / sqrt(float(numIn)));
 		temp->inputs = Matrix(temp->size, 1);
 		temp = temp->previous;
 	}
 	
 	//temp is now input
-	temp -> weights = Matrix(temp->next->size, temp->size, 1);
+	temp -> weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
 	temp -> inputs = Matrix(temp->size, 1);
 
 	numberIn = numIn;
@@ -119,7 +133,7 @@ void Network::printNetwork(){
 Matrix propogateNetRecurs(layer * node, Matrix _inputs){
 	node->inputs = _inputs;
 	if(node->next == nullptr) return _inputs;
-	Matrix newTens = ((node->weights * _inputs) + (node->next->biases)).sigmoid();
+	Matrix newTens = ((node->weights * _inputs)).sigmoid();
 	return propogateNetRecurs(node->next, newTens);
 }
 
@@ -148,24 +162,48 @@ Matrix gradient(Matrix previous, layer * layer){
 }
 
 void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate){
+//    printNetwork();
     layer * temp = output->previous;
     
+  //  output->inputs.print();
+  //  outputs.print();
     Matrix del = parMult((outputs - expected), 
-                (temp->weights * temp->inputs + temp->next->biases).sigmoidPrime());
-
+                (temp->weights * temp->inputs).sigmoidPrime());
+    //del.print();
+//    del.print();
     Matrix delGrad = del * (*(temp->inputs));
-
-    temp->weights = temp->weights - ((parMult(temp->weights, delGrad)) * rate);
-    temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)) * rate);
+    //delGrad.print();
+    
+    temp->weights = temp->weights - ((parMult(temp->weights, delGrad)).scalarMult(rate));
+//    temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)).scalarMult(rate));// / i));
     temp = temp->previous;
-
     while(temp != nullptr){
-        del = parMult((*(temp->next->weights) * del), 
-                    (temp->weights * temp->inputs + temp->next->biases).sigmoidPrime());
+        del = parMult(((*(temp->next->weights)) * del), 
+                    (temp->weights * temp->inputs).sigmoidPrime());
+
 
         Matrix delGrad = del * (*(temp->inputs));
-        temp->weights = temp->weights - ((parMult(temp->weights, delGrad)) * rate);
-        temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)) * rate);
+//        delGrad.print();
+        temp->weights = temp->weights - ((parMult(temp->weights, delGrad)).scalarMult(rate));
+        
+    
+//        temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)).scalarMult(rate));// / i));
         temp = temp->previous;
     }
+//    printNetwork();
+}
+
+
+Network NetworkLib::trainNetwork(int numHidden, int scalar, int sizeHidden, int numIn, int numOut, vector<Matrix> inputs, vector<int> labels){
+    Network main(numIn, numOut, numHidden, sizeHidden);
+    for(int i = 0; i < inputs.size(); i++){
+        std::cout<<"here"<<std::endl;
+        Matrix expected(numOut, 1);
+        expected.insert(0, 0, 0);
+        expected.insert(labels[i], 0, 1);
+        Matrix out = main.propogateNetwork(inputs[i]);
+        main.backPropogateRecurs(out, expected, scalar);
+    }
+
+    return main;
 }

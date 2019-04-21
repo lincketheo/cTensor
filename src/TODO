@@ -1,7 +1,0 @@
-loop through directory to make image vectors
-
-fix back propigation
-
-add Driver function parse input matrix
-
-backprop loop 

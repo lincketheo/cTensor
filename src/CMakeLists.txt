@@ -5,6 +5,8 @@ project(cTensor)
 set(cTensor_VERSION_MAJOR 1)
 set(cTensor_VERSION_MINOR 0)
 
+find_package( OpenCV REQUIRED )
+
 include_directories(include)
 
 add_subdirectory(   Matrix 
@@ -12,8 +14,12 @@ add_subdirectory(   Matrix
 
 
 add_executable(run  main.cpp
+#add_executable(run  test.cpp
+#add_executable(run  main2.cpp
                     UI/driver.cpp
                     Matrix/kernel.cpp 
                     Matrix/operations.cpp
-                    Networks/Network.cpp)
+                    Networks/Network.cpp
+                    Data/dataHandler.cpp)
+target_link_libraries( run ${OpenCV_LIBS} )
 

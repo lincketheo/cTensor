@@ -13,12 +13,22 @@
 #include <sstream>
 #include <vector>
 #include <iomanip>
+#include <time.h>
 
 #define DIM_MISMATCH "error dim mismatch"
 #define MIN(a, b) ((a > b) ? b : a)
 
 using namespace matlib;
 using std::string;
+
+float RandomFloat(float a, float b) {
+
+    float random = ((float) rand()) / (float) RAND_MAX;
+    float diff = b - a;
+    float r = random * diff;
+    return a + r;
+}
+
 //================== Constructors ==================
 
 /**
@@ -49,7 +59,7 @@ Matrix::Matrix(string str) {
         }
 		firstPass = false;
     }
-	arr = new float[dim1*dim2];
+    arr = std::vector<float>(dim1 * dim2);
 	for(int i = 0; i < dim1*dim2; i++)
 		arr[i] = varr[i];
 }
@@ -57,7 +67,7 @@ Matrix::Matrix(string str) {
 Matrix::Matrix(){
     dim1 = 2;
     dim2 = 2;
-    arr = new float[dim1 * dim2];
+    arr = std::vector<float>(dim1 * dim2); 
     for(int i = 0; i < dim1 * dim2; i++)
         arr[i] = 0;
 }
@@ -72,7 +82,7 @@ Matrix::Matrix(){
 Matrix::Matrix(int d1, int d2){
     dim1 = d1;
     dim2 = d2;
-    arr = new float[dim1 * dim2];
+    arr = std::vector<float>(dim1 * dim2);
     for(int i = 0; i < dim1 * dim2; i++)
 		arr[i] = (i % (dim2 + 1) == 0 && i < dim2 * dim2) ? 1 : 0;
 }
@@ -87,15 +97,17 @@ Matrix::Matrix(int d1, int d2){
     @return void a sparse matrix of initialized this->dim1 this->dim2 d1 d2 and rows and
     cols containing identity values
 */
-Matrix::Matrix(int d1, int d2, int desiredMax){
+Matrix::Matrix(int d1, int d2, float desiredMax){
     dim1 = d1;
     dim2 = d2;
-    std::random_device rd;
-    arr = new float[dim1 * dim2];
-    float ratio = ((float)desiredMax) / rd.max();
+    arr = std::vector<float>(dim1 * dim2);
     for(int i = 0; i < dim1 * dim2; i++)
-        arr[i] = ratio * rd();
+        arr[i] = RandomFloat(0, desiredMax);
 }
+
+//Matrix::~Matrix(){
+    
+//}
 
 //================== USEFUL FUNCTIONS ==================
 /**
@@ -112,6 +124,7 @@ void Matrix::print(){
     }
     printf("\n");
 }
+
 
 /**
     inserts a value into the matrix    
@@ -264,17 +277,18 @@ Matrix Matrix::stdMult(Matrix tensor){
 
 //returns self  with the sigmoid function applied
 Matrix Matrix::sigmoid(){
-    Matrix newTens = Matrix(dim1, 1);
+    Matrix newTens = Matrix(dim1, dim2);
     for(int i = 0; i < dim1 * dim2; i++)
-        newTens.insert(i, 0, 1 / (1 + exp(-arr[i])));
+        newTens.arr[i] = 1.0 / (1.0 + exp(-arr[i]));
     return newTens;
 }
 
 //returns self with the sigmoid prime function applied
 Matrix Matrix::sigmoidPrime(){
-        Matrix newTens = Matrix(dim1, 1);
-        for(int i = 0; i < dim1 * dim2; i++)
-                newTens.insert(i, 0, (1 / (1 + exp(-arr[i]))) * (1 - (1 / (1 + exp(-arr[i])))));
+        Matrix newTens = Matrix(dim1, dim2);
+        for(int i = 0; i < dim1 * dim2; i++){
+                newTens.arr[i] = (1.0 / (1.0 + exp(1.0 * -arr[i]))) * (1 - (1.0 / (1.0 + exp(1.0 * -arr[i]))));
+        }
         return newTens;
 }
 
@@ -303,6 +317,15 @@ float Matrix::getMax(){
     float max = arr[0];
     for(int i = 0; i < dim1*dim2; i++)
         max = std::max(arr[i], max);
+    return max;
+}
+
+int Matrix::getMaxIndex(){
+    if(dim2 != 1)return 0;
+    int max = 0;
+    for(int i = 0; i < dim1; i++){
+        if(arr[i] > arr[max])max = i;
+    }
     return max;
 }
 
@@ -426,7 +449,11 @@ void Matrix::GaussJordan(){
     } 
 }
 
+/**
+    Executes the GaussJordan RREF (reduced row echelon form) on self
 
+    @param
+*/
 void Matrix::GaussJordanRREF(){
     GaussJordan();
     int startingRow = MIN(dim1, dim2);
@@ -443,4 +470,9 @@ void Matrix::GaussJordanRREF(){
         i--;
         j--;
     }
+}
+
+
+void destroy(){
+
 }

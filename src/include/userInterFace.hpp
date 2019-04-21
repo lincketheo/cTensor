@@ -16,11 +16,12 @@ class UI{
     public:
         UI();
         ~UI();
+        int mainDisplay();
         int Menu();
         bool LinAlgMenu();
         bool operateMenu();
-        bool NeuralNetworkMenu();
-        bool controlFlow();
+        int neuralNetworkMenu();
+        bool controlFlow(const char **, int *);
         void operationMenu();
 
         
@@ -42,9 +43,19 @@ class UI{
         Matrix transpose(string);
         Matrix sigmoid(string);
         float norm(string);
-        
+        void propogateNeuralNetwork(const char **, int *);        
+
     private:    
         MatrixMemory * head;
         int cacheSize;
+        int numLabels = 10;
+        std::string trainingFileBase;
+        std::string testingFileBase;
+        std::string fileEnding;
+        int nHL;
+        int sHL;
+        float rate;
+        int numReps;
+        NetworkLib::Network main;
 };
 
