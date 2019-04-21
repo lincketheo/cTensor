@@ -7,7 +7,7 @@ set(cTensor_VERSION_MINOR 0)
 
 find_package( OpenCV REQUIRED )
 
-include_directories(include)
+include_directories(../include)
 
 add_subdirectory(   Matrix 
                     Networks)

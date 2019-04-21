@@ -1,5 +1,0 @@
-/home/theo/Documents/projects/math/tensorFlow/cTensor/old/build/CMakeFiles/rebuild_cache.dir
-/home/theo/Documents/projects/math/tensorFlow/cTensor/old/build/CMakeFiles/run.dir
-/home/theo/Documents/projects/math/tensorFlow/cTensor/old/build/CMakeFiles/edit_cache.dir
-/home/theo/Documents/projects/math/tensorFlow/cTensor/old/build/NeuralNetwork/CMakeFiles/rebuild_cache.dir
-/home/theo/Documents/projects/math/tensorFlow/cTensor/old/build/NeuralNetwork/CMakeFiles/edit_cache.dir
