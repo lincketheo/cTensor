@@ -2,6 +2,7 @@
 #define MATRIX_HPP
 
 #include <iostream>
+#include <vector>
 
 namespace matlib{
 
@@ -12,13 +13,13 @@ namespace matlib{
 	     	Matrix();
             Matrix(std::string);
     		Matrix(int, int);
-    		Matrix(int, int, int);
-    		//~Matrix();
+    		Matrix(int, int, float);
+//    		~Matrix();
     
     		int dim1;
     		int dim2;
     
-    		float * arr;
+    		std::vector<float> arr;
     
     		void print();
     
@@ -28,6 +29,7 @@ namespace matlib{
     		//common matrix functions
     		float normEuclid();
     		float getMax();
+            int getMaxIndex();
     		float costFunc(Matrix); //uneccessary	
 		
 
@@ -78,11 +80,11 @@ namespace matlib{
             void GaussJordan();
             void GaussJordanRREF();
 
+            Matrix scalarMult(float);
 	    private:
 		    Matrix add(Matrix);
 		    Matrix minus(Matrix);
 		    Matrix stdMult(Matrix);
-		    Matrix scalarMult(float);
 		    Matrix transpose();
 		    Matrix inverse();
 	    	float trace();

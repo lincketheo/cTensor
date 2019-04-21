@@ -3,8 +3,11 @@
 
 #include <iostream>
 #include <matLib.hpp>
+#include <vector>
 
 using namespace matlib;
+using std::vector;
+
 namespace NetworkLib{
     struct layer{
         int size;
@@ -18,6 +21,7 @@ namespace NetworkLib{
     class Network{
         public:
             Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayers);
+            Network();
             ~Network();
             Matrix propogateOneLayer();
             Matrix propogateNetwork(Matrix inputs);
@@ -36,6 +40,10 @@ namespace NetworkLib{
             int layers;
             int layersSize;
     };
+
+
+    Network trainNetwork(int, int, int, int, int, vector<Matrix>, vector<int>);
+
 }
 
 #endif
