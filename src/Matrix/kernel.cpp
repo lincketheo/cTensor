@@ -5,24 +5,32 @@
     @author Theo Lincke, Kyle Zhou
     @version 1.1 4/17/19
 */
-#include <iostream>
-#include "matLib.hpp"
-#include <cmath>
-#include <random>
-#include <stdexcept>
-#include <sstream>
-#include <vector>
-#include <iomanip>
-#include <time.h>
+#include <iostream>         //printf std
+#include <matLib.hpp>       //main header
+#include <cmath>            //exp
+#include <random>           //rand
+#include <stdexcept>        //dim missmatch
+#include <sstream>          //Constructor Matrix
+#include <vector>           //vector
 
-#define DIM_MISMATCH "error dim mismatch"
 #define MIN(a, b) ((a > b) ? b : a)
 
 using namespace matlib;
 using std::string;
+using std::vector;
+using std::cout;
+using std::cin;
+using std::stringstream;
+using std::invalid_argument;
 
+
+/**
+    Utility random function
+
+    @param a min value b max value
+    @return a random float  between a and b
+*/
 float RandomFloat(float a, float b) {
-
     float random = ((float) rand()) / (float) RAND_MAX;
     float diff = b - a;
     float r = random * diff;
@@ -41,16 +49,16 @@ float RandomFloat(float a, float b) {
 */
 
 Matrix::Matrix(string str) {
-	std::vector<float> varr;
-	std::stringstream ss;
+	vector<float> varr;
+	stringstream ss;
     ss << str;
-	std::string row;
+	string row;
 	dim1 = 0;
 	dim2 = 0;
 	bool firstPass = true;
     while(getline(ss, row, ';')) {
 		dim1++;
-		std::stringstream ssrow;
+		stringstream ssrow;
         ssrow << row;
         string element;
         while(getline(ssrow, element, ' ')) {
@@ -59,15 +67,17 @@ Matrix::Matrix(string str) {
         }
 		firstPass = false;
     }
-    arr = std::vector<float>(dim1 * dim2);
+    arr = vector<float>(dim1 * dim2);
 	for(int i = 0; i < dim1*dim2; i++)
 		arr[i] = varr[i];
 }
 
+
+//    Default constructor Creates a a two by two matrix with zeros in all indexes
 Matrix::Matrix(){
     dim1 = 2;
     dim2 = 2;
-    arr = std::vector<float>(dim1 * dim2); 
+    arr = vector<float>(dim1 * dim2); 
     for(int i = 0; i < dim1 * dim2; i++)
         arr[i] = 0;
 }
@@ -82,7 +92,7 @@ Matrix::Matrix(){
 Matrix::Matrix(int d1, int d2){
     dim1 = d1;
     dim2 = d2;
-    arr = std::vector<float>(dim1 * dim2);
+    arr = vector<float>(dim1 * dim2);
     for(int i = 0; i < dim1 * dim2; i++)
 		arr[i] = (i % (dim2 + 1) == 0 && i < dim2 * dim2) ? 1 : 0;
 }
@@ -100,14 +110,11 @@ Matrix::Matrix(int d1, int d2){
 Matrix::Matrix(int d1, int d2, float desiredMax){
     dim1 = d1;
     dim2 = d2;
-    arr = std::vector<float>(dim1 * dim2);
+    arr = vector<float>(dim1 * dim2);
     for(int i = 0; i < dim1 * dim2; i++)
         arr[i] = RandomFloat(-desiredMax, desiredMax);
 }
 
-//Matrix::~Matrix(){
-    
-//}
 
 //================== USEFUL FUNCTIONS ==================
 /**
@@ -225,7 +232,7 @@ void Matrix::swapCol(int c1, int c2){
 Matrix Matrix::add(Matrix tensor){
     Matrix newMatrix = Matrix(dim1, dim2);
     if(dim1 != tensor.dim1 || dim2 != tensor.dim2)
-        throw std::invalid_argument("dim missmatch add");             
+        throw invalid_argument("dim missmatch add");             
     for(int i = 0; i < dim1 * dim2; i++)
         newMatrix.arr[i] = arr[i] + tensor.arr[i];
     return newMatrix;
@@ -235,7 +242,7 @@ Matrix Matrix::add(Matrix tensor){
 Matrix Matrix::minus(Matrix tensor){
         Matrix newMatrix = Matrix(dim1, dim2);
         if(dim1 != tensor.dim1 || dim2 != tensor.dim2)
-                throw std::invalid_argument("dim missmatch minus");             
+                throw invalid_argument("dim missmatch minus");             
         for(int i = 0; i < dim1 * dim2; i++)
                 newMatrix.arr[i] = arr[i] - tensor.arr[i];
         return newMatrix;
@@ -253,7 +260,7 @@ Matrix Matrix::scalarMult(float val){
 Matrix Matrix::innerProd(Matrix tensor){
         Matrix newMatrix = Matrix(dim1, dim2);
         if(dim1 != tensor.dim1 || dim2 != tensor.dim2)
-            throw std::invalid_argument("dim missmatch innerProduct");                
+            throw invalid_argument("dim missmatch innerProduct");                
         for(int i = 0; i < dim1 * dim2; i++)
                 newMatrix.arr[i] = arr[i] * tensor.arr[i];
         return newMatrix;
@@ -261,12 +268,9 @@ Matrix Matrix::innerProd(Matrix tensor){
 
 //standard matrix multiplication (not optimized)
 Matrix Matrix::stdMult(Matrix tensor){
-    //std::cout<<dim1<<" "<<dim2<<std::endl;
-    //std::cout<<tensor.dim1<<" "<<tensor.dim2<<std::endl;
-    //tensor.print();
     Matrix newMatrix = Matrix(dim1, tensor.dim2);
     if(dim2 != tensor.dim1)
-        throw std::invalid_argument("dim missmatch stdMult");
+        throw invalid_argument("dim missmatch stdMult");
     for(int i = 0; i < dim1; i++){
         for(int j = 0; j < tensor.dim2; j++){
             float temp = 0;
@@ -295,6 +299,7 @@ Matrix Matrix::sigmoidPrime(){
         return newTens;
 }
 
+//Relu function on self
 Matrix Matrix::relu(){
     Matrix newTens = Matrix(dim1, dim2);
         for(int i = 0; i < dim1 * dim2; i++){
@@ -304,6 +309,7 @@ Matrix Matrix::relu(){
         return newTens;
 }
 
+//prime relu function on self
 Matrix Matrix::reluPrime(){
     Matrix newTens = Matrix(dim1, dim2);
         for(int i = 0; i < dim1 * dim2; i++){
@@ -338,10 +344,11 @@ float Matrix::getMax(){
         return 0;
     float max = arr[0];
     for(int i = 0; i < dim1*dim2; i++)
-        max = std::max(arr[i], max);
+        max = arr[i] > max ? arr[i] : max;
     return max;
 }
 
+//returns the maximum index of a matrix
 int Matrix::getMaxIndex(){
     if(dim2 != 1)return 0;
     int max = 0;
@@ -351,9 +358,8 @@ int Matrix::getMaxIndex(){
     return max;
 }
 
-//TODO returns the inverse of self
+//Returns inverse of self
 Matrix Matrix::inverse(){
-
     Matrix inverse(dim1, dim2);
     Matrix large(dim1, dim2 * 2);
     for(int i = 0; i < dim1; i++){
@@ -367,18 +373,7 @@ Matrix Matrix::inverse(){
         for(int j = 0; j < dim1; j++)
             inverse.insert(i, j, large.get(i, j + dim1));
     }
-
     return inverse;
-/*
-    if(dim1 != dim2)std::except<<"invalid dim\n";
-        
-
-    Matrix invTense = *this;
-
-
-
-    return invTense;
-*/
 }
 
 //returns the trace of self
@@ -409,7 +404,7 @@ Matrix rotate(Matrix t1, float theta, int x, int y)
 Matrix matlib::parMult(Matrix t, Matrix t2){
     Matrix t1(t.dim1, t.dim2);
     if(t1.dim1 != t2.dim1 || t1.dim2 != t2.dim2)
-        throw std::invalid_argument("dim missmatch parMult");
+        throw invalid_argument("dim missmatch parMult");
     for(int i = 0; i < t1.dim1 * t1.dim2; i++)
         t1.arr[i] = t.arr[i] * t2.arr[i];
     return t1;
@@ -419,7 +414,7 @@ Matrix matlib::parMult(Matrix t, Matrix t2){
 Matrix matlib::parAdd(Matrix t, Matrix t2){
     Matrix t1 = t;
     if(t1.dim1 != t2.dim1)
-        throw std::invalid_argument("dim missmatch parAdd");
+        throw invalid_argument("dim missmatch parAdd");
     for(int i = 0; i < t2.dim1; i ++){
         for(int j = 0; j < t1.dim2; j++)
             t1.insert(i, j, t1.get(i, j) + t2.get(i, 1));
@@ -435,10 +430,10 @@ Matrix matlib::parSqr(Matrix t){
     return t1;
 }
 
+//Returns principal eigenvector  using the recursive technique
 Matrix Matrix::principalEig(int max_iter){
     Matrix v = Matrix(dim1, 1);
     v = (v * (1 / float(v)));
-
     for(int i = 0; i < max_iter; i++){
         v = stdMult(v);
         v = (v * (1 / float(v)));
@@ -446,7 +441,7 @@ Matrix Matrix::principalEig(int max_iter){
     return v;
 }
 
-
+//executes gaussjordan algorithm on self (1's down diagonal and upper traingular)
 void Matrix::GaussJordan(){
     int i = 0;
     int j = 0;
@@ -471,11 +466,7 @@ void Matrix::GaussJordan(){
     } 
 }
 
-/**
-    Executes the GaussJordan RREF (reduced row echelon form) on self
-
-    @param
-*/
+//Executes the GaussJordan RREF (reduced row echelon form) on self
 void Matrix::GaussJordanRREF(){
     GaussJordan();
     int startingRow = MIN(dim1, dim2);
@@ -493,5 +484,3 @@ void Matrix::GaussJordanRREF(){
         j--;
     }
 }
-
-

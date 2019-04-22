@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+rm -rf build/
+mkdir build
+cd build
+cmake -G "Unix Makefiles" ../src/
+make
+mv run ../bin/
+mv runTheDamnNetwork ../bin/
+exit

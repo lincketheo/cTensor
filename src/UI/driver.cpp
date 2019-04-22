@@ -1,26 +1,34 @@
-#include <userInterFace.hpp>
-#include <iostream>
-#include <matLib.hpp>
-#include <string>
-#include <Network.hpp>
-#include <networkTrain.hpp>
+/**
+    CS-11 Asn 2, driver.cpp
+    Purpose: provide user interaction content for the neural network
 
+    @author Theo Lincke, Kyle Zhou
+    @version 1.1 4/17/19
+*/
+#include <userInterFace.hpp>        //main header file
+#include <iostream>                 //printf std
+#include <matLib.hpp>               //used for matrix caching
+#include <string>                   //to filter user inputs
+#include <Network.hpp>              //to train the neural network
+#include <networkTrain.hpp>         //obtain datasets from folders
 
 using std::string;
 using namespace NetworkLib;
 using namespace matlib;
 using namespace training;
 
-
+//null construction of UI
 UI::UI(){
     head = nullptr;
     cacheSize = 0;
 }
 
+//deletes matrix cache
 UI::~UI(){
     deleteAll();
 }
 
+//First menu greeting
 int UI::Menu(){
     int option;
     printf("============ cTensor Main Menu ============\n");
@@ -34,6 +42,7 @@ int UI::Menu(){
     return option;
 }
 
+//matrix operator menu
 void UI::operationMenu(){
     printf("============ cTensor Linear Algebra Operation Menu ============\n");
     printf("1) Multiply two matrices\n");
@@ -55,7 +64,6 @@ void UI::operationMenu(){
             std::getline(std::cin, id1);
             std::cout<<id1<<std::endl;
             printf("Matrix 2 = \n");
-            //std::cin.ignore();
             std::getline(std::cin, id2);
             multiplyMatrices(id1, id2);
             return; 
@@ -66,7 +74,6 @@ void UI::operationMenu(){
             std::cin.ignore();
             std::getline(std::cin, id1);
             printf("Matrix 2 = \n");
-            //std::cin.ignore();
             std::getline(std::cin, id2);
             add(id1, id2);
             return;
@@ -134,13 +141,10 @@ void UI::operationMenu(){
 
             
     }
-
-
-    printf("6) Quit\n");
-
-
+    //printf("6) Quit\n");
 }
 
+//main linear algebra menu
 bool UI::LinAlgMenu(){
     string inputS;
     printf("============ cTensor Linear Algebra Menu ============\n");
@@ -185,6 +189,7 @@ bool UI::LinAlgMenu(){
     return false;
 }
 
+//Neural Network menu
 int UI::neuralNetworkMenu(){
     int inputS;
     printf("============ Neural Network Main Menu ============\n");
@@ -215,11 +220,7 @@ int UI::neuralNetworkMenu(){
             if(fileEnding.empty()){
                 fileEnding = "jpg"; 
             }
-
             printf("Using fileEnding: \n>> %s\n\n", fileEnding.c_str());
-    
-                    
-            
             printf("Enter Desired Number of Hidden Layers (2 seems to work)\n");
             scanf("%d", &nHL);
             printf("Enter size of the hidden Layers (16 - 50 for speed 100 for accuracy)\n");
@@ -241,7 +242,7 @@ int UI::neuralNetworkMenu(){
     return 0;
 }
 
-
+//main propogation 
 void UI::propogateNeuralNetwork(const char ** fileNames, int * labels){
     
     trainingSet testing = uploadAllImages(trainingFileBase, fileNames, labels, numLabels, fileEnding, numReps);
@@ -253,8 +254,7 @@ void UI::propogateNeuralNetwork(const char ** fileNames, int * labels){
     main.printNetwork();
 }
 
-
-
+//main display
 int UI::mainDisplay(){
     int inputs;
     printf("       ooooo                                  \n         8                                    \n.oPYo.   8   .oPYo. odYo. .oPYo. .oPYo. oPYo.\n8    '   8   8oooo8 8' `8 Yb..   8    8 8  `' \n8    .   8   8.     8   8   'Yb. 8    8 8     \n`YooP'   8   `Yooo' 8   8 `YooP' `YooP' 8     \n:.....:::..:::.....:..::..:.....::.....:..::::\n::::::::::::::::::::::::::::::::::::::::::::::\n:::::::::::::::::::::::::::::::::::::::::::::\n");
@@ -265,7 +265,7 @@ int UI::mainDisplay(){
     return -1;
 }
 
-
+//main driver control flow
 bool UI::controlFlow(const char ** fileNames, int* labels){
     mainDisplay();
     int i = 0;
@@ -312,6 +312,7 @@ void UI::deleteAll(){
     }
 }
 
+//delete a specific matrix in cache
 void UI::deleteMatrix(string id){
     MatrixMemory * temp = head;
     while(temp->next != nullptr){
@@ -326,10 +327,12 @@ void UI::deleteMatrix(string id){
     }
 }
 
+//print a specific matrix in cache
 void UI::printMatrix(string id){
     getMatrix(id).print();  
 }
 
+//print the entire cache
 void UI::printCache(){
     MatrixMemory * temp = head;
     while(temp != nullptr){
@@ -339,6 +342,7 @@ void UI::printCache(){
     }
 }
 
+//========================================= Operators ================================
 void UI::addMatrix(string matrixIn, string id){
     if(head == nullptr){
         MatrixMemory * value = new MatrixMemory;

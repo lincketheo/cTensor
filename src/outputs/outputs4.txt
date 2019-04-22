@@ -1,0 +1,38 @@
+====================Network====================
+Number of inputs: 784
+Number of Outputs: 10
+Number of hidden layers: 1
+Size of hidden layers: 80
+===============================================
+Layers = 1 Rate = 0.05 nodes = 80
+Accuracy = 0.3179
+====================Network====================
+Number of inputs: 784
+Number of Outputs: 10
+Number of hidden layers: 1
+Size of hidden layers: 50
+===============================================
+Layers = 1 Rate = 0.1 nodes = 50
+Accuracy = 0.1002
+====================Network====================
+Number of inputs: 784
+Number of Outputs: 10
+Number of hidden layers: 1
+Size of hidden layers: 20
+===============================================
+Layers = 1 Rate = 0.1 nodes = 20
+Accuracy = 0.1144
+====================Network====================
+Number of inputs: 784
+Number of Outputs: 10
+Number of hidden layers: 1
+Size of hidden layers: 100
+===============================================
+Layers = 1 Rate = 0.5 nodes = 100
+Accuracy = 0.098
+====================Network====================
+Number of inputs: 784
+Number of Outputs: 10
+Number of hidden layers: 1
+Size of hidden layers: 90
+===============================================

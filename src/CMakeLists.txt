@@ -13,13 +13,21 @@ add_subdirectory(   Matrix
                     Networks)
 
 
-add_executable(run  main3.cpp
-#add_executable(run  test.cpp
-#add_executable(run  main2.cpp
+add_executable(runTheDamnNetwork
+                    runTheDamnNetwork.cpp
                     UI/driver.cpp
                     Matrix/kernel.cpp 
                     Matrix/operations.cpp
                     Networks/Network.cpp
                     Data/dataHandler.cpp)
+
+add_executable(run  main.cpp
+                    UI/driver.cpp
+                    Matrix/kernel.cpp
+                    Matrix/operations.cpp
+                    Networks/Network.cpp
+                    Data/dataHandler.cpp)
+
+target_link_libraries( runTheDamnNetwork ${OpenCV_LIBS})
 target_link_libraries( run ${OpenCV_LIBS} )
 
