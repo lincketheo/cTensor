@@ -1,1 +1,3 @@
-src/build/
+build
+bin/run
+bin/runTheDamnNetwork
