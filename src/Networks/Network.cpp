@@ -196,7 +196,6 @@ void Network::printNetworkSummary()
 */
 void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate)
 {
-
     //the propogating layer
     layer * temp = output->previous;
 
@@ -229,3 +228,6 @@ void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate)
         temp = temp->previous;
     }
 }
+
+
+

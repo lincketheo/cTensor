@@ -1,8 +1,15 @@
 # cTensor
 ## build instructions
-Go to build directory
-Run the command ```$ make ```
-Voila, now you can execute run
+This was built on a linux  environment and I am not sure the best way to build using windows or if you can, butassuming you are using a unix environment, all you need to do is run the maker command (removes build rebuilds  the project moving two executables to bin folder
+
+```bash
+    $ ./maker
+
+    $ cd bin
+    $ ./rundatprogram
+
+```
+
 
 ## Description
 

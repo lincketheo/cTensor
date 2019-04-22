@@ -25,9 +25,9 @@ namespace training{
     trainingSet uploadAllImages(std::string, const char**, int*, int, std::string, int);
     int getNumIn(cv::String);
     matlib::Matrix createOutput(int, int);
-    NetworkLib::Network trainDataSet(trainingSet, int, int, float);
-    bool runOnMatrix(cv::String, NetworkLib::Network&, int);
-    float testOnTestSet(trainingSet, NetworkLib::Network&);
+    NetworkLib::Network * trainDataSet(trainingSet, int, int, float);
+    bool runOnMatrix(cv::String, NetworkLib::Network*, int);
+    float testOnTestSet(trainingSet, NetworkLib::Network*);
 }
 
 #endif

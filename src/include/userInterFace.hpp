@@ -56,6 +56,6 @@ class UI{
         int sHL;
         float rate;
         int numReps;
-        NetworkLib::Network main;
+        NetworkLib::Network * main;
 };
 

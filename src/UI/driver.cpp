@@ -11,14 +11,17 @@
 #include <string>                   //to filter user inputs
 #include <Network.hpp>              //to train the neural network
 #include <networkTrain.hpp>         //obtain datasets from folders
+#include <constants.hpp>            //fileBaseCONSTANT fileBaseTestCONSTANT
 
 using std::string;
 using namespace NetworkLib;
 using namespace matlib;
 using namespace training;
 
+
 //null construction of UI
 UI::UI(){
+    main = nullptr;
     head = nullptr;
     cacheSize = 0;
 }
@@ -164,6 +167,8 @@ bool UI::LinAlgMenu(){
             std::cin.ignore();
             std::getline(std::cin, id);
             printf("Enter Matrix: \n");
+            printf("In the form of: a b c;d e f;g h i\n");
+            printf("Ex:   1.2 3.4 5.6;9.0 9 1;1 0 2.1;4.113 8.102 9.0\n");
             std::getline(std::cin, inMat);
             std::cout<<inMat;
             addMatrix(inMat, id);
@@ -176,11 +181,19 @@ bool UI::LinAlgMenu(){
         case 3:
             printCache();
             return true;
+        case 4:{
+            string id;
+            printf("Enter the Matrix to Delete: \n");
+            std::cin.ignore();
+            std::getline(std::cin, id);
+            deleteMatrix(id);
+            return true;
+            }
         case 5:
             deleteAll();
             return true;
         case 6:
-            printf("Goodbye!");
+            printf("Goodbye!\n");
             return false;
         default:
             printf("Please enter a valid option\n");
@@ -205,29 +218,37 @@ int UI::neuralNetworkMenu(){
             std::cin.ignore();
             getline(std::cin, trainingFileBase);
             if(trainingFileBase.empty()){
-                trainingFileBase = "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/mnist_jpgfiles/train";
+//                trainingFileBase = "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/mnist_jpgfiles/train";
+                    trainingFileBase = fileBaseCONSTANT;
             }
             printf("Using Training Directory: \n>> %s\n\n", trainingFileBase.c_str());
             printf("Please Enter testing directory (no need to end in a /): \n>> ");
             getline(std::cin, testingFileBase);
             if(testingFileBase.empty()){
-                testingFileBase = "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/mnist_jpgfiles/train";
+//                testingFileBase = "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/mnist_jpgfiles/test";
+
+                testingFileBase = fileBaseTestCONSTANT;
             }
 
             printf("Using Testing Directory: \n>> %s\n\n", testingFileBase.c_str());
             printf("Please enter the file ending (jpg, jpeg, png etc.)\n>> ");
             getline(std::cin, fileEnding);
             if(fileEnding.empty()){
-                fileEnding = "jpg"; 
+                fileEnding = fileEndingCONSTANT; 
             }
             printf("Using fileEnding: \n>> %s\n\n", fileEnding.c_str());
-            printf("Enter Desired Number of Hidden Layers (2 seems to work)\n");
+            printf("=========== Now we'll set up the network ============\n");
+            printf("For reference:\nLayers = 1 Rate = 0.008 nodes = 600\nAccuracy = 0.4839\n");
+            printf("Layers = 2 Rate = 0.009 nodes = 320\nAccuracy = 0.9123 (takes 12 hours)\n");
+            printf("Short (under 10 minutes) training sessions typically get around 0.3 - 0.4\n");
+            printf("Longer training sessions on looping recursive image batch produces max 0.91\n");
+            printf("Enter Desired Number of Hidden Layers\n");
             scanf("%d", &nHL);
-            printf("Enter size of the hidden Layers (16 - 50 for speed 100 for accuracy)\n");
+            printf("Enter size of the hidden Layers\n");
             scanf("%d", &sHL);
-            printf("Enter the training rate (.1 seems to work) \n");
+            printf("Enter the training rate\n");
             scanf("%f", &rate);
-            printf("Enter the number of repetitions per image to train with (100 - 1000 works)\n");
+            printf("Enter the number of repetitions per image to train with\n");
             scanf("%d", &numReps);
             printf("Using: \n%d Hidden Layers\n%d nodes per hidden layer\n%d images per label\n%f training rate\n", nHL, sHL, numReps, rate);
             return 1;
@@ -246,12 +267,10 @@ int UI::neuralNetworkMenu(){
 void UI::propogateNeuralNetwork(const char ** fileNames, int * labels){
     
     trainingSet testing = uploadAllImages(trainingFileBase, fileNames, labels, numLabels, fileEnding, numReps);
-    printf("here3\n");
     for(int i = 0; i < testing.files.size(); i++){
             std::cout<<testing.files[i].file<<std::endl;
     }
     main = trainDataSet(testing, nHL, sHL, rate);
-    main.printNetwork();
 }
 
 //main display
@@ -290,7 +309,11 @@ bool UI::controlFlow(const char ** fileNames, int* labels){
         
         propogateNeuralNetwork(fileNames, labels);
         trainingSet testing2 = uploadAllImages(testingFileBase, fileNames, labels, numLabels, "jpg", 100);
-
+        for(int i = 0; i < testing2.files.size(); i++){
+            std::cout<<testing2.files[i].file<<std::endl;
+        }
+        main->printNetwork();
+        main->printNetworkSummary();
         float result = testOnTestSet(testing2, main);   
         std::cout<<result<<std::endl;
  
