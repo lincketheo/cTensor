@@ -200,13 +200,13 @@ int UI::neuralNetworkMenu(){
             std::cin.ignore();
             getline(std::cin, trainingFileBase);
             if(trainingFileBase.empty()){
-                trainingFileBase = "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train";
+                trainingFileBase = "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/mnist_jpgfiles/train";
             }
             printf("Using Training Directory: \n>> %s\n\n", trainingFileBase.c_str());
             printf("Please Enter testing directory (no need to end in a /): \n>> ");
             getline(std::cin, testingFileBase);
             if(testingFileBase.empty()){
-                testingFileBase = "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train";
+                testingFileBase = "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/mnist_jpgfiles/train";
             }
 
             printf("Using Testing Directory: \n>> %s\n\n", testingFileBase.c_str());
@@ -250,6 +250,7 @@ void UI::propogateNeuralNetwork(const char ** fileNames, int * labels){
             std::cout<<testing.files[i].file<<std::endl;
     }
     main = trainDataSet(testing, nHL, sHL, rate);
+    main.printNetwork();
 }
 
 

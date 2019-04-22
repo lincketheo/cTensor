@@ -100,13 +100,13 @@ vector<trainElem> training::uploadImages(int number, string filePath, string fil
     @return mainSet a vector  of trainElem (string filename and int label)
 */
 trainingSet training::uploadAllImages(string basePath, const char ** fileNames, int * labels, int numLabels, string fileEnding, int maxIm){
-    std::cout<<basePath<<std::endl;
+  //  std::cout<<basePath<<std::endl;
     
     vector<trainElem> main;
     for(int i = 0; i < numLabels; i++){
        
         string file = basePath + string("/") + fileNames[i] + string("/");
-        std::cout<<file<<std::endl;
+//        std::cout<<file<<std::endl;
         vector<trainElem> b = uploadImages(labels[i], file, fileEnding, maxIm);
         main.insert(main.end(), b.begin(), b.end());
         b.erase(b.begin(), b.end()); //deallocate memory previously in b
@@ -167,11 +167,19 @@ Matrix training::createOutput(int size, int label){
 Network training::trainDataSet(trainingSet set, int nHL, int sHL, float rate){
     Network main(set.numIn, set.numOut, nHL, sHL);  
     main.printNetworkSummary();
-    std::system("read -p 'Press Enter to continue...' var"); //for linux
-    main.printNetwork();
+//    std::system("read -p 'Press Enter to continue...' var"); //for linux
+//    main.printNetwork();
     for(int i = 0; i < set.files.size(); i++){
+     //   std::cout<<set.files[i].file<<std::endl;
+     //   printf("here");
         Mat A = cv::imread(set.files[i].file, 1);
+        if(A.rows != 28 || A.cols != 28){
+            printf("AAAAAA");
+            exit(1);
+        }
         Matrix B = Matrix(set.numIn, 1);
+   //     std::cout<<A.rows<<" "<<A.cols<<std::endl;
+
         //redundant, but I made my own matrix class and imma use it
         for(int j = 0; j < set.numIn; j++)
             B.arr[j] = float(A.data[j] / 255.0);
@@ -179,12 +187,14 @@ Network training::trainDataSet(trainingSet set, int nHL, int sHL, float rate){
         Matrix expected = createOutput(set.numOut, set.files[i].label);
         Matrix out = main.propogateNetwork(B);
         main.backPropogateRecurs(out, expected, rate);
-
-        float a2 = 0;
-        for(int k = 0; k < set.numOut; k++){
-            a2 += ((out - expected).get(k, 0) * (out - expected).get(k, 0));
-        }
-        printf("Propogating number %i ---- trial cost = %f\n", set.files[i].label, a2);
+//        Matrix out2 = main.propogateNetwork(B);
+//        out.print();
+//        out2.print();
+        
+//        for(int k = 0; k < set.numOut; k++){
+//            a2 += ((out - expected).get(k, 0) * (out - expected).get(k, 0));
+//        }
+//        printf("%d)Propogating number %i ---- trial cost = %f\n", i, set.files[i].label, a2);
     }
     return main;
 }
@@ -203,9 +213,9 @@ bool training::runOnMatrix(cv::String filePath, Network &net, int expected){
         B.arr[i] = float(A.data[i] / 255.0);
     A.release();
     Matrix out = net.propogateNetwork(B);
-    out.print();
+//    out.print();
     Matrix expect = createOutput(out.dim1, expected);
-    printf("EXPECTED = %d ------ NETWORK PRODUCED: %d\n", expected, out.getMaxIndex());
+//    printf("EXPECTED = %d ------ NETWORK PRODUCED: %d\n", expected, out.getMaxIndex());
     return expected == out.getMaxIndex();
 }
 
@@ -214,7 +224,7 @@ float training::testOnTestSet(trainingSet set, Network &net){
     int correct = 0;
     int total = 0;
     for(int i = 0; i < set.files.size(); i++){
-        std::cout<<set.files[i].file<<std::endl;
+//        std::cout<<set.files[i].file<<std::endl;
         if(runOnMatrix(set.files[i].file, net, set.files[i].label))correct ++;
         total ++;
     }

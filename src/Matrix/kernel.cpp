@@ -102,7 +102,7 @@ Matrix::Matrix(int d1, int d2, float desiredMax){
     dim2 = d2;
     arr = std::vector<float>(dim1 * dim2);
     for(int i = 0; i < dim1 * dim2; i++)
-        arr[i] = RandomFloat(0, desiredMax);
+        arr[i] = RandomFloat(-desiredMax, desiredMax);
 }
 
 //Matrix::~Matrix(){
@@ -225,7 +225,7 @@ void Matrix::swapCol(int c1, int c2){
 Matrix Matrix::add(Matrix tensor){
     Matrix newMatrix = Matrix(dim1, dim2);
     if(dim1 != tensor.dim1 || dim2 != tensor.dim2)
-        return newMatrix;
+        throw std::invalid_argument("dim missmatch add");             
     for(int i = 0; i < dim1 * dim2; i++)
         newMatrix.arr[i] = arr[i] + tensor.arr[i];
     return newMatrix;
@@ -235,7 +235,7 @@ Matrix Matrix::add(Matrix tensor){
 Matrix Matrix::minus(Matrix tensor){
         Matrix newMatrix = Matrix(dim1, dim2);
         if(dim1 != tensor.dim1 || dim2 != tensor.dim2)
-                return newMatrix;
+                throw std::invalid_argument("dim missmatch minus");             
         for(int i = 0; i < dim1 * dim2; i++)
                 newMatrix.arr[i] = arr[i] - tensor.arr[i];
         return newMatrix;
@@ -253,7 +253,7 @@ Matrix Matrix::scalarMult(float val){
 Matrix Matrix::innerProd(Matrix tensor){
         Matrix newMatrix = Matrix(dim1, dim2);
         if(dim1 != tensor.dim1 || dim2 != tensor.dim2)
-                return newMatrix;
+            throw std::invalid_argument("dim missmatch innerProduct");                
         for(int i = 0; i < dim1 * dim2; i++)
                 newMatrix.arr[i] = arr[i] * tensor.arr[i];
         return newMatrix;
@@ -261,9 +261,12 @@ Matrix Matrix::innerProd(Matrix tensor){
 
 //standard matrix multiplication (not optimized)
 Matrix Matrix::stdMult(Matrix tensor){
+    //std::cout<<dim1<<" "<<dim2<<std::endl;
+    //std::cout<<tensor.dim1<<" "<<tensor.dim2<<std::endl;
+    //tensor.print();
     Matrix newMatrix = Matrix(dim1, tensor.dim2);
     if(dim2 != tensor.dim1)
-        throw std::invalid_argument("dim missmatch");
+        throw std::invalid_argument("dim missmatch stdMult");
     for(int i = 0; i < dim1; i++){
         for(int j = 0; j < tensor.dim2; j++){
             float temp = 0;
@@ -291,6 +294,25 @@ Matrix Matrix::sigmoidPrime(){
         }
         return newTens;
 }
+
+Matrix Matrix::relu(){
+    Matrix newTens = Matrix(dim1, dim2);
+        for(int i = 0; i < dim1 * dim2; i++){
+            if(arr[i] < 0)newTens.arr[i] = 0;
+            else newTens.arr[i] = arr[i];
+        }
+        return newTens;
+}
+
+Matrix Matrix::reluPrime(){
+    Matrix newTens = Matrix(dim1, dim2);
+        for(int i = 0; i < dim1 * dim2; i++){
+            if(arr[i] < 0)newTens.arr[i] = 0;
+            else newTens.arr[i] = 1;
+        }
+        return newTens;
+}
+
 
 //returns transposed version of self
 Matrix Matrix::transpose(){
@@ -387,7 +409,7 @@ Matrix rotate(Matrix t1, float theta, int x, int y)
 Matrix matlib::parMult(Matrix t, Matrix t2){
     Matrix t1(t.dim1, t.dim2);
     if(t1.dim1 != t2.dim1 || t1.dim2 != t2.dim2)
-        throw std::invalid_argument("dim missmatch");
+        throw std::invalid_argument("dim missmatch parMult");
     for(int i = 0; i < t1.dim1 * t1.dim2; i++)
         t1.arr[i] = t.arr[i] * t2.arr[i];
     return t1;
@@ -397,7 +419,7 @@ Matrix matlib::parMult(Matrix t, Matrix t2){
 Matrix matlib::parAdd(Matrix t, Matrix t2){
     Matrix t1 = t;
     if(t1.dim1 != t2.dim1)
-        throw std::invalid_argument("dim missmatch");
+        throw std::invalid_argument("dim missmatch parAdd");
     for(int i = 0; i < t2.dim1; i ++){
         for(int j = 0; j < t1.dim2; j++)
             t1.insert(i, j, t1.get(i, j) + t2.get(i, 1));
@@ -473,6 +495,3 @@ void Matrix::GaussJordanRREF(){
 }
 
 
-void destroy(){
-
-}

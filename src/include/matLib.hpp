@@ -67,6 +67,8 @@ namespace matlib{
 		    //global operations
 		    Matrix sigmoid();
 		    Matrix sigmoidPrime();
+            Matrix relu();
+            Matrix reluPrime();
 		    Matrix innerProd(Matrix);
 	        Matrix augment(Matrix);
             Matrix getRow(int);

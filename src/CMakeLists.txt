@@ -13,7 +13,7 @@ add_subdirectory(   Matrix
                     Networks)
 
 
-add_executable(run  main.cpp
+add_executable(run  main3.cpp
 #add_executable(run  test.cpp
 #add_executable(run  main2.cpp
                     UI/driver.cpp

@@ -54,7 +54,7 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 
 	//output layer
 	temp -> size = numOut;
-	temp -> biases = Matrix(numOut, 1, 1 / sqrt(float(numIn)));
+	temp -> biases = Matrix(numOut, 1, .00000000000000001); 
 	temp -> inputs = Matrix(temp->size, 1);
 	temp -> next = nullptr;
 	output = new layer;
@@ -65,7 +65,7 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 	while(temp->previous != nullptr)
 	{
 		temp->weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
-		temp->biases = Matrix(temp->size, 1, 1 / sqrt(float(numIn)));
+		temp->biases = Matrix(temp->size, 1, .00000000000000001);
 		temp->inputs = Matrix(temp->size, 1);
 		temp = temp->previous;
 	}
@@ -133,7 +133,7 @@ void Network::printNetwork(){
 Matrix propogateNetRecurs(layer * node, Matrix _inputs){
 	node->inputs = _inputs;
 	if(node->next == nullptr) return _inputs;
-	Matrix newTens = ((node->weights * _inputs)).sigmoid();
+	Matrix newTens = ((node->weights * _inputs + node->next->biases)).relu();
 	return propogateNetRecurs(node->next, newTens);
 }
 
@@ -151,46 +151,40 @@ void Network::printNetworkSummary(){
 }
 
 Matrix gradient(Matrix previous, layer * layer){
-	Matrix t1 = parMult(previous, (layer->weights * layer->inputs + layer->next->biases).sigmoidPrime());
+    
+	Matrix t1 = parMult(previous, (layer->weights * layer->inputs + layer->next->biases).reluPrime());
 	std::cout<<"this equatoianfkjsdnfkjndsf"<<std::endl;
 	previous.print();
 	(layer->weights * layer->inputs + layer->next->biases).print();
-	(layer->weights * layer->inputs + layer->next->biases).sigmoidPrime().print();
+	(layer->weights * layer->inputs + layer->next->biases).reluPrime().print();
 	t1.print();
 
 	return t1;
 }
 
+
 void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate){
-//    printNetwork();
+//    std::cout<<rate<<std::endl;
     layer * temp = output->previous;
-    
-  //  output->inputs.print();
-  //  outputs.print();
+    //printNetwork(); 
     Matrix del = parMult((outputs - expected), 
-                (temp->weights * temp->inputs).sigmoidPrime());
-    //del.print();
-//    del.print();
+                (temp->weights * temp->inputs + temp->next->biases).reluPrime());
     Matrix delGrad = del * (*(temp->inputs));
-    //delGrad.print();
-    
     temp->weights = temp->weights - ((parMult(temp->weights, delGrad)).scalarMult(rate));
-//    temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)).scalarMult(rate));// / i));
+    temp->next->biases = temp->next->biases - del.scalarMult(rate);
+    //temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)).scalarMult(rate));
+    
     temp = temp->previous;
     while(temp != nullptr){
         del = parMult(((*(temp->next->weights)) * del), 
-                    (temp->weights * temp->inputs).sigmoidPrime());
-
+                    (temp->weights * temp->inputs + temp->next->biases).reluPrime());
 
         Matrix delGrad = del * (*(temp->inputs));
-//        delGrad.print();
         temp->weights = temp->weights - ((parMult(temp->weights, delGrad)).scalarMult(rate));
-        
-    
-//        temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)).scalarMult(rate));// / i));
+        temp->next->biases = temp->next->biases - del.scalarMult(rate);
+        //temp->next->biases = temp->next->biases - ((parMult(temp->next->biases, del)).scalarMult(rate));
         temp = temp->previous;
     }
-//    printNetwork();
 }
 
 
