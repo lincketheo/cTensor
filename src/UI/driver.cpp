@@ -12,6 +12,7 @@
 #include <Network.hpp>              //to train the neural network
 #include <networkTrain.hpp>         //obtain datasets from folders
 #include <constants.hpp>            //fileBaseCONSTANT fileBaseTestCONSTANT
+#include <limits>                   //flush
 
 using std::string;
 using namespace NetworkLib;
@@ -276,9 +277,16 @@ void UI::propogateNeuralNetwork(const char ** fileNames, int * labels){
 //main display
 int UI::mainDisplay(){
     int inputs;
-    printf("       ooooo                                  \n         8                                    \n.oPYo.   8   .oPYo. odYo. .oPYo. .oPYo. oPYo.\n8    '   8   8oooo8 8' `8 Yb..   8    8 8  `' \n8    .   8   8.     8   8   'Yb. 8    8 8     \n`YooP'   8   `Yooo' 8   8 `YooP' `YooP' 8     \n:.....:::..:::.....:..::..:.....::.....:..::::\n::::::::::::::::::::::::::::::::::::::::::::::\n:::::::::::::::::::::::::::::::::::::::::::::\n");
-    printf("\n\nA pretty good nerual network and Linear Algebra Library in C++\n");
-    std::system("read -p 'Press Enter to continue...' var"); //for linux
+    printf(" _________\n< cTensor >\n ---------\n        \\   ^__^\n         \\  (oo)\\_______\n            (__)\\       )\\/\\\n                ||----w |\n                ||     ||\n");
+
+
+
+
+    //printf("       ooooo                                  \n         8                                    \n.oPYo.   8   .oPYo. odYo. .oPYo. .oPYo. oPYo.\n8    '   8   8oooo8 8' `8 Yb..   8    8 8  `' \n8    .   8   8.     8   8   'Yb. 8    8 8     \n`YooP'   8   `Yooo' 8   8 `YooP' `YooP' 8     \n:.....:::..:::.....:..::..:.....::.....:..::::\n::::::::::::::::::::::::::::::::::::::::::::::\n:::::::::::::::::::::::::::::::::::::::::::::\n");
+    printf("\n\nA pretty ok nerual network and Linear Algebra Library in C++\n");
+    std::cout<<"Press ENTER to continue ....."<< std::flush;
+    std::cin.ignore(std::numeric_limits <std::streamsize> ::max(), '\n' );
+    //std::system("read -p 'Press Enter to continue...' var"); //for linux
     //std::system("pause"); //for windows
     printf("\n");
     return -1;

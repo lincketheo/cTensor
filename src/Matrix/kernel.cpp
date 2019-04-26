@@ -6,7 +6,7 @@
     @version 1.1 4/17/19
 */
 #include <iostream>         //printf std
-#include <matLib.hpp>       //main header
+#include "matLib.hpp"       //main header
 #include <cmath>            //exp
 #include <random>           //rand
 #include <stdexcept>        //dim missmatch

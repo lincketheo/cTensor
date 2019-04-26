@@ -22,11 +22,11 @@ int main(int argc, char ** argv){
     const char * fileNames[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
     int labels[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; 
 
-    trainingSet testing = uploadAllImages(fileBaseCONSTANT, fileNames, labels, 10, "jpg", 10);
+    trainingSet testing = uploadAllImages(fileBaseCONSTANT, fileNames, labels, 10, "jpg", 10000);
 
     int nHL[100] = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    int sHL[100] = {400, 100, 400, 400, 400, 100, 100, 100, 50, 50, 50, 200, 200, 200};
-    float rate[100] = {.008, .008, .009, .007, .008, .009, .007, .008, .009, .007, .008, .009, .007};
+    int sHL[100] = {600, 650, 550, 400, 400, 100, 100, 100, 50, 50, 50, 200, 200, 200};
+    float rate[100] = {.009, .009, .009, .007, .008, .009, .007, .008, .009, .007, .008, .009, .007};
     trainingSet testing2 = uploadAllImages(fileBaseTestCONSTANT, fileNames, labels, 10, "jpg", 20);
 
 

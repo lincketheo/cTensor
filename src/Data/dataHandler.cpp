@@ -166,7 +166,8 @@ Network * training::trainDataSet(trainingSet set, int nHL, int sHL, float rate){
     Network * main = new Network(set.numIn, set.numOut, nHL, sHL);
     main->printNetworkSummary();
     for(int i = 0; i < set.files.size(); i++){
-        printf("%d) Training ..... Label: %d\n", i, set.files[i].label);
+//        printf("%d) Training ..... Label: %d\n", i, set.files[i].label);
+        if(i % 100 == 0)printf("%d) training\n", i);
         Mat A = cv::imread(set.files[i].file, 1);
         if(A.rows != 28 || A.cols != 28){
             printf("AAAAAA");
