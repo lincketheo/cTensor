@@ -4,19 +4,17 @@
 
 using namespace matlib;
 
-int main(){
+int
+main()
+{
 
-    Matrix<float> * mainPtr;
+  Matrix<float>* mainPtr;
 
-    SparseMatrix<float> mainSps(5, 5);
+  SparseMatrix<float> mainSps(5, 5);
 
-    mainPtr = &mainSps;
+  mainPtr = &mainSps;
 
-    mainPtr->print();
+  mainPtr->print();
 
-
-    
-    return 0;
-
-
+  return 0;
 }

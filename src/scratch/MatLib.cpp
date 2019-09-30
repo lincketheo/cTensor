@@ -14,7 +14,6 @@
 #include <sstream>
 #include "Matrix.hpp"
 
-
 using namespace matlib;
 using namespace kernel;
 
@@ -52,7 +51,7 @@ Matrix transpose(Matrix);
     @param
     @return
 */
-Matrix rref(Matrix); //rref will just rref it, should be augmented already
+Matrix rref(Matrix); // rref will just rref it, should be augmented already
 /*
     Return
 

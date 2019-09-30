@@ -6,27 +6,23 @@
 
 using std::vector;
 
+template<class T>
+class Matrix
+{
+public:
+  int dim1 = 0;
+  int dim2 = 0;
 
-    template <class T>
-    class Matrix{
-        public:
-            int dim1 = 0;
-            int dim2 = 0;
+  virtual void print();
+};
 
-            virtual void print();
+template<class T>
+class Matrix2 : public Matrix<T>
+{
+public:
+  Matrix2(int, int);
 
-
-    };
-
-
-    template <class T>
-    class Matrix2: public Matrix<T> {
-        public:
-            Matrix2(int, int);
-
-            void print();
-
-    };
-
+  void print();
+};
 
 #endif

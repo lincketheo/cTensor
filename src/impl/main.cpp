@@ -3,38 +3,28 @@
 #include <networkTrain.hpp>
 #include <vector>
 #include <Network.hpp>
-#include <opencv2/opencv.hpp>
+#include <userInterFace.hpp>
 
-using namespace cv;
 using namespace matlib;
 using namespace NetworkLib;
 using namespace training;
-using namespace std;
-const string fileBaseTest =
-  "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/"
-  "mnist_jpgfiles/test/9/mnist_9_793.jpg";
+using std::string;
+using std::vector;
 
 int
 main(int argc, char** argv)
 {
 
   srand((unsigned int)time(NULL));
-  Mat A = imread(fileBaseTest, 1);
-  Matrix B(784, 1);
-  for (int j = 0; j < 784; j++)
-    B.arr[j] = float(A.data[j] / 255.0);
-  A.release();
-  Matrix expected = createOutput(10, 9);
+  const char* fileNames[10] = {
+    "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"
+  };
+  int labels[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
 
-  Network myNet(784, 10, 2, 16);
-
-  float a = stof(argv[1]);
-  Matrix Q = myNet.propogateNetwork(B);
-  myNet.backPropogateRecurs(Q, expected, a);
-  Matrix Q2 = myNet.propogateNetwork(B);
-  ((Q - expected) - (Q2 - expected)).print();
-
-  return 0;
+  UI mainUI;
+  if (mainUI.controlFlow(fileNames, labels))
+    return 0;
+  return 1;
 }
 
 /*
