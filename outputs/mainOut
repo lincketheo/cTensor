@@ -1,0 +1,59 @@
+Layers = 1 Rate = 0.009 nodes = 80
+Accuracy = 0.3452
+
+Layers = 1 Rate = 0.02 nodes = 70
+Accuracy = 0.3532
+
+Layers = 1 Rate = 0.01 nodes = 80
+Accuracy = 0.3755
+
+Layers = 1 Rate = 0.01 nodes = 50
+Accuracy = 0.2975
+
+Layers = 1 Rate = 0.01 nodes = 20
+Accuracy = 0.1506
+
+Layers = 1 Rate = 0.001 nodes = 100
+Accuracy = 0.1805
+
+Layers = 1 Rate = 0.001 nodes = 90
+Accuracy = 0.146
+
+Layers = 1 Rate = 0.005 nodes = 100
+Accuracy = 0.2631
+
+Layers = 1 Rate = 0.05 nodes = 80
+Accuracy = 0.3179
+
+Layers = 1 Rate = 0.1 nodes = 50
+Accuracy = 0.1002
+
+Layers = 1 Rate = 0.1 nodes = 20
+Accuracy = 0.1144
+
+Layers = 1 Rate = 0.5 nodes = 100
+Accuracy = 0.098
+
+Layers = 2 Rate = 0.08 nodes = 70
+Accuracy = 0.1166
+
+Layers = 1 Rate = 0.08 nodes = 70
+Accuracy = 0.1559
+
+Layers = 1 Rate = 0.02 nodes = 70
+Accuracy = 0.241
+
+Layers = 1 Rate = 0.02 nodes = 100
+Accuracy = 0.361
+
+Layers = 1 Rate = 0.015 nodes = 100
+Accuracy = 0.3642
+
+Layers = 1 Rate = 0.02 nodes = 70
+Accuracy = 0.2773
+
+Layers = 1 Rate = 0.01 nodes = 16
+Accuracy = 0.251
+
+Layers = 1 Rate = 0.01 nodes = 100
+0.3642Accuracy = 0.333

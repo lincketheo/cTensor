@@ -10,32 +10,68 @@ using namespace matlib;
 using namespace NetworkLib;
 using namespace training;
 using namespace std;
-const string fileBaseTest =
-  "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/"
-  "mnist_jpgfiles/test/9/mnist_9_793.jpg";
+const string fileBaseTest = "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/mnist_jpgfiles/test/9/mnist_9_793.jpg";
 
-int
-main(int argc, char** argv)
-{
+int main(int argc, char ** argv){
 
-  srand((unsigned int)time(NULL));
-  Mat A = imread(fileBaseTest, 1);
-  Matrix B(784, 1);
-  for (int j = 0; j < 784; j++)
-    B.arr[j] = float(A.data[j] / 255.0);
-  A.release();
-  Matrix expected = createOutput(10, 9);
+    srand((unsigned int)time(NULL));
+    Mat A = imread(fileBaseTest, 1);
+    Matrix B(784, 1);
+    for(int j = 0; j < 784; j++)
+        B.arr[j] = float(A.data[j] / 255.0);
+    A.release();
+    Matrix expected = createOutput(10, 9);
+    
+    Network myNet(784, 10, 2, 16);
 
-  Network myNet(784, 10, 2, 16);
+    float a = stof(argv[1]);
+    Matrix Q = myNet.propogateNetwork(B);
+    myNet.backPropogateRecurs(Q, expected, a);
+    Matrix Q2 = myNet.propogateNetwork(B);
+    ((Q - expected) - (Q2 - expected)).print();
+    
 
-  float a = stof(argv[1]);
-  Matrix Q = myNet.propogateNetwork(B);
-  myNet.backPropogateRecurs(Q, expected, a);
-  Matrix Q2 = myNet.propogateNetwork(B);
-  ((Q - expected) - (Q2 - expected)).print();
-
-  return 0;
+    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 
@@ -45,15 +81,17 @@ vector<testElements> uploadImages(std::string filePath, int numberOfEach){
     for(int i = 0; i < 10; i++){
         vals.push_back(loadTestImages(filePath, i, numberOfEach));
     }
-    return vals;
+    return vals; 
 }
 
-vector<testElement> loadTestImages(std::string testFilePath, int number, int
-numImages){ vector<testElement> matrices; char * filepath = new char[200];
+vector<testElement> loadTestImages(std::string testFilePath, int number, int numImages){
+    vector<testElement> matrices;
+    char * filepath = new char[200];
     for(int j = 1; j < numImages + 1; j++){
-        //printf("%s/%i/mnist_%i_%i.jpg", testFilePath.c_str(), number, number,
-j); Matrix A(28 * 28, 1); sprintf(filepath, "%s/%i/mnist_%i_%i.jpg",
-testFilePath.c_str(), number, number, j); Mat image = imread(filepath, 1);
+        //printf("%s/%i/mnist_%i_%i.jpg", testFilePath.c_str(), number, number, j);
+        Matrix A(28 * 28, 1);
+        sprintf(filepath, "%s/%i/mnist_%i_%i.jpg", testFilePath.c_str(), number, number, j);
+        Mat image = imread(filepath, 1); 
         printf("Loading Image: %i/mnist_%i_%i.jpg\n", number, number, j);
         for(int i = 0; i < 28 * 28; i++){
             A.arr[i] = (float)image.data[i];
@@ -76,7 +114,7 @@ void displayImage(std::string filename, int dataVal, int number);
     if(!D.data){
         printf("No image\n");
         return -1;
-    }
+    } 
     namedWindow("Display Image", WINDOW_AUTOSIZE );
     imshow("Display Image", D);
 
@@ -84,10 +122,10 @@ void displayImage(std::string filename, int dataVal, int number);
     for(int i = 0; i < 28 * 28; i++){
         A.arr[i] = D.data[i];
     }
-
+    
     A.print();
-  */
-// return 0;
+  */  
+    //return 0;
 
 //}
 

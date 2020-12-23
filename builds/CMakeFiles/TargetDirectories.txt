@@ -1,0 +1,6 @@
+/home/theo/dev/projects/math/cTensor/builds/CMakeFiles/rebuild_cache.dir
+/home/theo/dev/projects/math/cTensor/builds/CMakeFiles/edit_cache.dir
+/home/theo/dev/projects/math/cTensor/builds/CMakeFiles/runTheDamnNetwork.dir
+/home/theo/dev/projects/math/cTensor/builds/CMakeFiles/run.dir
+/home/theo/dev/projects/math/cTensor/builds/Networks/CMakeFiles/rebuild_cache.dir
+/home/theo/dev/projects/math/cTensor/builds/Networks/CMakeFiles/edit_cache.dir

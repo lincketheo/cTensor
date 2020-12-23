@@ -1,0 +1,22 @@
+This project is ready to submit to moodle, but there are still things I would like to do
+
+input output to csv file (network)
+fine tune
+change matrix opperation structure
+    Dont copy matrix in backpropogation
+    Write a custom update matrix function for backprop
+optimize linear algebra library
+    build sparse matrix class
+    optimize multiplication 
+    fix / add subroutines
+
+        xROTG
+        xROTMG
+        xSCAL
+        xGEMV
+        xGEMM
+        xSYMM
+        xSPR
+    
+CUDA!!!!!
+    Build a gpu compatible cuda matrix library

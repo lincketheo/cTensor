@@ -1,39 +1,77 @@
 #include <iostream>
 #include <sstream>
 
-int
-main(int argc, char** argv)
-{
 
-  int* a;
-  a = new int[10];
+int main(int argc, char ** argv){
 
-  const char* b[10];
+    int * a;
+    a = new int[10];
+        
+    const char * b[10];
 
-  for (int i = 0; i < 10; i++) {
-    a[i] = i;
-    std::stringstream strs;
-    strs << i;
-    std::string temp_str = strs.str();
-    b[i] = new char;
-    b[i] = (const char*)temp_str.c_str();
-    std::cout << b[i] << std::endl;
-    std::cout << (const char*)temp_str.c_str() << std::endl;
-  }
-  for (int i = 0; i < 10; i++) {
-    std::cout << a[i] << " ";
-    std::cout << "b " << b[i] << std::endl;
-  }
+    for(int i = 0; i < 10; i ++){
+        a[i] = i;
+        std::stringstream strs;
+        strs << i;
+        std::string temp_str = strs.str();
+        b[i] = new char;
+        b[i] = (const char*)temp_str.c_str();
+        std::cout<<b[i]<<std::endl;
+        std::cout<<(const char*)temp_str.c_str()<<std::endl;
+    }
+    for(int i = 0; i < 10; i++){
+        std::cout<<a[i]<<" ";
+        std::cout<<"b "<<b[i]<<std::endl;
+    }
 
-  int i = 123;
-  std::stringstream strs;
-  strs << i;
-  std::string temp_str = strs.str();
-  const char* asdjn = (const char*)temp_str.c_str();
-  std::cout << asdjn << std::endl;
+    int i = 123;
+        std::stringstream strs;
+        strs << i;
+        std::string temp_str = strs.str();
+        const char * asdjn = (const char*)temp_str.c_str();
+    std::cout<<asdjn<<std::endl;
 
-  return 0;
+    return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*
 
@@ -43,15 +81,17 @@ vector<testElements> uploadImages(std::string filePath, int numberOfEach){
     for(int i = 0; i < 10; i++){
         vals.push_back(loadTestImages(filePath, i, numberOfEach));
     }
-    return vals;
+    return vals; 
 }
 
-vector<testElement> loadTestImages(std::string testFilePath, int number, int
-numImages){ vector<testElement> matrices; char * filepath = new char[200];
+vector<testElement> loadTestImages(std::string testFilePath, int number, int numImages){
+    vector<testElement> matrices;
+    char * filepath = new char[200];
     for(int j = 1; j < numImages + 1; j++){
-        //printf("%s/%i/mnist_%i_%i.jpg", testFilePath.c_str(), number, number,
-j); Matrix A(28 * 28, 1); sprintf(filepath, "%s/%i/mnist_%i_%i.jpg",
-testFilePath.c_str(), number, number, j); Mat image = imread(filepath, 1);
+        //printf("%s/%i/mnist_%i_%i.jpg", testFilePath.c_str(), number, number, j);
+        Matrix A(28 * 28, 1);
+        sprintf(filepath, "%s/%i/mnist_%i_%i.jpg", testFilePath.c_str(), number, number, j);
+        Mat image = imread(filepath, 1); 
         printf("Loading Image: %i/mnist_%i_%i.jpg\n", number, number, j);
         for(int i = 0; i < 28 * 28; i++){
             A.arr[i] = (float)image.data[i];
@@ -74,7 +114,7 @@ void displayImage(std::string filename, int dataVal, int number);
     if(!D.data){
         printf("No image\n");
         return -1;
-    }
+    } 
     namedWindow("Display Image", WINDOW_AUTOSIZE );
     imshow("Display Image", D);
 
@@ -82,10 +122,10 @@ void displayImage(std::string filename, int dataVal, int number);
     for(int i = 0; i < 28 * 28; i++){
         A.arr[i] = D.data[i];
     }
-
+    
     A.print();
-  */
-// return 0;
+  */  
+    //return 0;
 
 //}
 
