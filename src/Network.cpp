@@ -1,15 +1,11 @@
 /**
-    CS-11 Asn 2, Network.cpp
-    Purpose: Network operations on a neural network 
+    CS-11 Asn 2, CNN.cpp
+    Purpose: CNN operations on a neural network 
 
     @author Theo Lincke, Kyle Zhou
     @version 1.1 4/17/19
 */
-#include <matLib.hpp>       //matrix operations
-#include <Network.hpp>      //main header
-#include <iostream>         //printf std
-#include <vector>           //vector
-#include <math.h>           //sqrt
+#include "CNN.hpp"      //main header
 
 using namespace matlib;
 using namespace NetworkLib;
@@ -17,21 +13,16 @@ using std::vector;
 using std::cout;
 using std::endl;
 
-
 //================== Constructors ==================
 //Standard sets everything to null
-Network::Network()
+CNN::CNN()
 {
     input = nullptr;
     output = nullptr;
-    layersSize = 0;
-    layers = 0;
-    numberOut = 0;
-    numberIn = 0;
 }   
 
 /**
-    Encodes a Neural Network
+    Encodes a Neural CNN
     
     @param numIn number of inputs
     @param numOut number of outputs
@@ -41,12 +32,16 @@ Network::Network()
     @return a convolutional neural network with layer structs
 */
     
-Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayers)
+CNN::CNN(const std::vector<int>& _layer_sizes)
+	: layer_sizes(_layer_sizes)
 {
+	if(layers() < 2){
+		throw std::invalid_argument("Need at least 2 layers");
+	}
 
 	//Initialize input
 	input = new layer;
-	input -> size = numIn;
+	input -> size = num_in();
 	input -> previous = nullptr;
 
 	//variable layer
@@ -55,9 +50,9 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 	temp -> previous = input;	
 	
 	//go forward to assign sizes and go backwards to assign weights biases
-	for(int i = 0; i < numHiddenLayers; i++)
+	for(int i = 0; i < layers() - 2; i++)
     {
-		temp->size = sizeHiddenLayers;
+		temp->size = hidden_layer_size(i);
 		layer * next = new layer;
 		temp -> next = next;
 		next -> previous = temp;
@@ -65,9 +60,9 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 	}
 
 	//output layer
-	temp -> size = numOut;
-	temp -> biases = Matrix(numOut, 1); 
-	temp -> inputs = Matrix(temp->size, 1);
+	temp -> size = num_out();
+	temp -> biases = std::make_unique<Matrix>(temp->size, 1); 
+	temp -> inputs = std::make_unique<Matrix>(temp->size, 1);
 	temp -> next = nullptr;
 	output = new layer;
 	output = temp;
@@ -76,24 +71,19 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
 	temp = temp -> previous;
 	while(temp->previous != nullptr)
     {
-		temp->weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
-		temp->biases = Matrix(temp->size, 1);
-		temp->inputs = Matrix(temp->size, 1);
+		temp->weights = std::make_unique<Matrix>(temp->next->size, temp->size, 1 / sqrt(float(num_in())));
+		temp->biases = std::make_unique<Matrix>(temp->size, 1);
+		temp->inputs = std::make_unique<Matrix>(temp->size, 1);
 		temp = temp->previous;
 	}
 	
 	//temp is now input
-	temp -> weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
-	temp -> inputs = Matrix(temp->size, 1);
-
-	numberIn = numIn;
-	numberOut = numOut;
-	layers = numHiddenLayers;
-	layersSize = sizeHiddenLayers;
+	temp -> weights = std::make_unique<Matrix>(temp->next->size, temp->size, 1 / sqrt(float(num_in())));
+	temp -> inputs = std::make_unique<Matrix>(temp->size, 1);
 }
 
 //destroy a network
-Network::~Network()
+CNN::~CNN()
 {
 	while(input != NULL)
     {   
@@ -103,14 +93,15 @@ Network::~Network()
 	}
 }
 
-//Prints the network (not to be confused with printNetworkSummary, this prints all the matrices)
-void Network::printNetwork()
+//Prints the network (not to be confused with printCNNSummary, this prints all the matrices)
+void CNN::print_network()
 {
 	cout<<"Input Layer: "<<endl;
 	layer * temp = new layer;
 	temp = input;
 
-	Matrix weight = temp->weights;
+	// This copies - print network doesn't need to be optimized
+	Matrix weight = *temp->weights;
 	cout<<"Weights"<<endl;
 	weight.print();
 	cout<<endl;
@@ -120,14 +111,12 @@ void Network::printNetwork()
 
 	while(temp->next != nullptr)
     {
-		
-		Matrix bias = temp->biases;
-		
-		Matrix weight = temp->weights;
+		// Again - all of these are copies - no need to optimize here yet
+		Matrix bias = *temp->biases;
+		Matrix weight = *temp->weights;
 
-		Matrix transpBias = *bias;
 		cout<<"Biases:"<<endl;
-		transpBias.print();
+		bias.transpose().print();
 		
 		cout<<"Weights:"<<endl;
 		weight.print();
@@ -138,10 +127,9 @@ void Network::printNetwork()
 		temp = temp->next;
 	}
 	cout<<"Outputs"<<endl;
-	Matrix bias = temp->biases;
+	Matrix bias = *temp->biases;
 	cout<<"Biases:"<<endl;
-	Matrix transpBias = *bias;
-	transpBias.print();
+	bias.transpose().print();
     cout<<endl;
     cout<<"------------------"<<endl;
     cout<<endl;
@@ -155,33 +143,30 @@ void Network::printNetwork()
     @param _inputs - the input to the layer we are on
     @return a matrix after propogating a single layer (eventually the final output
 */
-Matrix propogateNetRecurs(layer * node, Matrix _inputs)
+void propogate_net_recurs(layer * node, std::unique_ptr<Matrix> _inputs)
 {
-	node->inputs = _inputs;
-	if(node->next == nullptr) return _inputs;
-	Matrix newTens = ((node->weights * _inputs + node->next->biases)).relu();
-	return propogateNetRecurs(node->next, newTens);
+	// Copies inputs (but inputs is really stored as the input to the output)
+	if(node->next == nullptr) return;
+	*node->next->inputs = *(node->weights) * *(_inputs) + *(node->next->biases);
+	return propogate_net_recurs(node->next, std::move(node->next->inputs));
 }
 
 /**
     Runs a single network propogation
 
     @param inputs the matrix to input to the network
-    @return a matrix after all transformations have been done
 */
-Matrix Network::propogateNetwork(Matrix inputs)
+void CNN::propogate_network(std::unique_ptr<Matrix> inputs)
 {
-	return propogateNetRecurs(input, inputs);
+	propogate_net_recurs(input, std::move(inputs));
 }
 
 //prints a clean network summary including inputs, outputs, hidden layers and size hidden layers
-void Network::printNetworkSummary()
+void CNN::print_network_summary()
 {
-	cout<<"====================Network===================="<<endl;
-	cout<<"Number of inputs: "<<numberIn<<endl;
-	cout<<"Number of Outputs: "<<numberOut<<endl;
-	cout<<"Number of hidden layers: "<<layers<<endl;
-	cout<<"Size of hidden layers: "<<layersSize<<endl;
+	cout<<"====================CNN===================="<<endl;
+	for(int i = 0; i < layers(); ++i)
+		cout<<"Layer: "<<i<<" Size: "<<layer_sizes[i]<<endl;
 	cout<<"==============================================="<<endl;
 }
 
@@ -194,10 +179,12 @@ void Network::printNetworkSummary()
 
     @return void recursively updates weights and biases using the chain rule in calculus
 */
-void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate)
+void CNN::back_propogate_recurs(const Matrix& expected, float rate)
 {
     //the propogating layer
     layer * temp = output->previous;
+
+	Matrix error = parMult(*output->inputs - expected, 
 
     //universal delta - propogates backwards
     Matrix del = parMult((outputs - expected), 

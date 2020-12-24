@@ -67,6 +67,8 @@ namespace matlib{
 			Matrix operator !(); //inverse (!tensor)
 			Matrix operator *(); //transpose (*tensor)
 			float operator ~();  //trace (~tensor)
+			Matrix transpose();             // Return a new Transpose of this matrix
+			Matrix inverse();               // Returns the inverse of this matrix
 
             // Row / Col operators
             /*
@@ -99,8 +101,7 @@ namespace matlib{
 			Matrix add(const Matrix&);             // Adds another matrix of equal dimension
 			Matrix minus(const Matrix&);           // Subtracts anotehr matrix of equal dimension
 			Matrix stdMult(const Matrix&);		   // standard multiplication (ie no fancy algorithm)
-			Matrix transpose();             // Return a new Transpose of this matrix
-			Matrix inverse();               // Returns the inverse of this matrix
+
             
 
             // Operates on self
