@@ -87,6 +87,12 @@ namespace matlib{
 			void GaussJordanRREF();
 			float trace();
 
+			// Functions to act on a matrix - so we don't
+			// create a new matrix in matlib
+			void relu();
+			void relu_prime();
+			void par_mult(const Matrix&);
+
 
 			void insert(const int&, const int&, const float&);	//insert an element
 			float get(const int&, const int&) const;			
@@ -114,10 +120,9 @@ namespace matlib{
 	float random_float(const float&, const float&);
 
 	// MATRIX MATH
-	Matrix rotate(Matrix, float, int, int); //rotate a matrix
-	Matrix parMult(Matrix, Matrix); //parallel multiplication
-	Matrix parAdd(Matrix, Matrix); //parallel addition
-	Matrix parSqr(Matrix); //parallel sqaring
-	
+	//Matrix rotate(Matrix, float, int, int); //rotate a matrix
+	//Matrix parMult(Matrix, Matrix); //parallel multiplication
+	//Matrix parAdd(Matrix, Matrix); //parallel addition
+	//Matrix parSqr(Matrix); //parallel sqaring
 }
 #endif

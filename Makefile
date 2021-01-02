@@ -14,10 +14,10 @@ CFLAGS=-I$(IDIR)
 
 LIBS=
 
-_DEPS = Matrix.hpp
+_DEPS = Matrix.hpp CNN.hpp
 DEPS = $(patsubst %,$(IDIR)/%,(_DEPS))
 
-_OBJ = main.o Matrix.o
+_OBJ = main.o Matrix.o CNN.o
 OBJ = $(patsubst %,$(ODIR)/%,$(_OBJ))
 
 $(ODIR)/%.o: $(SDIR)/%.cpp

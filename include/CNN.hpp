@@ -41,7 +41,7 @@ namespace NetworkLib{
 			 * @param layer_sizes Sizes of each layer (including input and output, so there should
 			 * be a minimum of 2)
 			 */
-			CNN(const std::vector<int>& _layer_sizes);
+			CNN(const std::vector<int> _layer_sizes);
 
 			/**
 			 * Default destructor
@@ -50,17 +50,13 @@ namespace NetworkLib{
 
 		public:
 			void propogate_network(std::unique_ptr<Matrix> inputs);
-			void back_propogate_network(const Matrix& inputs);
+			void back_propogate_network(const Matrix& inputs, float rate);
 			void print_network();
+			void print_inputs();
 			void print_network_summary();
 
 			void store_network(const std::string& filename);
 			void extract_network(const std::string& filename);
-
-
-		private:
-			Matrix propogate_one_layer();
-			void back_propogate_recurs(const Matrix&, const Matrix&, float);
 
 
 		protected:

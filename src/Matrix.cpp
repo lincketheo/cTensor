@@ -154,14 +154,15 @@ namespace matlib
 
     void Matrix::insert(const int &c1, const int &c2, const float &val)
     {
-        if (c1 >= dim1 || c2 >= dim2){
-           throw invalid_argument("Dimension bounds exceeded");
+        if (c1 >= dim1 || c2 >= dim2)
+        {
+            throw invalid_argument("Dimension bounds exceeded");
         }
 
         arr[(dim2 * c1) + c2] = val;
     }
 
-    float Matrix::get(const int& c1, const int& c2) const
+    float Matrix::get(const int &c1, const int &c2) const
     {
         return arr[(dim2 * c1) + c2];
     }
@@ -172,7 +173,7 @@ namespace matlib
     @param col, the collumn to extract from the matrix
     @return all values on the collumn specified as a new vertical matrix
 */
-    Matrix Matrix::getCol(const  int &col)
+    Matrix Matrix::getCol(const int &col)
     {
         Matrix newTens(dim1, 1);
         for (int i = 0; i < dim1; i++)
@@ -306,13 +307,15 @@ namespace matlib
         return transpose;
     }
 
-    void Matrix::self_add(const Matrix& mat){
+    void Matrix::self_add(const Matrix &mat)
+    {
         if (dim1 != mat.dim1 || dim2 != mat.dim2)
             throw invalid_argument("dim missmatch add");
         for (int i = 0; i < dim1 * dim2; i++)
             arr[i] = arr[i] + mat.arr[i];
     }
-    void Matrix::self_minus(const Matrix& mat){
+    void Matrix::self_minus(const Matrix &mat)
+    {
         if (dim1 != mat.dim1 || dim2 != mat.dim2)
             throw invalid_argument("dim missmatch minus");
         for (int i = 0; i < dim1 * dim2; i++)
@@ -463,11 +466,41 @@ namespace matlib
         }
     }
 
-    void Matrix::set(const Matrix& mat){
+    void Matrix::set(const Matrix &mat)
+    {
         if (dim1 != mat.dim1 || dim2 != mat.dim2)
             throw invalid_argument("dim missmatch add");
         for (int i = 0; i < dim1 * dim2; i++)
             arr[i] = mat.arr[i];
+    }
+
+    void Matrix::par_mult(const Matrix &t)
+    {
+        if (t.dim1 != dim1 || t.dim2 != dim2)
+            throw invalid_argument("dim missmatch par_mult");
+        for (int i = 0; i < dim1 * dim2; i++)
+            arr[i] = arr[i] * t.arr[i];
+    }
+
+    void Matrix::relu()
+    {
+        for (int i = 0; i < dim1 * dim2; i++)
+        {
+            if (arr[i] < 0)
+                arr[i] = 0;
+        }
+    }
+
+    // prime relu function on self
+    void Matrix::relu_prime()
+    {
+        for (int i = 0; i < dim1 * dim2; i++)
+        {
+            if (arr[i] < 0)
+                arr[i] = 0;
+            else
+                arr[i] = 1;
+        }
     }
 
     //===================================== MATRIX OPERATIONS =======================================
@@ -481,7 +514,7 @@ namespace matlib
         return result;
     }
 
-    void Matrix::operator =(const Matrix& mat)
+    void Matrix::operator=(const Matrix &mat)
     {
         set(mat);
     }
@@ -503,15 +536,19 @@ namespace matlib
     {
         return this->stdMult(tensor);
     }
-    
-    void Matrix::operator +=(const Matrix &tensor){
+
+    void Matrix::operator+=(const Matrix &tensor)
+    {
         this->self_add(tensor);
     }
-    void Matrix::operator -=(const Matrix &tensor){
+    void Matrix::operator-=(const Matrix &tensor)
+    {
         this->self_minus(tensor);
     }
-    void Matrix::operator *=(const float &f){
-        for(int i = 0; i < dim1 * dim2; ++i){
+    void Matrix::operator*=(const float &f)
+    {
+        for (int i = 0; i < dim1 * dim2; ++i)
+        {
             arr[i] = arr[i] * f;
         }
     }

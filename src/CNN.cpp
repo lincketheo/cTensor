@@ -32,7 +32,7 @@ CNN::CNN()
     @return a convolutional neural network with layer structs
 */
     
-CNN::CNN(const std::vector<int>& _layer_sizes)
+CNN::CNN(const std::vector<int> _layer_sizes)
 	: layer_sizes(_layer_sizes)
 {
 	if(layers() < 2){
@@ -93,6 +93,15 @@ CNN::~CNN()
 	}
 }
 
+void CNN::print_inputs(){
+	layer* temp = new layer;
+	temp = input;
+	while(temp != nullptr){
+		temp->inputs->print();
+		temp = temp->next;
+	}
+}
+
 //Prints the network (not to be confused with printCNNSummary, this prints all the matrices)
 void CNN::print_network()
 {
@@ -143,12 +152,14 @@ void CNN::print_network()
     @param _inputs - the input to the layer we are on
     @return a matrix after propogating a single layer (eventually the final output
 */
-void propogate_net_recurs(layer * node, std::unique_ptr<Matrix> _inputs)
+void propogate_net_recurs(layer * node)
 {
-	// Copies inputs (but inputs is really stored as the input to the output)
+	// If node is output - break
 	if(node->next == nullptr) return;
-	*node->next->inputs = *(node->weights) * *(_inputs) + *(node->next->biases);
-	return propogate_net_recurs(node->next, std::move(node->next->inputs));
+
+	// output = next inputs = weights * input + next bias
+	*node->next->inputs = *(node->weights) * *(node->inputs) + *(node->next->biases);
+	return propogate_net_recurs(node->next);
 }
 
 /**
@@ -158,7 +169,8 @@ void propogate_net_recurs(layer * node, std::unique_ptr<Matrix> _inputs)
 */
 void CNN::propogate_network(std::unique_ptr<Matrix> inputs)
 {
-	propogate_net_recurs(input, std::move(inputs));
+	input->inputs = std::move(inputs);
+	propogate_net_recurs(input);
 }
 
 //prints a clean network summary including inputs, outputs, hidden layers and size hidden layers
@@ -179,40 +191,42 @@ void CNN::print_network_summary()
 
     @return void recursively updates weights and biases using the chain rule in calculus
 */
-void CNN::back_propogate_recurs(const Matrix& expected, float rate)
+void CNN::back_propogate_network(const Matrix& expected, float rate)
 {
     //the propogating layer
     layer * temp = output->previous;
 
-	Matrix error = parMult(*output->inputs - expected, 
-
-    //universal delta - propogates backwards
-    Matrix del = parMult((outputs - expected), 
-                (temp->weights * temp->inputs + temp->next->biases).reluPrime());
+	Matrix del = *output->inputs - expected;
+	del.par_mult(*temp->weights * *temp->inputs + *temp->next->biases);
+	del.relu_prime();
 
     //delGrad updated gradient for weights matrix
-    Matrix delGrad = del * (*(temp->inputs));
+	Matrix delGrad;
+	delGrad = del * temp->inputs->transpose();
+	delGrad.par_mult(*temp->weights);
 
-    //update weights and biases
-    temp->weights = temp->weights - ((parMult(temp->weights, delGrad)).scalarMult(rate));
-    temp->next->biases = temp->next->biases - del.scalarMult(rate);
-   
+	*temp->weights = *temp->weights - delGrad * rate;
+	*temp->next->biases = *temp->next->biases - del * rate;
+
     temp = temp->previous;
     
     //loop backwards and do the same minus the initial del
     while(temp != nullptr)
     {
         //update del
-        del = parMult(((*(temp->next->weights)) * del), 
-                    (temp->weights * temp->inputs + temp->next->biases).reluPrime());
+		del = *temp->next->weights * del;
+		del.par_mult(*temp->weights * *temp->inputs + *temp->next->biases);
+		del.relu_prime();
 
         //gradients
-        Matrix delGrad = del * (*(temp->inputs));
+        delGrad = del * temp->inputs->transpose();
+		delGrad.par_mult(*temp->weights);
 
         //update weights and biases
-        temp->weights = temp->weights - ((parMult(temp->weights, delGrad)).scalarMult(rate));
-        temp->next->biases = temp->next->biases - del.scalarMult(rate);
-        temp = temp->previous;
+		*temp->weights = *temp->weights - delGrad * rate;
+		*temp->next->biases = *temp->next->biases - del * rate;
+
+		temp = temp->previous;
     }
 }
 
