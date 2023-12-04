@@ -2,12 +2,13 @@
 ## build instructions
 This was built on a linux  environment and I am not sure the best way to build using windows or if you can, butassuming you are using a unix environment, all you need to do is run the maker command (removes build rebuilds  the project moving two executables to bin folder
 
+You'll need OpenCV Installed - I just used it to read images. I think I'll bake up my own asap so that I don't 
+have to depend on such a big library. 
+
 ```bash
-    $ ./maker
-
-    $ cd bin
-    $ ./rundatprogram
-
+    $ mkdir build
+    $ cd build
+    $ cmake ..
 ```
 
 
