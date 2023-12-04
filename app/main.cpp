@@ -1,15 +1,11 @@
 #include <iostream>
 
 #include <vector>
-#include <Network.hpp>
-#include <userInterFace.hpp>
-#include "matLib.hpp"
-#include <networkTrain.hpp>
+#include "Network.hpp"
+#include "UI.hpp"
+#include "Matrix.hpp"
+#include "training.hpp"
 
-
-using namespace matlib;
-using namespace NetworkLib;
-using namespace training;
 using std::vector;
 using std::string;
 

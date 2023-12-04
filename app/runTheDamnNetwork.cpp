@@ -1,16 +1,9 @@
 #include <iostream>
-#include "matLib.hpp"
-#include <networkTrain.hpp>
+#include "Matrix.hpp"
+#include "training.hpp"
 #include <vector>
-#include <Network.hpp>
-#include <constants.hpp>
-
-using namespace matlib;
-using namespace NetworkLib;
-using namespace training;
-using std::vector;
-using std::string;
-
+#include "Network.hpp"
+#include "constants.hpp"
 
 int main(int argc, char **argv) {
 

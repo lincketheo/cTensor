@@ -7,7 +7,7 @@ This was built on a linux  environment and I am not sure the best way to build u
     $ cd build
     $ cmake ..
     $ make
-    $ ./src/run
+    $ ./app/run
 ```
 
 ## Description

@@ -5,19 +5,15 @@
     @author Theo Lincke, Kyle Zhou
     @version 1.1 4/17/19
 */
-#include <userInterFace.hpp>        //main header file
+#include "UI.hpp"        //main header file
 #include <iostream>                 //printf std
-#include "matLib.hpp"               //used for matrix caching
+#include "Matrix.hpp"               //used for matrix caching
 #include <string>                   //to filter user inputs
-#include <Network.hpp>              //to train the neural network
-#include <networkTrain.hpp>         //obtain datasets from folders
-#include <constants.hpp>            //fileBaseCONSTANT fileBaseTestCONSTANT
+#include "Network.hpp"              //to train the neural network
+#include "training.hpp"         //obtain datasets from folders
+#include "constants.hpp"            //fileBaseCONSTANT fileBaseTestCONSTANT
 #include <limits>                   //flush
-
-using namespace NetworkLib;
-using namespace matlib;
-using namespace training;
-
+#include <utility>
 
 //null construction of UI
 UI::UI() {
@@ -268,8 +264,8 @@ int UI::neuralNetworkMenu() {
 void UI::propogateNeuralNetwork(const char **fileNames, int *labels) {
 
     trainingSet testing = uploadAllImages(trainingFileBase, fileNames, labels, numLabels, fileEnding, numReps);
-    for (int i = 0; i < testing.files.size(); i++) {
-        std::cout << testing.files[i].file << std::endl;
+    for (auto &file: testing.files) {
+        std::cout << file.file << std::endl;
     }
     main = trainDataSet(testing, nHL, sHL, rate);
 }
@@ -282,7 +278,6 @@ int UI::mainDisplay() {
 
 
 
-    //printf("       ooooo                                  \n         8                                    \n.oPYo.   8   .oPYo. odYo. .oPYo. .oPYo. oPYo.\n8    '   8   8oooo8 8' `8 Yb..   8    8 8  `' \n8    .   8   8.     8   8   'Yb. 8    8 8     \n`YooP'   8   `Yooo' 8   8 `YooP' `YooP' 8     \n:.....:::..:::.....:..::..:.....::.....:..::::\n::::::::::::::::::::::::::::::::::::::::::::::\n:::::::::::::::::::::::::::::::::::::::::::::\n");
     printf("\n\nA pretty ok nerual network and Linear Algebra Library in C++\n");
     std::cout << "Press ENTER to continue ....." << std::flush;
     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -316,8 +311,8 @@ bool UI::controlFlow(const char **fileNames, int *labels) {
 
         propogateNeuralNetwork(fileNames, labels);
         trainingSet testing2 = uploadAllImages(testingFileBase, fileNames, labels, numLabels, "jpg", 100);
-        for (int i = 0; i < testing2.files.size(); i++) {
-            std::cout << testing2.files[i].file << std::endl;
+        for (auto &file: testing2.files) {
+            std::cout << file.file << std::endl;
         }
         main->printNetwork();
         main->printNetworkSummary();
@@ -342,7 +337,7 @@ void UI::deleteAll() {
 }
 
 //delete a specific matrix in cache
-void UI::deleteMatrix(std::string id) {
+void UI::deleteMatrix(const std::string &id) {
     MatrixMemory *temp = head;
     while (temp->next != nullptr) {
         if (temp->next->id == id) {
@@ -358,7 +353,7 @@ void UI::deleteMatrix(std::string id) {
 
 //print a specific matrix in cache
 void UI::printMatrix(std::string id) {
-    getMatrix(id).print();
+    getMatrix(std::move(id)).print();
 }
 
 //print the entire cache
@@ -372,9 +367,9 @@ void UI::printCache() {
 }
 
 //========================================= Operators ================================
-void UI::addMatrix(std::string matrixIn, std::string id) {
+void UI::addMatrix(const std::string &matrixIn, const std::string &id) {
     if (head == nullptr) {
-        MatrixMemory *value = new MatrixMemory;
+        auto *value = new MatrixMemory;
         value->val = Matrix(matrixIn);
         value->id = id;
         value->next = nullptr;
@@ -383,14 +378,14 @@ void UI::addMatrix(std::string matrixIn, std::string id) {
     }
     MatrixMemory *temp = head;
     while (temp->next != nullptr)temp = temp->next;
-    MatrixMemory *newMemory = new MatrixMemory;
+    auto *newMemory = new MatrixMemory;
     newMemory->val = Matrix(matrixIn);
     newMemory->id = id;
     newMemory->next = nullptr;
     temp->next = newMemory;
 }
 
-Matrix UI::getMatrix(std::string id) {
+Matrix UI::getMatrix(const std::string &id) {
     MatrixMemory *m = head;
     while (m != nullptr) {
         if (m->id == id)return m->val;
@@ -402,57 +397,57 @@ Matrix UI::getMatrix(std::string id) {
     return a;
 }
 
-Matrix UI::multiplyMatrices(std::string id1, std::string id2) {
+Matrix UI::multiplyMatrices(const std::string &id1, const std::string &id2) {
     Matrix p = getMatrix(id1) * getMatrix(id2);
     p.print();
     return p;
 }
 
-Matrix UI::inverse(std::string id) {
+Matrix UI::inverse(const std::string &id) {
     Matrix p = !getMatrix(id);
     p.print();
     return p;
 }
 
-Matrix UI::RREF(std::string id) {
+Matrix UI::RREF(const std::string &id) {
     getMatrix(id).GaussJordanRREF();
     Matrix p = getMatrix(id);
     p.print();
     return p;
 }
 
-Matrix UI::REF(std::string id) {
+Matrix UI::REF(const std::string &id) {
     getMatrix(id).GaussJordan();
     Matrix p = getMatrix(id);
     p.print();
     return p;
 }
 
-Matrix UI::add(std::string id1, std::string id2) {
+Matrix UI::add(const std::string &id1, const std::string &id2) {
     Matrix p = getMatrix(id1) + getMatrix(id2);
     p.print();
     return p;
 }
 
-Matrix UI::principleEigVec(std::string id) {
+Matrix UI::principleEigVec(const std::string &id) {
     Matrix p = getMatrix(id).principalEig(100);
     p.print();
     return p;
 }
 
-Matrix UI::transpose(std::string id) {
+Matrix UI::transpose(const std::string &id) {
     Matrix p = *getMatrix(id);
     p.print();
     return p;
 }
 
-Matrix UI::sigmoid(std::string id) {
+Matrix UI::sigmoid(const std::string &id) {
     getMatrix(id).sigmoid().print();
     Matrix p = getMatrix(id);
     return p;
 }
 
-float UI::norm(std::string id) {
+float UI::norm(const std::string &id) {
     float i = float(getMatrix(id));
     std::cout << std::endl;
     std::cout << i << std::endl;

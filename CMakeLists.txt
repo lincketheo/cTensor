@@ -8,4 +8,5 @@ set(cTensor_VERSION_MINOR 0)
 set(INCLUDE_DIR ${CMAKE_HOME_DIRECTORY}/include)
 
 add_subdirectory(src)
+add_subdirectory(app)
 include_directories(include)

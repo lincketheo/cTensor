@@ -1,9 +1,9 @@
 #include <iostream>
 #include <random>
 #include <vector>
-#include <matLib.hpp>
-#include <Network.hpp>
-#include <networkTrain.hpp>
+#include "Matrix.hpp"
+#include "Network.hpp"
+#include "training.hpp"
 #include <algorithm>
 
 /**
@@ -35,7 +35,7 @@
     A possible way to combat this is to limit the amount of  data being transfered to our input
     matrix
     
-    Finally, all the output labels don't necessarily have to be numbers,
+    Finally, all the greeting_ascii labels don't necessarily have to be numbers,
     for example, you could have labels for clothing or faces, but the program takes in a number
     so your best option is to assign a number to a type (1 gets dress, 2 gets shoe etc.)
 */
@@ -53,13 +53,13 @@
     
     @return a vector cv strings to each file
 */
-vector<training::trainElem> training::uploadImages(
-        int number, std::string filePath,
-        std::string fileEnding, int maxIm
+vector<trainElem> uploadImages(
+        int number, const std::string &filePath,
+        const std::string &fileEnding, int maxIm
 ) {
     vector<std::string> fn;
     /*
-        stores the output of
+        stores the greeting_ascii of
         $ ls | grep *.<fileEnding>
         example:
         $ ls /home/images/testing/9/ | grep *.jpg
@@ -89,7 +89,7 @@ vector<training::trainElem> training::uploadImages(
 
     @return mainSet a vector  of trainElem (string filename and int label)
 */
-training::trainingSet training::uploadAllImages(
+trainingSet uploadAllImages(
         const std::string &basePath,
         const char **fileNames,
         int *labels,
@@ -126,7 +126,7 @@ training::trainingSet training::uploadAllImages(
   
     A source of error - mayber images aren't the same size or example is null
 */
-int training::getNumIn(const std::string &example) {
+int getNumIn(const std::string &example) {
     // TODO
     //Mat A = imread(example, 1);
     // int size = A.rows * A.cols;
@@ -135,14 +135,14 @@ int training::getNumIn(const std::string &example) {
 }
 
 /**
-    creates a vector based on the desired output (label)
+    creates a vector based on the desired greeting_ascii (label)
 
-    @param size the size of  the output layer
+    @param size the size of  the greeting_ascii layer
     @param label the index of the vector to assume 1
 
     @return a Matrix with 1 in the position we want label to be in
 */
-Matrix training::createOutput(int size, int label) {
+Matrix createOutput(int size, int label) {
     Matrix a(size, 1);
     a.insert(0, 0, 0);
     a.insert(label, 0, 1);
@@ -159,7 +159,7 @@ Matrix training::createOutput(int size, int label) {
 
     @return a Network that has been altered to fit the data
 */
-NetworkLib::Network *training::trainDataSet(const trainingSet &set, int nHL, int sHL, float rate) {
+Network *trainDataSet(const trainingSet &set, int nHL, int sHL, float rate) {
     // TODO
     return nullptr;
     /**
@@ -187,13 +187,13 @@ NetworkLib::Network *training::trainDataSet(const trainingSet &set, int nHL, int
 }
 
 /**
-    Just a clean output format to test the network visualy
+    Just a clean greeting_ascii format to test the network visualy
 
     @param net the network to train against
     @param mat the matrix to input to the network
     @param expected the expected matrix
 */
-bool training::runOnMatrix(const std::string &filePath, NetworkLib::Network *net, int expected) {
+bool runOnMatrix(const std::string &filePath, Network *net, int expected) {
     /** TODO
     Mat A = cv::imread(filePath, 1);
     Matrix B(A.rows * A.cols, 1);
@@ -208,12 +208,12 @@ bool training::runOnMatrix(const std::string &filePath, NetworkLib::Network *net
 }
 
 
-float training::testOnTestSet(const trainingSet &set, NetworkLib::Network *net) {
+float testOnTestSet(const trainingSet &set, Network *net) {
     int correct = 0;
     int total = 0;
     for (auto &file: set.files) {
         if (runOnMatrix(file.file, net, file.label))correct++;
         total++;
     }
-    return double(correct) / double(total);
+    return float(correct) / float(total);
 }

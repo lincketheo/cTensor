@@ -1,5 +1,5 @@
 #include <iostream>
-#include <matLib.hpp>
+#include <Matrix.hpp>
 #include <Network.hpp>
 #include <string>
 
@@ -18,9 +18,9 @@ public:
 
     ~UI();
 
-    int mainDisplay();
+    static int mainDisplay();
 
-    int Menu();
+    static int Menu();
 
     bool LinAlgMenu();
 
@@ -32,36 +32,35 @@ public:
 
     void operationMenu();
 
-
     void deleteAll();
 
-    void deleteMatrix(string id);
+    void deleteMatrix(const string &id);
 
     void printMatrix(string id);
 
     void printCache();
 
-    void addMatrix(string, string);
+    void addMatrix(const string &, const string &);
 
-    Matrix multiplyMatrices(string, string);
+    Matrix multiplyMatrices(const string &, const string &);
 
-    Matrix inverse(string);
+    Matrix inverse(const string &);
 
-    Matrix getMatrix(string id);
+    Matrix getMatrix(const string &id);
 
-    Matrix RREF(string);
+    Matrix RREF(const string &);
 
-    Matrix REF(string);
+    Matrix REF(const string &);
 
-    Matrix add(string, string);
+    Matrix add(const string &, const string &);
 
-    Matrix principleEigVec(string);
+    Matrix principleEigVec(const string &);
 
-    Matrix transpose(string);
+    Matrix transpose(const string &);
 
-    Matrix sigmoid(string);
+    Matrix sigmoid(const string &);
 
-    float norm(string);
+    float norm(const string &);
 
     void propogateNeuralNetwork(const char **, int *);
 
@@ -72,10 +71,10 @@ private:
     std::string trainingFileBase;
     std::string testingFileBase;
     std::string fileEnding;
-    int nHL;
-    int sHL;
-    float rate;
-    int numReps;
-    NetworkLib::Network *main;
+    int nHL{};
+    int sHL{};
+    float rate{};
+    int numReps{};
+    Network *main;
 };
 

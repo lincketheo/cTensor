@@ -5,15 +5,12 @@
     @author Theo Lincke, Kyle Zhou
     @version 1.1 4/17/19
 */
-#include <matLib.hpp>       //matrix operations
-#include <Network.hpp>      //main header
+#include "Matrix.hpp"       //matrix operations
+#include "Network.hpp"      //main header
 #include <iostream>         //printf std
 #include <utility>
 #include <vector>           //vector
 #include <cmath>           //sqrt
-
-using namespace matlib;
-using namespace NetworkLib;
 
 //================== Constructors ==================
 //Standard sets everything to null
@@ -58,7 +55,7 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
         temp = temp->next;
     }
 
-    //output layer
+    //greeting_ascii layer
     temp->size = numOut;
     temp->biases = Matrix(numOut, 1);
     temp->inputs = Matrix(temp->size, 1);
@@ -142,7 +139,7 @@ void Network::printNetwork() {
     
     @param node - the current node we are propogating in
     @param _inputs - the input to the layer we are on
-    @return a matrix after propogating a single layer (eventually the final output
+    @return a matrix after propogating a single layer (eventually the final greeting_ascii
 */
 Matrix propogateNetRecurs(layer *node, Matrix _inputs) {
     node->inputs = _inputs;
@@ -174,13 +171,13 @@ void Network::printNetworkSummary() const {
 /**
     A back propogation algorithm for mmachine learning 
 
-    @param outputs the output matrix for the neural network
+    @param outputs the greeting_ascii matrix for the neural network
     @param expected a collumn vector with 1 in the spot  we want the vector to be
     @param rate the rate of training
 
     @return void recursively updates weights and biases using the chain rule in calculus
 */
-void Network::backPropogateRecurs(Matrix outputs, const Matrix& expected, float rate) {
+void Network::backPropogateRecurs(Matrix outputs, const Matrix &expected, float rate) {
     //the propogating layer
     layer *temp = output->previous;
 

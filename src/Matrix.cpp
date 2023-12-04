@@ -1,13 +1,10 @@
-#include "matLib.hpp"       //main header
+#include "Matrix.hpp"       //main header
 #include <cmath>            //exp
 #include <stdexcept>        //dim missmatch
 #include <sstream>          //Constructor Matrix
 #include <vector>           //std::vector
 
 #define MIN(a, b) ((a > b) ? b : a)
-
-using namespace matlib;
-
 
 /**
     Utility random function
@@ -30,7 +27,7 @@ float RandomFloat(float a, float b) {
     (i.e. [a b c; d e f; g h i])
 */
 
-Matrix::Matrix(const std::string& str) {
+Matrix::Matrix(const std::string &str) {
     std::vector<float> varr;
     std::stringstream ss;
     ss << str;
@@ -116,7 +113,7 @@ void Matrix::print() {
 
 
 /**
-    inserts a value into the matrix    
+    inserts a value into the matrix
 
     @param c1, c2 indices for the row, col respectively (starting at 0)
     val value to insert
@@ -129,7 +126,7 @@ void Matrix::insert(int c1, int c2, float val) {
 }
 
 /**
-    inserts a value into the matrix    
+    inserts a value into the matrix
 
     @param c1, c2 indices for the row, col respectively (starting at 0)
 
@@ -344,7 +341,7 @@ int Matrix::getMaxIndex() {
 Matrix Matrix::inverse() {
     Matrix inverse(dim1, dim2);
     Matrix
-    large(dim1, dim2 * 2);
+            large(dim1, dim2 * 2);
     for (int i = 0; i < dim1; i++) {
         for (int j = 0; j < dim2; j++)
             large.insert(i, j, get(i, j));
@@ -383,7 +380,7 @@ Matrix rotate(Matrix t1, float theta, int x, int y) {
 }
 
 //multiplies all values in parallel
-Matrix matlib::parMult(Matrix t, Matrix t2) {
+Matrix parMult(Matrix t, Matrix t2) {
     Matrix t1(t.dim1, t.dim2);
     if (t1.dim1 != t2.dim1 || t1.dim2 != t2.dim2)
         throw std::invalid_argument("dim missmatch parMult");
@@ -393,7 +390,7 @@ Matrix matlib::parMult(Matrix t, Matrix t2) {
 }
 
 //adds all values in parallel
-Matrix matlib::parAdd(Matrix t, Matrix t2) {
+Matrix parAdd(Matrix t, Matrix t2) {
     Matrix t1 = t;
     if (t1.dim1 != t2.dim1)
         throw std::invalid_argument("dim missmatch parAdd");
@@ -405,7 +402,7 @@ Matrix matlib::parAdd(Matrix t, Matrix t2) {
 }
 
 //squares all values in parallel (self par mult self)
-Matrix matlib::parSqr(Matrix t) {
+Matrix parSqr(Matrix t) {
     Matrix t1 = t;
     for (int i = 0; i < t1.dim1 * t1.dim2; i++)
         t1.arr[i] = t1.arr[i] * t1.arr[i];
@@ -465,4 +462,82 @@ void Matrix::GaussJordanRREF() {
         i--;
         j--;
     }
+}
+
+
+//Make matrix negative
+Matrix Matrix::operator-() {
+    Matrix result = Matrix(dim1, dim2);
+    for (int i = 0; i < dim1 * dim2; i++)
+        result.arr[i] = -arr[i];
+    return result;
+}
+
+//add a matrix to self
+Matrix Matrix::operator+(const Matrix &tensor) {
+    return this->add(tensor);
+}
+
+//subtract a matrix from self
+Matrix Matrix::operator-(const Matrix &tensor) {
+    return this->minus(tensor);
+}
+
+//multiply a matrix to self
+Matrix Matrix::operator*(const Matrix &tensor) {
+    return this->stdMult(tensor);
+}
+
+//multiply a scalar by self
+Matrix Matrix::operator*(const float &val) {
+    return this->scalarMult(val);
+}
+
+//====================================== COMPARATOR OPERATIONS ======================================
+
+bool Matrix::operator<(const Matrix &tensor) {
+    Matrix newTens = tensor;
+    return (this->normEuclid()) < (newTens.normEuclid());
+}
+
+bool Matrix::operator>(const Matrix &tensor) {
+    Matrix newTens = tensor;
+    return (this->normEuclid()) > (newTens.normEuclid());
+}
+
+bool Matrix::operator==(const Matrix &tensor) {
+    Matrix newTens = tensor;
+    return (this->normEuclid()) == (newTens.normEuclid());
+}
+
+bool Matrix::operator<=(const Matrix &tensor) {
+    Matrix newTens = tensor;
+    return (this->normEuclid()) <= (newTens.normEuclid());
+}
+
+bool Matrix::operator>=(const Matrix &tensor) {
+    Matrix newTens = tensor;
+    return (this->normEuclid()) >= (newTens.normEuclid());
+}
+
+
+//====================================== UNITARY OPERATIONS ======================================
+//norm of self
+Matrix::operator float() {
+    return this->normEuclid();
+}
+
+//inverse (!A)
+Matrix Matrix::operator!() {
+    return this->inverse();
+}
+
+//transpose self (*A)
+Matrix Matrix::operator*() {
+    return this->transpose();
+}
+
+//trace of self (~A)
+float Matrix::operator~() {
+    return this->trace();
 }
