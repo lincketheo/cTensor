@@ -8,15 +8,12 @@
 #include <matLib.hpp>       //matrix operations
 #include <Network.hpp>      //main header
 #include <iostream>         //printf std
+#include <utility>
 #include <vector>           //vector
-#include <math.h>           //sqrt
+#include <cmath>           //sqrt
 
 using namespace matlib;
 using namespace NetworkLib;
-using std::vector;
-using std::cout;
-using std::endl;
-
 
 //================== Constructors ==================
 //Standard sets everything to null
@@ -48,14 +45,14 @@ Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayer
     input->previous = nullptr;
 
     //variable layer
-    layer *temp = new layer;
+    auto *temp = new layer;
     input->next = temp;
     temp->previous = input;
 
     //go forward to assign sizes and go backwards to assign weights biases
     for (int i = 0; i < numHiddenLayers; i++) {
         temp->size = sizeHiddenLayers;
-        layer *next = new layer;
+        auto *next = new layer;
         temp->next = next;
         next->previous = temp;
         temp = temp->next;
@@ -99,16 +96,16 @@ Network::~Network() {
 
 //Prints the network (not to be confused with printNetworkSummary, this prints all the matrices)
 void Network::printNetwork() {
-    cout << "Input Layer: " << endl;
-    layer *temp = new layer;
+    std::cout << "Input Layer: " << std::endl;
+    auto *temp = new layer;
     temp = input;
 
     Matrix weight = temp->weights;
-    cout << "Weights" << endl;
+    std::cout << "Weights" << std::endl;
     weight.print();
-    cout << endl;
-    cout << "------------------" << endl;
-    cout << endl;
+    std::cout << std::endl;
+    std::cout << "------------------" << std::endl;
+    std::cout << std::endl;
     temp = temp->next;
 
     while (temp->next != nullptr) {
@@ -118,25 +115,25 @@ void Network::printNetwork() {
         Matrix weight = temp->weights;
 
         Matrix transpBias = *bias;
-        cout << "Biases:" << endl;
+        std::cout << "Biases:" << std::endl;
         transpBias.print();
 
-        cout << "Weights:" << endl;
+        std::cout << "Weights:" << std::endl;
         weight.print();
 
-        cout << endl;
-        cout << "------------------" << endl;
-        cout << endl;
+        std::cout << std::endl;
+        std::cout << "------------------" << std::endl;
+        std::cout << std::endl;
         temp = temp->next;
     }
-    cout << "Outputs" << endl;
+    std::cout << "Outputs" << std::endl;
     Matrix bias = temp->biases;
-    cout << "Biases:" << endl;
+    std::cout << "Biases:" << std::endl;
     Matrix transpBias = *bias;
     transpBias.print();
-    cout << endl;
-    cout << "------------------" << endl;
-    cout << endl;
+    std::cout << std::endl;
+    std::cout << "------------------" << std::endl;
+    std::cout << std::endl;
 }
 
 
@@ -161,17 +158,17 @@ Matrix propogateNetRecurs(layer *node, Matrix _inputs) {
     @return a matrix after all transformations have been done
 */
 Matrix Network::propogateNetwork(Matrix inputs) {
-    return propogateNetRecurs(input, inputs);
+    return propogateNetRecurs(input, std::move(inputs));
 }
 
 //prints a clean network summary including inputs, outputs, hidden layers and size hidden layers
-void Network::printNetworkSummary() {
-    cout << "====================Network====================" << endl;
-    cout << "Number of inputs: " << numberIn << endl;
-    cout << "Number of Outputs: " << numberOut << endl;
-    cout << "Number of hidden layers: " << layers << endl;
-    cout << "Size of hidden layers: " << layersSize << endl;
-    cout << "===============================================" << endl;
+void Network::printNetworkSummary() const {
+    std::cout << "====================Network====================" << std::endl;
+    std::cout << "Number of inputs: " << numberIn << std::endl;
+    std::cout << "Number of Outputs: " << numberOut << std::endl;
+    std::cout << "Number of hidden layers: " << layers << std::endl;
+    std::cout << "Size of hidden layers: " << layersSize << std::endl;
+    std::cout << "===============================================" << std::endl;
 }
 
 /**
@@ -183,7 +180,7 @@ void Network::printNetworkSummary() {
 
     @return void recursively updates weights and biases using the chain rule in calculus
 */
-void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate) {
+void Network::backPropogateRecurs(Matrix outputs, const Matrix& expected, float rate) {
     //the propogating layer
     layer *temp = output->previous;
 

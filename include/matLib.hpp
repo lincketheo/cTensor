@@ -11,7 +11,7 @@ namespace matlib {
     public:
         //Matrix is an ordered matrix
         Matrix();                   //standard - 2 x 2 zeros matrix
-        Matrix(std::string);        //creates a matrix from a string input
+        explicit Matrix(const std::string&);        //creates a matrix from a string input
         Matrix(int, int);           //n x m matrix with zeros  down the diagonal (identity)
         Matrix(int, int, float);    //n x m matrix with random numbers constrained by float
 
@@ -66,7 +66,7 @@ namespace matlib {
         bool operator>=(Matrix const &);
 
         //type casting
-        operator float();
+        explicit operator float();
 
         Matrix operator!(); //inverse (!tensor)
         Matrix operator*(); //transpose (*tensor)
@@ -102,8 +102,6 @@ namespace matlib {
         Matrix inverse();
 
         float trace();
-
-
     };
 
     Matrix rotate(Matrix, float, int, int); //rotate a matrix

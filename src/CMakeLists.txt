@@ -1,33 +1,19 @@
-cmake_minimum_required(VERSION 2.8 FATAL_ERROR)
-set(CMAKE_CXX_STANDARD 11)
+add_subdirectory(Matrix Networks)
 
-project(cTensor)
-set(cTensor_VERSION_MAJOR 1)
-set(cTensor_VERSION_MINOR 0)
-
-find_package(OpenCV REQUIRED)
-
-include_directories(../include)
-
-add_subdirectory(Matrix
-        Networks)
-
-
-add_executable(runTheDamnNetwork
-        runTheDamnNetwork.cpp
+add_library(cTensor SHARED
         UI/driver.cpp
         Matrix/kernel.cpp
         Matrix/operations.cpp
         Networks/Network.cpp
-        Data/dataHandler.cpp)
+        Data/dataHandler.cpp
+)
+target_include_directories(cTensor PUBLIC ${INCLUDE_DIR})
 
-add_executable(run main.cpp
-        UI/driver.cpp
-        Matrix/kernel.cpp
-        Matrix/operations.cpp
-        Networks/Network.cpp
-        Data/dataHandler.cpp)
+add_executable(runTheDamnNetwork runTheDamnNetwork.cpp)
+target_link_libraries(runTheDamnNetwork PUBLIC cTensor)
+target_include_directories(runTheDamnNetwork PUBLIC ${INCLUDE_DIR})
 
-target_link_libraries(runTheDamnNetwork ${OpenCV_LIBS})
-target_link_libraries(run ${OpenCV_LIBS})
+add_executable(run main.cpp)
+target_link_libraries(run PUBLIC cTensor)
+target_include_directories(run PUBLIC ${INCLUDE_DIR})
 

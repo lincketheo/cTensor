@@ -2,3 +2,4 @@
 build
 bin/run
 bin/runTheDamnNetwork
+cmake-build-debug

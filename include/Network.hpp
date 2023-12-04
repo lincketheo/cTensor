@@ -2,8 +2,9 @@
 #define NETWORK_HPP
 
 #include <iostream>
-#include <matLib.hpp>
 #include <vector>
+
+#include "matLib.hpp"
 
 //uses matrices extensively
 using namespace matlib;
@@ -32,8 +33,8 @@ namespace NetworkLib {
         void printNetwork();                                //prints matrices in network
         void storeNetwork(std::string filename);            //stores network to a csv file
         void extractNetwork(std::string filename);          //extracts csv network
-        void printNetworkSummary();                         //prints a summary of the network
-        void backPropogateRecurs(Matrix, Matrix, float);    //back propogation algorithm
+        void printNetworkSummary() const;                         //prints a summary of the network
+        void backPropogateRecurs(Matrix, const Matrix&, float);    //back propogation algorithm
 
     private:
         layer *input;      //input layer (first)

@@ -1,9 +1,10 @@
 #include <iostream>
-#include <matLib.hpp>
-#include <networkTrain.hpp>
+
 #include <vector>
 #include <Network.hpp>
 #include <userInterFace.hpp>
+#include "matLib.hpp"
+#include <networkTrain.hpp>
 
 
 using namespace matlib;

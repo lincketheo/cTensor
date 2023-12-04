@@ -1,15 +1,6 @@
-/**
-    CS-11 Asn 2, operators.cpp
-    Purpose: Overridden operators for matrix calculations
-
-    @author Theo Lincke, Kyle Zhou
-    @version 1.1 4/17/19
-*/
 #include <matLib.hpp>
 
 using namespace matlib;
-
-//===================================== MATRIX OPERATIONS =======================================
 
 //Make matrix negative
 Matrix Matrix::operator-() {

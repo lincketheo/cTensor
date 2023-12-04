@@ -1,10 +1,9 @@
-1. Remove dependency from opencv and read in bake up your own image reader in C++
-2. input output to csv file (network)
-3. fine tune
-4. change matrix opperation structure
+1. ~Remove dependency from opencv and read in bake up your own image reader in C++ ~
+    - And fix up the occurences of cv
+2. change matrix opperation structure
     - Dont copy matrix in backpropogation
     - Write a custom update matrix function for backprop
-5. optimize linear algebra library
+3. optimize linear algebra library
     - build sparse matrix class
     - optimize multiplication
     - fix / add subroutines
@@ -16,5 +15,7 @@
         - xSYMM
         - xSPR
 
-6. CUDA
+4. CUDA
     Build a gpu compatible cuda matrix library
+
+5. Clean up imports and namespaces so that includes aren't exposing imports

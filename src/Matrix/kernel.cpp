@@ -1,32 +1,16 @@
-/**
-    CS-11 Asn 2, kernel.cpp
-    Purpose: Basic low level matrix  kernel opperations
-
-    @author Theo Lincke, Kyle Zhou
-    @version 1.1 4/17/19
-*/
-#include <iostream>         //printf std
 #include "matLib.hpp"       //main header
 #include <cmath>            //exp
-#include <random>           //rand
 #include <stdexcept>        //dim missmatch
 #include <sstream>          //Constructor Matrix
-#include <vector>           //vector
+#include <vector>           //std::vector
 
 #define MIN(a, b) ((a > b) ? b : a)
 
 using namespace matlib;
-using std::string;
-using std::vector;
-using std::cout;
-using std::cin;
-using std::stringstream;
-using std::invalid_argument;
 
 
 /**
     Utility random function
-
     @param a min value b max value
     @return a random float  between a and b
 */
@@ -40,34 +24,32 @@ float RandomFloat(float a, float b) {
 //================== Constructors ==================
 
 /**
-    Builds matrix from string input
-
-    @param str string matrix input
+    Builds matrix from std::string input
+    @param str std::string matrix input
     @return self matrix build using standard matlab notation
     (i.e. [a b c; d e f; g h i])
-
 */
 
-Matrix::Matrix(string str) {
-    vector<float> varr;
-    stringstream ss;
+Matrix::Matrix(const std::string& str) {
+    std::vector<float> varr;
+    std::stringstream ss;
     ss << str;
-    string row;
+    std::string row;
     dim1 = 0;
     dim2 = 0;
     bool firstPass = true;
     while (getline(ss, row, ';')) {
         dim1++;
-        stringstream ssrow;
+        std::stringstream ssrow;
         ssrow << row;
-        string element;
+        std::string element;
         while (getline(ssrow, element, ' ')) {
             dim2 = (firstPass) ? dim2 + 1 : dim2;
             varr.push_back(stof(element));
         }
         firstPass = false;
     }
-    arr = vector<float>(dim1 * dim2);
+    arr = std::vector<float>(dim1 * dim2);
     for (int i = 0; i < dim1 * dim2; i++)
         arr[i] = varr[i];
 }
@@ -77,7 +59,7 @@ Matrix::Matrix(string str) {
 Matrix::Matrix() {
     dim1 = 2;
     dim2 = 2;
-    arr = vector<float>(dim1 * dim2);
+    arr = std::vector<float>(dim1 * dim2);
     for (int i = 0; i < dim1 * dim2; i++)
         arr[i] = 0;
 }
@@ -92,7 +74,7 @@ Matrix::Matrix() {
 Matrix::Matrix(int d1, int d2) {
     dim1 = d1;
     dim2 = d2;
-    arr = vector<float>(dim1 * dim2);
+    arr = std::vector<float>(dim1 * dim2);
     for (int i = 0; i < dim1 * dim2; i++)
         arr[i] = (i % (dim2 + 1) == 0 && i < dim2 * dim2) ? 1 : 0;
 }
@@ -110,7 +92,7 @@ Matrix::Matrix(int d1, int d2) {
 Matrix::Matrix(int d1, int d2, float desiredMax) {
     dim1 = d1;
     dim2 = d2;
-    arr = vector<float>(dim1 * dim2);
+    arr = std::vector<float>(dim1 * dim2);
     for (int i = 0; i < dim1 * dim2; i++)
         arr[i] = RandomFloat(-desiredMax, desiredMax);
 }
@@ -158,7 +140,7 @@ float Matrix::get(int c1, int c2) {
 }
 
 /**
-    gets a vertical vector from the matrix
+    gets a vertical std::vector from the matrix
 
     @param col, the collumn to extract from the matrix
     @return all values on the collumn specified as a new vertical matrix
@@ -171,7 +153,7 @@ Matrix Matrix::getCol(int col) {
 }
 
 /**
-    gets a horizontal vector from the matrix
+    gets a horizontal std::vector from the matrix
 
     @param row, the row to extract from the matrix
     @return all values on the row specified as a new horizontal matrix
@@ -232,7 +214,7 @@ void Matrix::swapCol(int c1, int c2) {
 Matrix Matrix::add(Matrix tensor) {
     Matrix newMatrix = Matrix(dim1, dim2);
     if (dim1 != tensor.dim1 || dim2 != tensor.dim2)
-        throw invalid_argument("dim missmatch add");
+        throw std::invalid_argument("dim missmatch add");
     for (int i = 0; i < dim1 * dim2; i++)
         newMatrix.arr[i] = arr[i] + tensor.arr[i];
     return newMatrix;
@@ -242,7 +224,7 @@ Matrix Matrix::add(Matrix tensor) {
 Matrix Matrix::minus(Matrix tensor) {
     Matrix newMatrix = Matrix(dim1, dim2);
     if (dim1 != tensor.dim1 || dim2 != tensor.dim2)
-        throw invalid_argument("dim missmatch minus");
+        throw std::invalid_argument("dim missmatch minus");
     for (int i = 0; i < dim1 * dim2; i++)
         newMatrix.arr[i] = arr[i] - tensor.arr[i];
     return newMatrix;
@@ -260,7 +242,7 @@ Matrix Matrix::scalarMult(float val) {
 Matrix Matrix::innerProd(Matrix tensor) {
     Matrix newMatrix = Matrix(dim1, dim2);
     if (dim1 != tensor.dim1 || dim2 != tensor.dim2)
-        throw invalid_argument("dim missmatch innerProduct");
+        throw std::invalid_argument("dim missmatch innerProduct");
     for (int i = 0; i < dim1 * dim2; i++)
         newMatrix.arr[i] = arr[i] * tensor.arr[i];
     return newMatrix;
@@ -270,7 +252,7 @@ Matrix Matrix::innerProd(Matrix tensor) {
 Matrix Matrix::stdMult(Matrix tensor) {
     Matrix newMatrix = Matrix(dim1, tensor.dim2);
     if (dim2 != tensor.dim1)
-        throw invalid_argument("dim missmatch stdMult");
+        throw std::invalid_argument("dim missmatch stdMult");
     for (int i = 0; i < dim1; i++) {
         for (int j = 0; j < tensor.dim2; j++) {
             float temp = 0;
@@ -386,7 +368,7 @@ float Matrix::trace() {
 }
 
 /**
-    rotates a vector by keeping the norm the same and appling a rotational matrix onto self
+    rotates a std::vector by keeping the norm the same and appling a rotational matrix onto self
 
     @param t1, the matrix to rotate, theta how  many degrees, x, y, the two dimensions to rotate
     @return a new matrix  that is rotated by  theta degrees
@@ -404,7 +386,7 @@ Matrix rotate(Matrix t1, float theta, int x, int y) {
 Matrix matlib::parMult(Matrix t, Matrix t2) {
     Matrix t1(t.dim1, t.dim2);
     if (t1.dim1 != t2.dim1 || t1.dim2 != t2.dim2)
-        throw invalid_argument("dim missmatch parMult");
+        throw std::invalid_argument("dim missmatch parMult");
     for (int i = 0; i < t1.dim1 * t1.dim2; i++)
         t1.arr[i] = t.arr[i] * t2.arr[i];
     return t1;
@@ -414,7 +396,7 @@ Matrix matlib::parMult(Matrix t, Matrix t2) {
 Matrix matlib::parAdd(Matrix t, Matrix t2) {
     Matrix t1 = t;
     if (t1.dim1 != t2.dim1)
-        throw invalid_argument("dim missmatch parAdd");
+        throw std::invalid_argument("dim missmatch parAdd");
     for (int i = 0; i < t2.dim1; i++) {
         for (int j = 0; j < t1.dim2; j++)
             t1.insert(i, j, t1.get(i, j) + t2.get(i, 1));
@@ -430,7 +412,7 @@ Matrix matlib::parSqr(Matrix t) {
     return t1;
 }
 
-//Returns principal eigenvector  using the recursive technique
+//Returns principal eigenstd::vector  using the recursive technique
 Matrix Matrix::principalEig(int max_iter) {
     Matrix v = Matrix(dim1, 1);
     v = (v * (1 / float(v)));

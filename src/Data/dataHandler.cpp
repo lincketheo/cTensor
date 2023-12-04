@@ -1,23 +1,10 @@
 #include <iostream>
+#include <random>
 #include <vector>
-#include <opencv2/opencv.hpp>
 #include <matLib.hpp>
 #include <Network.hpp>
 #include <networkTrain.hpp>
 #include <algorithm>
-
-using std::vector;
-using std::string;
-using std::cout;
-using std::endl;
-using matlib::Matrix;
-using NetworkLib::Network;
-using training::trainElem;
-using training::trainingSet;
-using cv::Mat;
-using cv::imread;
-
-
 
 /**
     train uploads jpg png and any opencv allowed image
@@ -66,8 +53,11 @@ using cv::imread;
     
     @return a vector cv strings to each file
 */
-vector <trainElem> training::uploadImages(int number, string filePath, string fileEnding, int maxIm) {
-    vector <cv::String> fn;
+vector<training::trainElem> training::uploadImages(
+        int number, std::string filePath,
+        std::string fileEnding, int maxIm
+) {
+    vector<std::string> fn;
     /*
         stores the output of
         $ ls | grep *.<fileEnding>
@@ -75,8 +65,8 @@ vector <trainElem> training::uploadImages(int number, string filePath, string fi
         $ ls /home/images/testing/9/ | grep *.jpg
         to fn
     **/
-    cv::glob((filePath + string("*") + fileEnding).c_str(), fn, false);
-    vector <trainElem> matrices;
+    // TODO cv::glob((filePath + string("*") + fileEnding).c_str(), fn, false);
+    vector<trainElem> matrices;
     for (int i = 0; i < fn.size() && i < maxIm; i++) {
         trainElem a;
         a.file = fn[i];
@@ -99,19 +89,23 @@ vector <trainElem> training::uploadImages(int number, string filePath, string fi
 
     @return mainSet a vector  of trainElem (string filename and int label)
 */
-trainingSet
-training::uploadAllImages(string basePath, const char **fileNames, int *labels, int numLabels, string fileEnding,
-                          int maxIm) {
-
-    vector <trainElem> main;
+training::trainingSet training::uploadAllImages(
+        const std::string &basePath,
+        const char **fileNames,
+        int *labels,
+        int numLabels,
+        const std::string &fileEnding,
+        int maxIm
+) {
+    vector<trainElem> main;
     for (int i = 0; i < numLabels; i++) {
 
-        string file = basePath + string("/") + fileNames[i] + string("/");
-        vector <trainElem> b = uploadImages(labels[i], file, fileEnding, maxIm);
+        std::string file = basePath + std::string("/") + fileNames[i] + std::string("/");
+        vector<trainElem> b = uploadImages(labels[i], file, fileEnding, maxIm);
         main.insert(main.end(), b.begin(), b.end());
         b.erase(b.begin(), b.end()); //deallocate memory previously in b
     }
-    std::random_shuffle(main.begin(), main.end());
+    std::shuffle(main.begin(), main.end(), std::mt19937(std::random_device()()));
     trainingSet mainSet;
     mainSet.files = main;
     mainSet.numIn = getNumIn(main[0].file);
@@ -132,11 +126,12 @@ training::uploadAllImages(string basePath, const char **fileNames, int *labels, 
   
     A source of error - mayber images aren't the same size or example is null
 */
-int training::getNumIn(cv::String example) {
-    Mat A = imread(example, 1);
-    int size = A.rows * A.cols;
-    A.release();
-    return size;
+int training::getNumIn(const std::string &example) {
+    // TODO
+    //Mat A = imread(example, 1);
+    // int size = A.rows * A.cols;
+    // A.release();
+    return 1;
 }
 
 /**
@@ -164,13 +159,16 @@ Matrix training::createOutput(int size, int label) {
 
     @return a Network that has been altered to fit the data
 */
-Network *training::trainDataSet(trainingSet set, int nHL, int sHL, float rate) {
+NetworkLib::Network *training::trainDataSet(const trainingSet &set, int nHL, int sHL, float rate) {
+    // TODO
+    return nullptr;
+    /**
     Network *main = new Network(set.numIn, set.numOut, nHL, sHL);
     main->printNetworkSummary();
     for (int i = 0; i < set.files.size(); i++) {
 //        printf("%d) Training ..... Label: %d\n", i, set.files[i].label);
         if (i % 100 == 0)printf("%d) training\n", i);
-        Mat A = cv::imread(set.files[i].file, 1);
+        // Mat A = cv::imread(set.files[i].file, 1); TODO
         if (A.rows != 28 || A.cols != 28) {
             printf("AAAAAA");
             exit(1);
@@ -185,6 +183,7 @@ Network *training::trainDataSet(trainingSet set, int nHL, int sHL, float rate) {
         main->backPropogateRecurs(out, expected, rate);
     }
     return main;
+     */
 }
 
 /**
@@ -194,7 +193,8 @@ Network *training::trainDataSet(trainingSet set, int nHL, int sHL, float rate) {
     @param mat the matrix to input to the network
     @param expected the expected matrix
 */
-bool training::runOnMatrix(cv::String filePath, Network *net, int expected) {
+bool training::runOnMatrix(const std::string &filePath, NetworkLib::Network *net, int expected) {
+    /** TODO
     Mat A = cv::imread(filePath, 1);
     Matrix B(A.rows * A.cols, 1);
     for (int i = 0; i < A.rows * A.cols; i++)
@@ -203,14 +203,16 @@ bool training::runOnMatrix(cv::String filePath, Network *net, int expected) {
     Matrix out = net->propogateNetwork(B);
     Matrix expect = createOutput(out.dim1, expected);
     return expected == out.getMaxIndex();
+     */
+    return false;
 }
 
 
-float training::testOnTestSet(trainingSet set, Network *net) {
+float training::testOnTestSet(const trainingSet &set, NetworkLib::Network *net) {
     int correct = 0;
     int total = 0;
-    for (int i = 0; i < set.files.size(); i++) {
-        if (runOnMatrix(set.files[i].file, net, set.files[i].label))correct++;
+    for (auto &file: set.files) {
+        if (runOnMatrix(file.file, net, file.label))correct++;
         total++;
     }
     return double(correct) / double(total);

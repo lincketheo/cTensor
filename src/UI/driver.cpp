@@ -7,14 +7,13 @@
 */
 #include <userInterFace.hpp>        //main header file
 #include <iostream>                 //printf std
-#include <matLib.hpp>               //used for matrix caching
+#include "matLib.hpp"               //used for matrix caching
 #include <string>                   //to filter user inputs
 #include <Network.hpp>              //to train the neural network
 #include <networkTrain.hpp>         //obtain datasets from folders
 #include <constants.hpp>            //fileBaseCONSTANT fileBaseTestCONSTANT
 #include <limits>                   //flush
 
-using std::string;
 using namespace NetworkLib;
 using namespace matlib;
 using namespace training;
@@ -62,7 +61,7 @@ void UI::operationMenu() {
     std::cin >> option;
     switch (option) {
         case (1): {
-            string id1, id2;
+            std::string id1, id2;
             printf("Matrix 1 = \n");
             std::cin.ignore();
             std::getline(std::cin, id1);
@@ -73,7 +72,7 @@ void UI::operationMenu() {
             return;
         }
         case (2): {
-            string id1, id2;
+            std::string id1, id2;
             printf("Matrix 1 = \n");
             std::cin.ignore();
             std::getline(std::cin, id1);
@@ -83,7 +82,7 @@ void UI::operationMenu() {
             return;
         }
         case (3): {
-            string id;
+            std::string id;
             printf("Matrix = \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -91,7 +90,7 @@ void UI::operationMenu() {
             return;
         }
         case (4): {
-            string id;
+            std::string id;
             printf("Matrix = \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -99,7 +98,7 @@ void UI::operationMenu() {
             return;
         }
         case (5): {
-            string id;
+            std::string id;
             printf("Matrix = \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -107,7 +106,7 @@ void UI::operationMenu() {
             return;
         }
         case (6): {
-            string id;
+            std::string id;
             printf("Matrix = \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -115,7 +114,7 @@ void UI::operationMenu() {
             return;
         }
         case (7): {
-            string id;
+            std::string id;
             printf("Matrix = \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -123,7 +122,7 @@ void UI::operationMenu() {
             return;
         }
         case (8): {
-            string id;
+            std::string id;
             printf("Matrix = \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -131,7 +130,7 @@ void UI::operationMenu() {
             return;
         }
         case (9): {
-            string id;
+            std::string id;
             printf("Matrix = \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -151,7 +150,7 @@ void UI::operationMenu() {
 
 //main linear algebra menu
 bool UI::LinAlgMenu() {
-    string inputS;
+    std::string inputS;
     printf("============ cTensor Linear Algebra Menu ============\n");
     printf("1) Create a Matrix\n");
     printf("2) Operate on a matrix\n");
@@ -163,8 +162,8 @@ bool UI::LinAlgMenu() {
     int input = std::stoi(inputS);
     switch (input) {
         case 1: {
-            string id;
-            string inMat;
+            std::string id;
+            std::string inMat;
             printf("Enter Matrix Variable: \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -184,7 +183,7 @@ bool UI::LinAlgMenu() {
             printCache();
             return true;
         case 4: {
-            string id;
+            std::string id;
             printf("Enter the Matrix to Delete: \n");
             std::cin.ignore();
             std::getline(std::cin, id);
@@ -343,7 +342,7 @@ void UI::deleteAll() {
 }
 
 //delete a specific matrix in cache
-void UI::deleteMatrix(string id) {
+void UI::deleteMatrix(std::string id) {
     MatrixMemory *temp = head;
     while (temp->next != nullptr) {
         if (temp->next->id == id) {
@@ -358,7 +357,7 @@ void UI::deleteMatrix(string id) {
 }
 
 //print a specific matrix in cache
-void UI::printMatrix(string id) {
+void UI::printMatrix(std::string id) {
     getMatrix(id).print();
 }
 
@@ -373,7 +372,7 @@ void UI::printCache() {
 }
 
 //========================================= Operators ================================
-void UI::addMatrix(string matrixIn, string id) {
+void UI::addMatrix(std::string matrixIn, std::string id) {
     if (head == nullptr) {
         MatrixMemory *value = new MatrixMemory;
         value->val = Matrix(matrixIn);
@@ -391,7 +390,7 @@ void UI::addMatrix(string matrixIn, string id) {
     temp->next = newMemory;
 }
 
-Matrix UI::getMatrix(string id) {
+Matrix UI::getMatrix(std::string id) {
     MatrixMemory *m = head;
     while (m != nullptr) {
         if (m->id == id)return m->val;
@@ -403,57 +402,57 @@ Matrix UI::getMatrix(string id) {
     return a;
 }
 
-Matrix UI::multiplyMatrices(string id1, string id2) {
+Matrix UI::multiplyMatrices(std::string id1, std::string id2) {
     Matrix p = getMatrix(id1) * getMatrix(id2);
     p.print();
     return p;
 }
 
-Matrix UI::inverse(string id) {
+Matrix UI::inverse(std::string id) {
     Matrix p = !getMatrix(id);
     p.print();
     return p;
 }
 
-Matrix UI::RREF(string id) {
+Matrix UI::RREF(std::string id) {
     getMatrix(id).GaussJordanRREF();
     Matrix p = getMatrix(id);
     p.print();
     return p;
 }
 
-Matrix UI::REF(string id) {
+Matrix UI::REF(std::string id) {
     getMatrix(id).GaussJordan();
     Matrix p = getMatrix(id);
     p.print();
     return p;
 }
 
-Matrix UI::add(string id1, string id2) {
+Matrix UI::add(std::string id1, std::string id2) {
     Matrix p = getMatrix(id1) + getMatrix(id2);
     p.print();
     return p;
 }
 
-Matrix UI::principleEigVec(string id) {
+Matrix UI::principleEigVec(std::string id) {
     Matrix p = getMatrix(id).principalEig(100);
     p.print();
     return p;
 }
 
-Matrix UI::transpose(string id) {
+Matrix UI::transpose(std::string id) {
     Matrix p = *getMatrix(id);
     p.print();
     return p;
 }
 
-Matrix UI::sigmoid(string id) {
+Matrix UI::sigmoid(std::string id) {
     getMatrix(id).sigmoid().print();
     Matrix p = getMatrix(id);
     return p;
 }
 
-float UI::norm(string id) {
+float UI::norm(std::string id) {
     float i = float(getMatrix(id));
     std::cout << std::endl;
     std::cout << i << std::endl;

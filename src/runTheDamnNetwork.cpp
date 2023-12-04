@@ -1,10 +1,9 @@
 #include <iostream>
-#include <matLib.hpp>
+#include "matLib.hpp"
 #include <networkTrain.hpp>
 #include <vector>
 #include <Network.hpp>
 #include <constants.hpp>
-
 
 using namespace matlib;
 using namespace NetworkLib;
