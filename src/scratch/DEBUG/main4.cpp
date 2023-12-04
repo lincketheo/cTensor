@@ -12,16 +12,16 @@ using namespace training;
 using namespace std;
 const string fileBaseTest = "/home/theo/Documents/projects/math/neuralNets/cTensor/src/Data/images/mnist_jpgfiles/test/9/mnist_9_793.jpg";
 
-int main(int argc, char ** argv){
+int main(int argc, char **argv) {
 
-    srand((unsigned int)time(NULL));
+    srand((unsigned int) time(NULL));
     Mat A = imread(fileBaseTest, 1);
     Matrix B(784, 1);
-    for(int j = 0; j < 784; j++)
+    for (int j = 0; j < 784; j++)
         B.arr[j] = float(A.data[j] / 255.0);
     A.release();
     Matrix expected = createOutput(10, 9);
-    
+
     Network myNet(784, 10, 2, 16);
 
     float a = stof(argv[1]);
@@ -29,7 +29,7 @@ int main(int argc, char ** argv){
     myNet.backPropogateRecurs(Q, expected, a);
     Matrix Q2 = myNet.propogateNetwork(B);
     ((Q - expected) - (Q2 - expected)).print();
-    
+
 
     return 0;
 }
@@ -124,8 +124,8 @@ void displayImage(std::string filename, int dataVal, int number);
     }
     
     A.print();
-  */  
-    //return 0;
+  */
+//return 0;
 
 //}
 

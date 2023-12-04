@@ -4,9 +4,9 @@
 
 using namespace matlib;
 
-int main(){
+int main() {
 
-    Matrix<float> * mainPtr;
+    Matrix<float> *mainPtr;
 
     SparseMatrix<float> mainSps(5, 5);
 
@@ -15,7 +15,6 @@ int main(){
     mainPtr->print();
 
 
-    
     return 0;
 
 

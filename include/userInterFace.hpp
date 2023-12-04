@@ -5,57 +5,77 @@
 
 using std::string;
 
-struct MatrixMemory{
-    string id;  
+struct MatrixMemory {
+    string id;
     Matrix val;
-    MatrixMemory * next;
+    MatrixMemory *next;
 };
 
 
-class UI{
-    public:
-        UI();
-        ~UI();
-        int mainDisplay();
-        int Menu();
-        bool LinAlgMenu();
-        bool operateMenu();
-        int neuralNetworkMenu();
-        bool controlFlow(const char **, int *);
-        void operationMenu();
+class UI {
+public:
+    UI();
 
-        
-        void deleteAll();
-        void deleteMatrix(string id);
-        void printMatrix(string id);
-        void printCache();
-        void addMatrix(string, string);
+    ~UI();
 
-        Matrix multiplyMatrices(string, string);        
-        Matrix inverse(string);
+    int mainDisplay();
 
-        Matrix getMatrix(string id);
+    int Menu();
 
-        Matrix RREF(string);
-        Matrix REF(string);
-        Matrix add(string, string);
-        Matrix principleEigVec(string);
-        Matrix transpose(string);
-        Matrix sigmoid(string);
-        float norm(string);
-        void propogateNeuralNetwork(const char **, int *);        
+    bool LinAlgMenu();
 
-    private:    
-        MatrixMemory * head;
-        int cacheSize;
-        int numLabels = 10;
-        std::string trainingFileBase;
-        std::string testingFileBase;
-        std::string fileEnding;
-        int nHL;
-        int sHL;
-        float rate;
-        int numReps;
-        NetworkLib::Network * main;
+    bool operateMenu();
+
+    int neuralNetworkMenu();
+
+    bool controlFlow(const char **, int *);
+
+    void operationMenu();
+
+
+    void deleteAll();
+
+    void deleteMatrix(string id);
+
+    void printMatrix(string id);
+
+    void printCache();
+
+    void addMatrix(string, string);
+
+    Matrix multiplyMatrices(string, string);
+
+    Matrix inverse(string);
+
+    Matrix getMatrix(string id);
+
+    Matrix RREF(string);
+
+    Matrix REF(string);
+
+    Matrix add(string, string);
+
+    Matrix principleEigVec(string);
+
+    Matrix transpose(string);
+
+    Matrix sigmoid(string);
+
+    float norm(string);
+
+    void propogateNeuralNetwork(const char **, int *);
+
+private:
+    MatrixMemory *head;
+    int cacheSize;
+    int numLabels = 10;
+    std::string trainingFileBase;
+    std::string testingFileBase;
+    std::string fileEnding;
+    int nHL;
+    int sHL;
+    float rate;
+    int numReps;
+    NetworkLib::Network *main;
 };
 

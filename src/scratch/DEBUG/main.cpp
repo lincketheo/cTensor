@@ -13,24 +13,24 @@ using std::string;
 
 const string fileBase = "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/test";
 
-int main(){
-    
-    srand((unsigned int)time(NULL));
+int main() {
 
-    const char * fileNames[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-    int labels[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; 
-    
-    vector<testElement> testing = uploadAllImages(fileBase, fileNames, labels, 10, "jpg", 1);
+    srand((unsigned int) time(NULL));
+
+    const char *fileNames[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    int labels[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+    vector <testElement> testing = uploadAllImages(fileBase, fileNames, labels, 10, "jpg", 1);
 //    for(int i = 0; i < testing.size(); i++){
 //        std::cout<<testing[i].label<<std::endl;
 //        testing[i].mat.print();
 //    }
-    
+
 //    std::cout<<testing.size()<<std::endl;
     Network myNet = trainDataSet(testing, 1, 200, 1);
-    
+
     testElement tester = testing[0];
-    
+
     runOnMatrix(myNet, tester.mat, tester.label);
 
     return 0;
@@ -126,8 +126,8 @@ void displayImage(std::string filename, int dataVal, int number);
     }
     
     A.print();
-  */  
-    //return 0;
+  */
+//return 0;
 
 //}
 

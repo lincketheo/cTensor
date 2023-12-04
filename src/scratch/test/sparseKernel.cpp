@@ -22,11 +22,11 @@ using namespace matlib;
     @return void a sparse matrix of initialized this->dim1 this->dim2 d1 d2 and rows and
     cols containing identity values
 */
-template <class T>
+template<class T>
 SparseMatrix<T>::SparseMatrix(int d1, int d2) {
     this->dim1 = d1;
     this->dim2 = d2;
-    for(int i = 0; i <= d1 && i <= d2; i++) {
+    for (int i = 0; i <= d1 && i <= d2; i++) {
         rows.push_back(i + 1);
         cols.push_back(i + 1);
         elements.push_back(1);
@@ -60,29 +60,29 @@ Matrix::Matrix(std::string str) {
 */
 
 //Matrix destructor - dereferences pointers and vectors
-template <class T>
-SparseMatrix<T>::~SparseMatrix(){
-    
+template<class T>
+SparseMatrix<T>::~SparseMatrix() {
+
 }
 
-template <class T>
-void SparseMatrix<T>::print(){
+template<class T>
+void SparseMatrix<T>::print() {
     int x = 1;
     int y = 1;
     int i = 0;
-    while(y <= this->dim1){
-        if(rows[i] == x && cols[i] == y){
+    while (y <= this->dim1) {
+        if (rows[i] == x && cols[i] == y) {
             printf("%.1f ", elements[i]);
             //printf("\n%d %d\n ", rows[i], cols[i]);
             i++;
-        }else{
+        } else {
             printf("0.0 ");
         }
-        if(x == this->dim2){
+        if (x == this->dim2) {
             x = 1;
-            y ++;
+            y++;
             printf("\n");
-        }else{
+        } else {
             x++;
         }
     }
@@ -96,39 +96,36 @@ void SparseMatrix<T>::print(){
     @returns updated version of self
     throws dim mismatch if invalid dimensions
 */
-template <class T>
-void SparseMatrix<T>::add(SparseMatrix<T> m){
+template<class T>
+void SparseMatrix<T>::add(SparseMatrix <T> m) {
     int i = 0; //indexes self
     int j = 0; //indexes m
 
-    if(this->dim1 != m.dim1 || this->dim2 != m.dim2){
+    if (this->dim1 != m.dim1 || this->dim2 != m.dim2) {
         printf("Err dim mismatch\n");
         return;
     }
 
-    while(i < m.dim1 && j < this->dim1){
+    while (i < m.dim1 && j < this->dim1) {
 
-        if(m.cols[i] > cols[j]){
+        if (m.cols[i] > cols[j]) {
             j++;
-        }
-        else if(m.cols[i] < cols[j]){
+        } else if (m.cols[i] < cols[j]) {
             i++;
-        }
-        else{
-            if(m.rows[i] == rows[j] && m.cols[i] == cols[j]){
-                elements[j]+=m.elements[i];
+        } else {
+            if (m.rows[i] == rows[j] && m.cols[i] == cols[j]) {
+                elements[j] += m.elements[i];
                 i++;
                 j++;
-            }
-            else if(m.rows[i] > rows[j])j++;
-            else if(m.rows[i] < rows[j])i++;
+            } else if (m.rows[i] > rows[j])j++;
+            else if (m.rows[i] < rows[j])i++;
         }
     }
 }
 
-template <class T>
-void SparseMatrix<T>::stdMult(SparseMatrix<T> m){
-    
+template<class T>
+void SparseMatrix<T>::stdMult(SparseMatrix <T> m) {
+
 
 }
 /*
@@ -187,8 +184,8 @@ Matrix operator *(); //transpose (*tensor)
 float operator ~(); //trace (~tensor)
 */
 
-int main(){
-    Matrix<float> matptr ;
+int main() {
+    Matrix<float> matptr;
     SparseMatrix<float> a(5, 5);
     matptr = a;
     matptr.print();

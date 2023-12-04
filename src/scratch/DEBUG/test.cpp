@@ -2,34 +2,34 @@
 #include <sstream>
 
 
-int main(int argc, char ** argv){
+int main(int argc, char **argv) {
 
-    int * a;
+    int *a;
     a = new int[10];
-        
-    const char * b[10];
 
-    for(int i = 0; i < 10; i ++){
+    const char *b[10];
+
+    for (int i = 0; i < 10; i++) {
         a[i] = i;
         std::stringstream strs;
         strs << i;
         std::string temp_str = strs.str();
         b[i] = new char;
-        b[i] = (const char*)temp_str.c_str();
-        std::cout<<b[i]<<std::endl;
-        std::cout<<(const char*)temp_str.c_str()<<std::endl;
+        b[i] = (const char *) temp_str.c_str();
+        std::cout << b[i] << std::endl;
+        std::cout << (const char *) temp_str.c_str() << std::endl;
     }
-    for(int i = 0; i < 10; i++){
-        std::cout<<a[i]<<" ";
-        std::cout<<"b "<<b[i]<<std::endl;
+    for (int i = 0; i < 10; i++) {
+        std::cout << a[i] << " ";
+        std::cout << "b " << b[i] << std::endl;
     }
 
     int i = 123;
-        std::stringstream strs;
-        strs << i;
-        std::string temp_str = strs.str();
-        const char * asdjn = (const char*)temp_str.c_str();
-    std::cout<<asdjn<<std::endl;
+    std::stringstream strs;
+    strs << i;
+    std::string temp_str = strs.str();
+    const char *asdjn = (const char *) temp_str.c_str();
+    std::cout << asdjn << std::endl;
 
     return 0;
 }
@@ -124,8 +124,8 @@ void displayImage(std::string filename, int dataVal, int number);
     }
     
     A.print();
-  */  
-    //return 0;
+  */
+//return 0;
 
 //}
 

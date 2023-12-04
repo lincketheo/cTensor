@@ -20,15 +20,14 @@ using std::endl;
 
 //================== Constructors ==================
 //Standard sets everything to null
-Network::Network()
-{
+Network::Network() {
     input = nullptr;
     output = nullptr;
     layersSize = 0;
     layers = 0;
     numberOut = 0;
     numberIn = 0;
-}   
+}
 
 /**
     Encodes a Neural Network
@@ -40,111 +39,104 @@ Network::Network()
 
     @return a convolutional neural network with layer structs
 */
-    
-Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayers)
-{
 
-	//Initialize input
-	input = new layer;
-	input -> size = numIn;
-	input -> previous = nullptr;
+Network::Network(int numIn, int numOut, int numHiddenLayers, int sizeHiddenLayers) {
 
-	//variable layer
-	layer * temp = new layer;
-	input -> next = temp;
-	temp -> previous = input;	
-	
-	//go forward to assign sizes and go backwards to assign weights biases
-	for(int i = 0; i < numHiddenLayers; i++)
-    {
-		temp->size = sizeHiddenLayers;
-		layer * next = new layer;
-		temp -> next = next;
-		next -> previous = temp;
-		temp = temp -> next;
-	}
+    //Initialize input
+    input = new layer;
+    input->size = numIn;
+    input->previous = nullptr;
 
-	//output layer
-	temp -> size = numOut;
-	temp -> biases = Matrix(numOut, 1); 
-	temp -> inputs = Matrix(temp->size, 1);
-	temp -> next = nullptr;
-	output = new layer;
-	output = temp;
+    //variable layer
+    layer *temp = new layer;
+    input->next = temp;
+    temp->previous = input;
 
-	//variable layer
-	temp = temp -> previous;
-	while(temp->previous != nullptr)
-    {
-		temp->weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
-		temp->biases = Matrix(temp->size, 1);
-		temp->inputs = Matrix(temp->size, 1);
-		temp = temp->previous;
-	}
-	
-	//temp is now input
-	temp -> weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
-	temp -> inputs = Matrix(temp->size, 1);
+    //go forward to assign sizes and go backwards to assign weights biases
+    for (int i = 0; i < numHiddenLayers; i++) {
+        temp->size = sizeHiddenLayers;
+        layer *next = new layer;
+        temp->next = next;
+        next->previous = temp;
+        temp = temp->next;
+    }
 
-	numberIn = numIn;
-	numberOut = numOut;
-	layers = numHiddenLayers;
-	layersSize = sizeHiddenLayers;
+    //output layer
+    temp->size = numOut;
+    temp->biases = Matrix(numOut, 1);
+    temp->inputs = Matrix(temp->size, 1);
+    temp->next = nullptr;
+    output = new layer;
+    output = temp;
+
+    //variable layer
+    temp = temp->previous;
+    while (temp->previous != nullptr) {
+        temp->weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
+        temp->biases = Matrix(temp->size, 1);
+        temp->inputs = Matrix(temp->size, 1);
+        temp = temp->previous;
+    }
+
+    //temp is now input
+    temp->weights = Matrix(temp->next->size, temp->size, 1 / sqrt(float(numIn)));
+    temp->inputs = Matrix(temp->size, 1);
+
+    numberIn = numIn;
+    numberOut = numOut;
+    layers = numHiddenLayers;
+    layersSize = sizeHiddenLayers;
 }
 
 //destroy a network
-Network::~Network()
-{
-	while(input != NULL)
-    {   
-		layer * old = input;
-		input = input -> next;
-		delete old;
-	}
+Network::~Network() {
+    while (input != NULL) {
+        layer *old = input;
+        input = input->next;
+        delete old;
+    }
 }
 
 //Prints the network (not to be confused with printNetworkSummary, this prints all the matrices)
-void Network::printNetwork()
-{
-	cout<<"Input Layer: "<<endl;
-	layer * temp = new layer;
-	temp = input;
+void Network::printNetwork() {
+    cout << "Input Layer: " << endl;
+    layer *temp = new layer;
+    temp = input;
 
-	Matrix weight = temp->weights;
-	cout<<"Weights"<<endl;
-	weight.print();
-	cout<<endl;
-        cout<<"------------------"<<endl;
-        cout<<endl;
+    Matrix weight = temp->weights;
+    cout << "Weights" << endl;
+    weight.print();
+    cout << endl;
+    cout << "------------------" << endl;
+    cout << endl;
+    temp = temp->next;
+
+    while (temp->next != nullptr) {
+
+        Matrix bias = temp->biases;
+
+        Matrix weight = temp->weights;
+
+        Matrix transpBias = *bias;
+        cout << "Biases:" << endl;
+        transpBias.print();
+
+        cout << "Weights:" << endl;
+        weight.print();
+
+        cout << endl;
+        cout << "------------------" << endl;
+        cout << endl;
         temp = temp->next;
-
-	while(temp->next != nullptr)
-    {
-		
-		Matrix bias = temp->biases;
-		
-		Matrix weight = temp->weights;
-
-		Matrix transpBias = *bias;
-		cout<<"Biases:"<<endl;
-		transpBias.print();
-		
-		cout<<"Weights:"<<endl;
-		weight.print();
-
-		cout<<endl;
-		cout<<"------------------"<<endl;
-		cout<<endl;
-		temp = temp->next;
-	}
-	cout<<"Outputs"<<endl;
-	Matrix bias = temp->biases;
-	cout<<"Biases:"<<endl;
-	Matrix transpBias = *bias;
-	transpBias.print();
-    cout<<endl;
-    cout<<"------------------"<<endl;
-    cout<<endl;
+    }
+    cout << "Outputs" << endl;
+    Matrix bias = temp->biases;
+    cout << "Biases:" << endl;
+    Matrix transpBias = *bias;
+    transpBias.print();
+    cout << endl;
+    cout << "------------------" << endl;
+    cout << endl;
 }
 
 
@@ -155,12 +147,11 @@ void Network::printNetwork()
     @param _inputs - the input to the layer we are on
     @return a matrix after propogating a single layer (eventually the final output
 */
-Matrix propogateNetRecurs(layer * node, Matrix _inputs)
-{
-	node->inputs = _inputs;
-	if(node->next == nullptr) return _inputs;
-	Matrix newTens = ((node->weights * _inputs + node->next->biases)).relu();
-	return propogateNetRecurs(node->next, newTens);
+Matrix propogateNetRecurs(layer *node, Matrix _inputs) {
+    node->inputs = _inputs;
+    if (node->next == nullptr) return _inputs;
+    Matrix newTens = ((node->weights * _inputs + node->next->biases)).relu();
+    return propogateNetRecurs(node->next, newTens);
 }
 
 /**
@@ -169,20 +160,18 @@ Matrix propogateNetRecurs(layer * node, Matrix _inputs)
     @param inputs the matrix to input to the network
     @return a matrix after all transformations have been done
 */
-Matrix Network::propogateNetwork(Matrix inputs)
-{
-	return propogateNetRecurs(input, inputs);
+Matrix Network::propogateNetwork(Matrix inputs) {
+    return propogateNetRecurs(input, inputs);
 }
 
 //prints a clean network summary including inputs, outputs, hidden layers and size hidden layers
-void Network::printNetworkSummary()
-{
-	cout<<"====================Network===================="<<endl;
-	cout<<"Number of inputs: "<<numberIn<<endl;
-	cout<<"Number of Outputs: "<<numberOut<<endl;
-	cout<<"Number of hidden layers: "<<layers<<endl;
-	cout<<"Size of hidden layers: "<<layersSize<<endl;
-	cout<<"==============================================="<<endl;
+void Network::printNetworkSummary() {
+    cout << "====================Network====================" << endl;
+    cout << "Number of inputs: " << numberIn << endl;
+    cout << "Number of Outputs: " << numberOut << endl;
+    cout << "Number of hidden layers: " << layers << endl;
+    cout << "Size of hidden layers: " << layersSize << endl;
+    cout << "===============================================" << endl;
 }
 
 /**
@@ -194,14 +183,13 @@ void Network::printNetworkSummary()
 
     @return void recursively updates weights and biases using the chain rule in calculus
 */
-void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate)
-{
+void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate) {
     //the propogating layer
-    layer * temp = output->previous;
+    layer *temp = output->previous;
 
     //universal delta - propogates backwards
-    Matrix del = parMult((outputs - expected), 
-                (temp->weights * temp->inputs + temp->next->biases).reluPrime());
+    Matrix del = parMult((outputs - expected),
+                         (temp->weights * temp->inputs + temp->next->biases).reluPrime());
 
     //delGrad updated gradient for weights matrix
     Matrix delGrad = del * (*(temp->inputs));
@@ -209,15 +197,14 @@ void Network::backPropogateRecurs(Matrix outputs, Matrix expected, float rate)
     //update weights and biases
     temp->weights = temp->weights - ((parMult(temp->weights, delGrad)).scalarMult(rate));
     temp->next->biases = temp->next->biases - del.scalarMult(rate);
-   
+
     temp = temp->previous;
-    
+
     //loop backwards and do the same minus the initial del
-    while(temp != nullptr)
-    {
+    while (temp != nullptr) {
         //update del
-        del = parMult(((*(temp->next->weights)) * del), 
-                    (temp->weights * temp->inputs + temp->next->biases).reluPrime());
+        del = parMult(((*(temp->next->weights)) * del),
+                      (temp->weights * temp->inputs + temp->next->biases).reluPrime());
 
         //gradients
         Matrix delGrad = del * (*(temp->inputs));

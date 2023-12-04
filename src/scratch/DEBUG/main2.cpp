@@ -6,8 +6,8 @@ using namespace matlib;
 using namespace NetworkLib;
 using std::stoi;
 
-int main(int argc, char ** argv){
-    srand((unsigned int)time(NULL));
+int main(int argc, char **argv) {
+    srand((unsigned int) time(NULL));
 
     Matrix t1 = Matrix(5, 1, 4);
     Matrix t2 = Matrix(5, 1, 4);

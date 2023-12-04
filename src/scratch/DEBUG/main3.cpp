@@ -14,42 +14,46 @@ using std::string;
 const string fileBase = "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train";
 const string fileBaseTest = "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/test";
 
-int main(int argc, char ** argv){
+int main(int argc, char **argv) {
 
-    srand((unsigned int)time(NULL));
+    srand((unsigned int) time(NULL));
 
-    const char * fileNames[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
-    int labels[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}; 
+    const char *fileNames[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    int labels[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
     trainingSet testing = uploadAllImages(fileBase, fileNames, labels, 10, "jpg", 1000);
-        for(int i = 0; i < testing.files.size(); i++){
-            std::cout<<testing.files[i].file<<std::endl;
-        }
+    for (int i = 0; i < testing.files.size(); i++) {
+        std::cout << testing.files[i].file << std::endl;
+    }
 
 
     int a = std::stoi(argv[1]);
     int b = std::stoi(argv[2]);
     float c = std::stof(argv[3]);
-    
+
     Network myNet = trainDataSet(testing, a, b, c);
 
-    runOnMatrix("/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train/4/mnist_4_520.jpg", myNet, 4);
-    runOnMatrix("/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train/5/mnist_5_488.jpg", myNet, 5);
-   /* 
-    trainingSet testing2 = uploadAllImages(fileBaseTest, fileNames, labels, 10, "jpg", 100);
+    runOnMatrix(
+            "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train/4/mnist_4_520.jpg",
+            myNet, 4);
+    runOnMatrix(
+            "/home/theo/Documents/projects/math/tensorFlow/cTensor/src/Data/images/mnist_jpgfiles/train/5/mnist_5_488.jpg",
+            myNet, 5);
+    /*
+     trainingSet testing2 = uploadAllImages(fileBaseTest, fileNames, labels, 10, "jpg", 100);
 
 
-        for(int i = 0; i < testing2.files.size(); i++){
-            std::cout<<testing2.files[i].file<<std::endl;
-        }
+         for(int i = 0; i < testing2.files.size(); i++){
+             std::cout<<testing2.files[i].file<<std::endl;
+         }
 
 
-    float result = testOnTestSet(testing2, myNet);   
-    std::cout<<result<<std::endl;
- 
+     float result = testOnTestSet(testing2, myNet);
+     std::cout<<result<<std::endl;
 
-    return 0;
-*/
+
+     return 0;
+ */
 }
 
 
@@ -142,8 +146,8 @@ void displayImage(std::string filename, int dataVal, int number);
     }
     
     A.print();
-  */  
-    //return 0;
+  */
+//return 0;
 
 //}
 

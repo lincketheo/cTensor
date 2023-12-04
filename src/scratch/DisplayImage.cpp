@@ -3,8 +3,7 @@
 
 using namespace cv;
 
-int main(int argc, char** argv )
-{
+int main(int argc, char **argv) {
     //if ( argc != 2 )
     //{
     //    printf("usage: DisplayImage.out <Image_Path>\n");
@@ -14,13 +13,13 @@ int main(int argc, char** argv )
     //Mat image;
     //image = imread( argv[1], 1);
     //std::cout<<image.row(1)<<std::endl;
-    Mat D(2,9, 1, Scalar(0,0,255));
-    std::cout<<D<<std::endl;
-    std::cout<<D.dims<<std::endl;
-    for(int i = 0; i < D.rows * D.cols; i++){
-       std::cout<<(int)D.data[i]<<std::endl;
+    Mat D(2, 9, 1, Scalar(0, 0, 255));
+    std::cout << D << std::endl;
+    std::cout << D.dims << std::endl;
+    for (int i = 0; i < D.rows * D.cols; i++) {
+        std::cout << (int) D.data[i] << std::endl;
     }
-    std::cout<<D.rows<<std::endl;
+    std::cout << D.rows << std::endl;
 
     //if ( !image.data )
     //{

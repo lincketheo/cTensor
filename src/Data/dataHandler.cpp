@@ -4,7 +4,7 @@
 #include <matLib.hpp>
 #include <Network.hpp>
 #include <networkTrain.hpp>
-#include <algorithm> 
+#include <algorithm>
 
 using std::vector;
 using std::string;
@@ -66,8 +66,8 @@ using cv::imread;
     
     @return a vector cv strings to each file
 */
-vector<trainElem> training::uploadImages(int number, string filePath, string fileEnding, int maxIm){
-    vector<cv::String> fn;
+vector <trainElem> training::uploadImages(int number, string filePath, string fileEnding, int maxIm) {
+    vector <cv::String> fn;
     /*
         stores the output of
         $ ls | grep *.<fileEnding>
@@ -76,8 +76,8 @@ vector<trainElem> training::uploadImages(int number, string filePath, string fil
         to fn
     **/
     cv::glob((filePath + string("*") + fileEnding).c_str(), fn, false);
-    vector<trainElem> matrices;
-    for(int i = 0; i < fn.size() && i < maxIm; i++){
+    vector <trainElem> matrices;
+    for (int i = 0; i < fn.size() && i < maxIm; i++) {
         trainElem a;
         a.file = fn[i];
         a.label = number;
@@ -99,13 +99,15 @@ vector<trainElem> training::uploadImages(int number, string filePath, string fil
 
     @return mainSet a vector  of trainElem (string filename and int label)
 */
-trainingSet training::uploadAllImages(string basePath, const char ** fileNames, int * labels, int numLabels, string fileEnding, int maxIm){
-    
-    vector<trainElem> main;
-    for(int i = 0; i < numLabels; i++){
-       
+trainingSet
+training::uploadAllImages(string basePath, const char **fileNames, int *labels, int numLabels, string fileEnding,
+                          int maxIm) {
+
+    vector <trainElem> main;
+    for (int i = 0; i < numLabels; i++) {
+
         string file = basePath + string("/") + fileNames[i] + string("/");
-        vector<trainElem> b = uploadImages(labels[i], file, fileEnding, maxIm);
+        vector <trainElem> b = uploadImages(labels[i], file, fileEnding, maxIm);
         main.insert(main.end(), b.begin(), b.end());
         b.erase(b.begin(), b.end()); //deallocate memory previously in b
     }
@@ -130,7 +132,7 @@ trainingSet training::uploadAllImages(string basePath, const char ** fileNames, 
   
     A source of error - mayber images aren't the same size or example is null
 */
-int training::getNumIn(cv::String example){
+int training::getNumIn(cv::String example) {
     Mat A = imread(example, 1);
     int size = A.rows * A.cols;
     A.release();
@@ -145,7 +147,7 @@ int training::getNumIn(cv::String example){
 
     @return a Matrix with 1 in the position we want label to be in
 */
-Matrix training::createOutput(int size, int label){
+Matrix training::createOutput(int size, int label) {
     Matrix a(size, 1);
     a.insert(0, 0, 0);
     a.insert(label, 0, 1);
@@ -162,20 +164,20 @@ Matrix training::createOutput(int size, int label){
 
     @return a Network that has been altered to fit the data
 */
-Network * training::trainDataSet(trainingSet set, int nHL, int sHL, float rate){
-    Network * main = new Network(set.numIn, set.numOut, nHL, sHL);
+Network *training::trainDataSet(trainingSet set, int nHL, int sHL, float rate) {
+    Network *main = new Network(set.numIn, set.numOut, nHL, sHL);
     main->printNetworkSummary();
-    for(int i = 0; i < set.files.size(); i++){
+    for (int i = 0; i < set.files.size(); i++) {
 //        printf("%d) Training ..... Label: %d\n", i, set.files[i].label);
-        if(i % 100 == 0)printf("%d) training\n", i);
+        if (i % 100 == 0)printf("%d) training\n", i);
         Mat A = cv::imread(set.files[i].file, 1);
-        if(A.rows != 28 || A.cols != 28){
+        if (A.rows != 28 || A.cols != 28) {
             printf("AAAAAA");
             exit(1);
         }
         Matrix B = Matrix(set.numIn, 1);
         //redundant, but I made my own matrix class and imma use it
-        for(int j = 0; j < set.numIn; j++)
+        for (int j = 0; j < set.numIn; j++)
             B.arr[j] = float(A.data[j] / 255.0);
         A.release();
         Matrix expected = createOutput(set.numOut, set.files[i].label);
@@ -192,10 +194,10 @@ Network * training::trainDataSet(trainingSet set, int nHL, int sHL, float rate){
     @param mat the matrix to input to the network
     @param expected the expected matrix
 */
-bool training::runOnMatrix(cv::String filePath, Network * net, int expected){
+bool training::runOnMatrix(cv::String filePath, Network *net, int expected) {
     Mat A = cv::imread(filePath, 1);
     Matrix B(A.rows * A.cols, 1);
-    for(int i = 0; i < A.rows * A.cols; i++)
+    for (int i = 0; i < A.rows * A.cols; i++)
         B.arr[i] = float(A.data[i] / 255.0);
     A.release();
     Matrix out = net->propogateNetwork(B);
@@ -204,12 +206,12 @@ bool training::runOnMatrix(cv::String filePath, Network * net, int expected){
 }
 
 
-float training::testOnTestSet(trainingSet set, Network* net){
+float training::testOnTestSet(trainingSet set, Network *net) {
     int correct = 0;
     int total = 0;
-    for(int i = 0; i < set.files.size(); i++){
-        if(runOnMatrix(set.files[i].file, net, set.files[i].label))correct ++;
-        total ++;
+    for (int i = 0; i < set.files.size(); i++) {
+        if (runOnMatrix(set.files[i].file, net, set.files[i].label))correct++;
+        total++;
     }
-    return double(correct)/double(total);
+    return double(correct) / double(total);
 }

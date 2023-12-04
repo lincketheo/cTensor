@@ -25,6 +25,7 @@ using namespace kernel;
     @return
 */
 Matrix mat_add(Matrix, Matrix);
+
 /*
     Return
 
@@ -32,6 +33,7 @@ Matrix mat_add(Matrix, Matrix);
     @return
 */
 Matrix mat_mul(Matrix, Matrix);
+
 /*
     Return
 
@@ -39,6 +41,7 @@ Matrix mat_mul(Matrix, Matrix);
     @return
 */
 Matrix inverse(Matrix);
+
 /*
     Return
 
@@ -46,6 +49,7 @@ Matrix inverse(Matrix);
     @return
 */
 Matrix transpose(Matrix);
+
 /*
     Return
 

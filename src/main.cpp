@@ -12,15 +12,15 @@ using namespace training;
 using std::vector;
 using std::string;
 
-int main(int argc, char ** argv){
+int main(int argc, char **argv) {
 
-    srand((unsigned int)time(NULL));
-    const char * fileNames[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+    srand((unsigned int) time(NULL));
+    const char *fileNames[10] = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
     int labels[10] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 
     UI mainUI;
-    if(mainUI.controlFlow(fileNames, labels))return 0;
+    if (mainUI.controlFlow(fileNames, labels))return 0;
     return 1;
 }
 
@@ -114,8 +114,8 @@ void displayImage(std::string filename, int dataVal, int number);
     }
     
     A.print();
-  */  
-    //return 0;
+  */
+//return 0;
 
 //}
 
