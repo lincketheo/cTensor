@@ -1,7 +1,5 @@
-add_library(cTensor SHARED
-        UI.cpp
-        Matrix.cpp
-        Network.cpp
-        training.cpp
+add_library(linalg SHARED
+        matrix.c
+        basic_math/add.c
 )
-target_include_directories(cTensor PUBLIC ${INCLUDE_DIR})
+target_include_directories(linalg PUBLIC ${INCLUDE_DIR})

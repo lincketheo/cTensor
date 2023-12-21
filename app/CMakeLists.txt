@@ -1,8 +1,4 @@
 
-add_executable(runTheDamnNetwork runTheDamnNetwork.cpp)
-target_link_libraries(runTheDamnNetwork PUBLIC cTensor)
-target_include_directories(runTheDamnNetwork PUBLIC ${INCLUDE_DIR})
-
-add_executable(run main.cpp)
-target_link_libraries(run PUBLIC cTensor)
-target_include_directories(run PUBLIC ${INCLUDE_DIR})
+add_executable(matrix_demo matrix_demo.c)
+target_link_libraries(matrix_demo PUBLIC linalg)
+target_include_directories(matrix_demo PUBLIC ${INCLUDE_DIR})
