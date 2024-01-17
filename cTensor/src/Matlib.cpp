@@ -4,6 +4,7 @@
 
 #include "Matlib.h"
 #include "Common.h"
+#include <cmath>
 
 Matrix matMul(const Matrix &a, const Matrix &b) {
     if (a.cols != b.rows) {
@@ -131,7 +132,7 @@ float pNorm(const Matrix &a, float p) {
     float ret = 0.0;
     for (int row = 0; row < a.rows; ++row) {
         for (int col = 0; col < a.cols; ++col) {
-            ret += pow(abs(a.get(row, col)), p);
+            ret += std::pow(std::abs(a.get(row, col)), p);
         }
     }
     return ret;

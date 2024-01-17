@@ -1,11 +1,14 @@
 add_library(cTensor SHARED
         src/Matrix.cpp
-        include/Common.h
         src/Network.cpp
-        include/Network.h
-        include/Matlib.h
         src/Matlib.cpp
+        src/NPZReader.cpp
+        src/MNistLoader.cpp
 )
+
+find_package(ZLIB REQUIRED)
+include_directories(${ZLIB_INCLUDE_DIRS})
+target_link_libraries(cTensor ${ZLIB_LIBRARIES})
 
 include_directories(include)
 target_include_directories(cTensor PUBLIC include)

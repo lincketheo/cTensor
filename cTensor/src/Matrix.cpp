@@ -1,6 +1,7 @@
 #include "Matrix.h"       //main header
 #include "Common.h"
 #include <sstream>
+#include <cstring>
 
 Matrix::Matrix(size_t _rows, size_t _cols) {
     if (_rows < 1 || _cols < 1) {
@@ -10,6 +11,7 @@ Matrix::Matrix(size_t _rows, size_t _cols) {
     cols = _cols;
     isTranspose = false;
     data = new float[rows * cols];
+    memset(data, 0, rows * cols * sizeof(float));
 }
 
 Matrix::Matrix(size_t _rows, size_t _cols, float min, float max) {
@@ -20,6 +22,7 @@ Matrix::Matrix(size_t _rows, size_t _cols, float min, float max) {
     cols = _cols;
     isTranspose = false;
     data = new float[rows * cols];
+    memset(data, 0, rows * cols * sizeof(float));
 
     if (max < min) {
         throw CTensorException("Max is less than Min");

@@ -3,6 +3,7 @@
 //
 
 #include <gtest/gtest.h>
+#include <cmath>
 #include "Matrix.h"
 #include "Matlib.h"
 #include "Network.h"
@@ -236,7 +237,7 @@ TEST(Network, LossLowers) {
     for (int i = 0; i < 1000; ++i) {
         auto out = a.evaluate(input);
         float nextErr = squaredErrorCost(out, expected);
-        EXPECT_GT(prevErr, squaredErrorCost(out, expected));
+        EXPECT_GT(prevErr, nextErr);
         prevErr = nextErr;
 
         a.update(out, expected, 0.0001);
