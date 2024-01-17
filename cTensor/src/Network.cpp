@@ -32,6 +32,7 @@ Network::Network(size_t numIn, size_t numOut, size_t layers, size_t layersSize)
 
     if (layers == 1) {
         input = new layer(numOut, numIn, nullptr, nullptr);
+        output = input;
         return;
     }
 
