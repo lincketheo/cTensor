@@ -80,7 +80,7 @@ std::string Matrix::print() const {
 
 void Matrix::copyFrom(const Matrix &from) {
     if (from.rows * from.cols != rows * cols) {
-        delete data;
+        delete[] data;
         cols = from.cols;
         rows = from.rows;
         data = new float[rows * cols];
@@ -93,4 +93,20 @@ void Matrix::T_inline() {
     size_t temp = cols;
     cols = rows;
     rows = temp;
+}
+
+Matrix::~Matrix() {
+    delete[] data;
+}
+
+Matrix::Matrix(const Matrix &m) {
+    rows = m.rows;
+    cols = m.cols;
+    isTranspose = false;
+    data = new float[rows * cols];
+    copyFrom(m);
+}
+
+void Matrix::zero_inline() {
+    memset(data, 0, sizeof(float) * rows * cols);
 }

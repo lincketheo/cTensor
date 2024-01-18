@@ -229,7 +229,7 @@ TEST(MatrixTest, Transpose) {
 }
 
 TEST(Network, LossLowers) {
-    Network a(10, 6, 2, 5);
+    Network a(10, 6, {8, 7, 6});
     Matrix input(10, 1, 0, 1);
     Matrix expected(6, 1, 0, 1);
 
@@ -240,6 +240,6 @@ TEST(Network, LossLowers) {
         EXPECT_GT(prevErr, nextErr);
         prevErr = nextErr;
 
-        a.update(out, expected, 0.0001);
+        a.update(out, expected, 0.0001, true);
     }
 }

@@ -25,6 +25,14 @@ void reluPrimeFromOutput_inline(Matrix &a);
 
 Matrix reluPrimeFromOutput(const Matrix &a);
 
+Matrix sigmoid(const Matrix &a);
+
+void sigmoid_inline(Matrix &a);
+
+Matrix sigmoidPrimeFromOutput(const Matrix &a);
+
+void sigmoidPrimeFromOutput_inline(Matrix &a);
+
 Matrix matSub(const Matrix &a, const Matrix &b);
 
 void matSub_inline(Matrix &a, const Matrix &b);
@@ -40,5 +48,21 @@ void matHadMul_inline(Matrix &a, const Matrix &b);
 float pNorm(const Matrix& a, float p);
 
 float squaredErrorCost(const Matrix& a, const Matrix& b);
+
+float categoricalCrossEntropy(const Matrix &a, const Matrix &b);
+
+void softMax_inline(Matrix &a);
+
+Matrix softMax(const Matrix &a);
+
+void argMax(const Matrix &a, int *_row, int *_col);
+
+void normalize_inline(Matrix &a);
+
+Matrix normalize(const Matrix &a);
+
+bool hasNan(const Matrix &a);
+
+bool hasInf(const Matrix &a);
 
 #endif //CTENSOR_MATLIB_H

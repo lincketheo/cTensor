@@ -13,6 +13,10 @@ public:
 
     Matrix(size_t rows, size_t cols, float min, float max);
 
+    Matrix(const Matrix &m);
+
+    ~Matrix();
+
     float get(size_t row, size_t col) const;
 
     void set(size_t row, size_t col, float val);
@@ -21,9 +25,18 @@ public:
         return os << tc.print();
     }
 
+    Matrix &operator=(const Matrix &m) {
+        if (&m != this) {
+            copyFrom(m);
+        }
+        return *this;
+    }
+
     void copyFrom(const Matrix &from);
 
     void T_inline();
+
+    void zero_inline();
 
     size_t rows;   //rows
     size_t cols;   //cols

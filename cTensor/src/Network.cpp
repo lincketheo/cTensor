@@ -8,47 +8,49 @@
 #include <sstream>
 
 layer::layer(size_t rows, size_t cols, layer *_next, layer *_previous)
-        : inputs(cols, 1, 0, 1),
-          weights(rows, cols, 0, 1),
-          biases(rows, 1, 0, 1) {
+        : inputs(cols, 1, -0.5, 0.5),
+          weights(rows, cols, -0.5, 0.5),
+          biases(rows, 1, -0.5, 0.5),
+          weightUpdates(rows, cols),
+          biasUpdates(rows, 1) {
+    numWeightUpdates = 0;
+    numBiasUpdates = 0;
     next = _next;
     previous = _previous;
 }
 
 std::string layer::print() const {
     std::stringstream ss;
-    ss << "Input Size: " << weights.cols << ", Output Size: " << weights.rows << std::endl;
-    ss << "Inputs: " << inputs << std::endl;
-    ss << "Biases: " << biases << std::endl;
-    ss << "Weights: " << weights << std::endl;
+    ss << "Weights Size: " << weights.rows << ", " << weights.cols << std::endl;
+    ss << "Inputs Size: " << inputs.rows << ", " << inputs.cols << std::endl;
+    ss << "Biases Size: " << biases.rows << ", " << biases.cols << std::endl;
     return ss.str();
 }
 
-Network::Network(size_t numIn, size_t numOut, size_t layers, size_t layersSize)
-        : input(nullptr), output(nullptr) {
-    if (layers < 1) {
-        throw CTensorException("Must have more than 1 layer");
-    }
+Network::Network(size_t numIn, size_t numOut, const std::vector<size_t> &layerSizes)
+        : front(nullptr), back(nullptr) {
 
-    if (layers == 1) {
-        input = new layer(numOut, numIn, nullptr, nullptr);
-        output = input;
+    if (layerSizes.empty()) {
+        front = new layer(numOut, numIn, nullptr, nullptr);
+        back = front;
         return;
     }
 
-    input = new layer(layersSize, numIn, nullptr, nullptr);
-    layer *head = input;
-    for (int i = 0; i < layers - 2; ++i) {
-        auto *next = new layer(layersSize, layersSize, nullptr, head);
+    front = new layer(layerSizes[0], numIn, nullptr, nullptr);
+    layer *head = front;
+
+    for (int i = 0; i < layerSizes.size() - 1; ++i) {
+        auto *next = new layer(layerSizes[i + 1], layerSizes[i], nullptr, head);
         head->next = next;
         head = next;
     }
-    head->next = new layer(numOut, layersSize, nullptr, head);
-    output = head->next;
+
+    head->next = new layer(numOut, layerSizes.back(), nullptr, head);
+    back = head->next;
 }
 
 Network::~Network() {
-    layer *head = input;
+    layer *head = back;
     while (head != nullptr) {
         auto *temp = head;
         head = head->next;
@@ -57,7 +59,7 @@ Network::~Network() {
 }
 
 std::string Network::print() const {
-    layer *head = input;
+    layer *head = front;
     std::stringstream ss;
     while (head != nullptr) {
         ss << *head << std::endl;
@@ -66,44 +68,59 @@ std::string Network::print() const {
     return ss.str();
 }
 
-Matrix evaluateRecursive(const layer *l) {
-    if (l->next == nullptr) {
-        Matrix out = matMul(l->weights, l->inputs);
-        relu_inline(out);
-        return out;
-    }
-    l->next->inputs = matMul(l->weights, l->inputs);
-    matAdd_inline(l->next->inputs, l->biases);
-    relu_inline(l->next->inputs);
-    return evaluateRecursive(l->next);
-}
-
 Matrix Network::evaluate(const Matrix &_input) {
-    if (_input.cols != input->inputs.cols || _input.rows != input->inputs.rows) {
+    if (_input.cols != front->inputs.cols || _input.rows != front->inputs.rows) {
         throw CTensorException("Network Shape error");
     }
-    input->inputs.copyFrom(_input);
-    return evaluateRecursive(input);
+    layer *head = front;
+    head->inputs.copyFrom(_input);
+    while (head->next != nullptr) {
+        head->next->inputs = matMul(head->weights, head->inputs);
+        matAdd_inline(head->next->inputs, head->biases);
+        relu_inline(head->next->inputs);
+        head = head->next;
+    }
+
+    Matrix ret = matMul(head->weights, head->inputs);
+    matAdd_inline(ret, head->biases);
+    softMax_inline(ret);
+
+    return ret;
 }
 
 // TODO - do math for bias updates
-void Network::update(Matrix &out, const Matrix &expected, float alpha) {
-    layer *head = output;
+void Network::update(Matrix &out, const Matrix &expected, float alpha, bool apply) {
+    layer *head = back;
 
-    // dL = 2 * (e - o) O r'
+    // dL/dz = (e - o) https://towardsdatascience.com/derivative-of-the-softmax-function-and-the-categorical-cross-entropy-loss-ffceefc081d1
     Matrix d = matSub(out, expected);
-    matScalarMult_inline(d, 2);
-    reluPrimeFromOutput_inline(out);
-    matHadMul_inline(d, out);
+    Matrix update(1, 1);
 
     while (head != nullptr) {
         // wi - dc/dwi = wi - d * input^T
         head->inputs.T_inline();
-        Matrix update = matMul(d, head->inputs);
-        matScalarMult_inline(update, alpha);
-        matSub_inline(head->weights, update);
+        update = matMul(d, head->inputs);
+        matAdd_inline(head->weightUpdates, update);
+        head->numWeightUpdates++;
+        if (apply) {
+            std::cout << "Updating" << std::endl;
+            matScalarMult_inline(head->weightUpdates, (float) alpha / (float) head->numWeightUpdates);
+            matSub_inline(head->weights, head->weightUpdates);
+            head->weightUpdates.zero_inline();
+            head->numWeightUpdates = 0;
+        }
         head->inputs.T_inline();
 
+        matAdd_inline(head->biasUpdates, d);
+        head->numBiasUpdates++;
+        if (apply) {
+            matScalarMult_inline(head->biasUpdates, (float) alpha / (float) head->numBiasUpdates);
+            matSub_inline(head->biases, head->biasUpdates);
+            head->biasUpdates.zero_inline();
+            head->numBiasUpdates = 0;
+        }
+
+        // Update d
         if (head->previous != nullptr) {
             // di = WiT * di+1 O r'
             head->weights.T_inline();

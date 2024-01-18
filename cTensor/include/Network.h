@@ -10,9 +10,16 @@
 struct layer {
     layer(size_t rows, size_t cols, layer *_next, layer *_previous);
 
-    Matrix inputs; // For caching purposes
+    Matrix inputs;
+
     Matrix biases;
+    Matrix biasUpdates;
+    size_t numBiasUpdates;
+
     Matrix weights;
+    Matrix weightUpdates;
+    size_t numWeightUpdates;
+
     layer *next;
     layer *previous;
 
@@ -20,14 +27,13 @@ struct layer {
         return os << tc.print();
     }
 
-
 private:
     std::string print() const;
 };
 
 class Network {
 public:
-    Network(size_t numIn, size_t numOut, size_t layers, size_t layersSize);
+    Network(size_t numIn, size_t numOut, const std::vector<size_t> &layerSizes);
 
     Network() = delete;
 
@@ -39,11 +45,11 @@ public:
 
     Matrix evaluate(const Matrix &input);
 
-    void update(Matrix &out, const Matrix &expected, float alpha);
+    void update(Matrix &out, const Matrix &expected, float alpha, bool apply);
 
 private:
-    layer *input;
-    layer *output;
+    layer *front;
+    layer *back;
 
     std::string print() const;
 };

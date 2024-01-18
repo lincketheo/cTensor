@@ -5,6 +5,7 @@
 #include "Matlib.h"
 #include "Common.h"
 #include <cmath>
+#include <limits>
 
 Matrix matMul(const Matrix &a, const Matrix &b) {
     if (a.cols != b.rows) {
@@ -143,3 +144,116 @@ float squaredErrorCost(const Matrix &a, const Matrix &b) {
     return pNorm(diff, 2);
 }
 
+float categoricalCrossEntropy(const Matrix &expected, const Matrix &actual) {
+    float ret;
+    for (int row = 0; row < expected.rows; ++row) {
+        for (int col = 0; col < expected.cols; ++col) {
+            float _expected = expected.get(row, col);
+            if (_expected != 0.0) {
+                ret += _expected * std::log(actual.get(row, col));
+            }
+        }
+    }
+    return -ret;
+}
+
+void softMax_inline(Matrix &a) {
+    float denominator = 0.0;
+    Matrix cache(a.rows, a.cols);
+
+    for (int row = 0; row < a.rows; ++row) {
+        for (int col = 0; col < a.cols; ++col) {
+            cache.set(row, col, std::exp(a.get(row, col)));
+            denominator += cache.get(row, col);
+        }
+    }
+    for (int row = 0; row < a.rows; ++row) {
+        for (int col = 0; col < a.cols; ++col) {
+            a.set(row, col, cache.get(row, col) / denominator);
+        }
+    }
+}
+
+Matrix softMax(const Matrix &a) {
+    Matrix ret(a.rows, a.cols);
+    ret.copyFrom(a);
+    softMax_inline(ret);
+    return ret;
+}
+
+void argMax(const Matrix &a, int *_row, int *_col) {
+    float ret = std::numeric_limits<float>::min();
+    for (int row = 0; row < a.rows; ++row) {
+        for (int col = 0; col < a.cols; ++col) {
+            if (a.get(row, col) > ret) {
+                ret = a.get(row, col);
+                *_row = row;
+                *_col = col;
+            }
+        }
+    }
+}
+
+void normalize_inline(Matrix &a) {
+    float norm = pNorm(a, 2);
+    matScalarMult_inline(a, 1 / norm);
+}
+
+Matrix normalize(const Matrix &a) {
+    Matrix ret(a.rows, a.cols);
+    ret.copyFrom(a);
+    normalize_inline(ret);
+    return ret;
+}
+
+bool hasNan(const Matrix &a) {
+    for (int row = 0; row < a.rows; ++row) {
+        for (int col = 0; col < a.cols; ++col) {
+            if (std::isnan(a.get(row, col))) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool hasInf(const Matrix &a) {
+    for (int row = 0; row < a.rows; ++row) {
+        for (int col = 0; col < a.cols; ++col) {
+            if (std::isinf(a.get(row, col))) {
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+Matrix sigmoid(const Matrix &a) {
+    Matrix ret(a.rows, a.cols);
+    ret.copyFrom(a);
+    sigmoid_inline(ret);
+    return ret;
+}
+
+void sigmoid_inline(Matrix &a) {
+    for (int row = 0; row < a.rows; ++row) {
+        for (int col = 0; col < a.cols; ++col) {
+            a.set(row, col, 1 / (1 + std::exp(-a.get(row, col))));
+        }
+    }
+}
+
+Matrix sigmoidPrimeFromOutput(const Matrix &a) {
+    Matrix ret(a.rows, a.cols);
+    ret.copyFrom(a);
+    sigmoidPrimeFromOutput_inline(ret);
+    return ret;
+}
+
+void sigmoidPrimeFromOutput_inline(Matrix &a) {
+    for (int row = 0; row < a.rows; ++row) {
+        for (int col = 0; col < a.cols; ++col) {
+            a.set(row, col, (a.get(row, col) * (1 - a.get(row, col))));
+        }
+    }
+}

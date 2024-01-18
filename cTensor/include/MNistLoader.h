@@ -36,15 +36,17 @@ public:
     size_t maxY;
 
 private:
-    cnpy::NpyArray xTrain;
-    cnpy::NpyArray yTrain;
-    cnpy::NpyArray xTest;
-    cnpy::NpyArray yTest;
+    std::vector<uint8_t> xTrain;
+    std::vector<uint8_t> xTest;
+    std::vector<uint8_t> yTrain;
+    std::vector<uint8_t> yTest;
 
     size_t xTrain_i{0};
     size_t yTrain_i{0};
     size_t xTest_i{0};
     size_t yTest_i{0};
+
+    std::vector<size_t> trainIndices;
 };
 
 
